@@ -10,7 +10,7 @@ looker.plugins.visualizations.add({
         {"Small": "small"}
       ],
       display: "radio",
-      default: "large"
+      default: "large",
       section: "Style"    
     }
   },
