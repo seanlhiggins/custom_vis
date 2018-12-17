@@ -15,13 +15,14 @@ looker.plugins.visualizations.add({
     },
     font_align: {
       type: "string",
-      label: "Font Size",
+      label: "Font Align",
       values: [
-        {"Large": "large"},
-        {"Small": "small"}
+        {"Left": "left"},
+        {"Right": "right"},
+        {"Centre": "center"}
       ],
       display: "radio",
-      default: "large",
+      default: "left",
       section: "Style"    
     }
   },
