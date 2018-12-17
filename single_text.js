@@ -38,7 +38,7 @@ looker.plugins.visualizations.add({
           flex-direction: column;
           justify-content: center;
           text-align: ${options.font_align.values};
-          font-family: Helvetica;
+          font-family: "Helvetica";
         }
         .hello-world-text-large {
           font-size: 72px;
