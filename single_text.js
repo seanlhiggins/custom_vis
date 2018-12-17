@@ -1,7 +1,4 @@
 looker.plugins.visualizations.add({
-  // Id and Label are legacy properties that no longer have any function besides documenting
-  // what the visualization used to have. The properties are now set via the manifest
-  // form within the admin/visualizations page of Looker
   id: "hello_world",
   label: "Hello World",
   options: {
@@ -17,11 +14,10 @@ looker.plugins.visualizations.add({
     }
     font_align: {
       type: "string",
-      label: "Align"
+      label: "Font Align",
       values: [
-      {"Left"   : "left"},
-      {"Centre" : "centre"},
-      {"Right"  : "right"}
+        {"Left": "left"},
+        {"Right": "right"}
       ],
       display: "radio",
       default: "left"
@@ -31,7 +27,7 @@ looker.plugins.visualizations.add({
   create: function(element, config) {
 
     // Insert a <style> tag with some styles we'll use later.
-    element.innerHTML = `
+    var css = element.innerHTML = `
       <style>
         .hello-world-vis {
           /* Vertical centering */
@@ -39,21 +35,14 @@ looker.plugins.visualizations.add({
           display: flex;
           flex-direction: column;
           justify-content: center;
+          text-align: center;
+          font-family: Helvetica;
         }
         .hello-world-text-large {
           font-size: 72px;
         }
         .hello-world-text-small {
           font-size: 18px;
-        }
-        .hello-world-text-left {
-          text-align: left;
-        }
-        .hello-world-text-center {
-          text-align: center;
-        }
-        .hello-world-text-right {
-          text-align: right;
         }
       </style>
     `;
@@ -67,7 +56,7 @@ looker.plugins.visualizations.add({
 
   },
   // Render in response to the data or settings changing
-  updateAsync: function(data, element, config, queryResponse, details, done) {
+  update: function(data, element, config, queryResponse) {
 
     // Clear any errors from previous updates
     this.clearErrors();
@@ -92,15 +81,5 @@ looker.plugins.visualizations.add({
       this._textElement.className = "hello-world-text-large";
     }
 
-    // Set the alignment to the user-selected size
-    if (config.font_align == "left") {
-      this._textElement.className = "hello-world-text-left";
-    } else if (config.font_align == "center"){
-      this._textElement.className = "hello-world-text-center";
-    } else {
-      this._textElement.className = "hello-world-text-right";
-    }
-    // We are done rendering! Let Looker know.
-    done()
   }
 });
