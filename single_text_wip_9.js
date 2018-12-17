@@ -66,7 +66,7 @@ looker.plugins.visualizations.add({
           justify-content: center;
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
-          color: config.textColor
+          color: ${config.textColor}
         }
         .hello-world-text-left {
           text-align: left;
