@@ -11,7 +11,8 @@ looker.plugins.visualizations.add({
       ],
       display: "radio",
       default: "large"
-    }
+      section: "Style"    
+    }, 
     font_align: {
       type: "string",
       label: "Font Align",
@@ -20,7 +21,8 @@ looker.plugins.visualizations.add({
         {"Right": "right"}
       ],
       display: "radio",
-      default: "left"
+      default: "left",
+      section: "Style"
     }
   },
   // Set up the initial state of the visualization
@@ -36,7 +38,6 @@ looker.plugins.visualizations.add({
           flex-direction: column;
           justify-content: center;
           text-align: center;
-          font-family: Helvetica;
         }
         .hello-world-text-large {
           font-size: 72px;
