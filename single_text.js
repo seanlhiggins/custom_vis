@@ -12,17 +12,6 @@ looker.plugins.visualizations.add({
       display: "radio",
       default: "large"
       section: "Style"    
-    }, 
-    font_align: {
-      type: "string",
-      label: "Font Align",
-      values: [
-        {"Left": "left"},
-        {"Right": "right"}
-      ],
-      display: "radio",
-      default: "left",
-      section: "Style"
     }
   },
   // Set up the initial state of the visualization
