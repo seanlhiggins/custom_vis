@@ -34,7 +34,7 @@ looker.plugins.visualizations.add({
       display: 'range'
     },
     textColor: {
-      label: 'Text Color (non-overlapped)',
+      label: 'Text Color',
       default: '#000000',
       section: 'Style',
       type: 'string',
@@ -53,8 +53,7 @@ looker.plugins.visualizations.add({
           display: flex;
           flex-direction: column;
           justify-content: center;
-          text-align: ${options.font_align.values};
-          font-family: "Helvetica";
+          text-align: center;
         }
         .hello-world-text-large {
           font-size: 72px;
