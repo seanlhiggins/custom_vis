@@ -13,17 +13,32 @@ looker.plugins.visualizations.add({
       default: "large",
       section: "Style"    
     },
-    font_align: {
-      type: "string",
-      label: "Font Align",
-      values: [
-        {"Left": "left"},
-        {"Right": "right"},
-        {"Centre": "center"}
-      ],
-      display: "radio",
-      default: "left",
-      section: "Style"    
+    textVertPosition: {
+      label: 'Text Vertical Offset',
+      min: 0,
+      max: 1,
+      step: 0.01,
+      default: 0.5,
+      section: 'Value',
+      type: 'number',
+      display: 'range'
+    },
+    textSize: {
+      label: 'Text Size',
+      min: 0,
+      max: 1,
+      step: 0.01,
+      default: 1,
+      section: 'Value',
+      type: 'number',
+      display: 'range'
+    },
+    textColor: {
+      label: 'Text Color (non-overlapped)',
+      default: '#000000',
+      section: 'Style',
+      type: 'string',
+      display: 'color'
     }
   },
   // Set up the initial state of the visualization
