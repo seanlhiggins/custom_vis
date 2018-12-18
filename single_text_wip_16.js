@@ -70,7 +70,7 @@ looker.plugins.visualizations.add({
         }
         .hello-world-text-left {
           text-align: left;
-          color: config.get("textColor"));
+          color: config.get("textColor");
         }
         .hello-world-text-right {
           text-align: right;
