@@ -66,13 +66,15 @@ looker.plugins.visualizations.add({
           justify-content: center;
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
-          color: "#d19877"
+          color: "#FFFF11";
         }
         .hello-world-text-left {
           text-align: left;
+          color: "#d19877";
         }
         .hello-world-text-right {
           text-align: right;
+          color: blue;
         }
       </style>
     `;
