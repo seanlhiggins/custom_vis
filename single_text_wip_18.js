@@ -50,9 +50,8 @@ looker.plugins.visualizations.add({
       section: 'Style',
       type: 'string',
       display: 'color'
-    }
-  },
-   colorPreSet:
+    },
+    colorPreSet:
     {
       type: 'string',
       display: 'select',
@@ -73,6 +72,8 @@ looker.plugins.visualizations.add({
       order: 2,
       placeholder: '#fff, red, etc...'
     },
+  },
+   
   // Set up the initial state of the visualization
   create: function(element, config) {
 
