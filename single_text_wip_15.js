@@ -4,7 +4,7 @@ looker.plugins.visualizations.add({
   options: {
     font_size: {
       type: "string",
-      label: "Font Test",
+      label: "Font Size",
       values: [
         {"Large": "large"},
         {"Small": "small"}
@@ -66,11 +66,11 @@ looker.plugins.visualizations.add({
           justify-content: center;
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
-          color: "#FFFF11";
+          color: green;
         }
         .hello-world-text-left {
           text-align: left;
-          color: ${config.textColor};
+          color: config.get("textColor"));
         }
         .hello-world-text-right {
           text-align: right;
