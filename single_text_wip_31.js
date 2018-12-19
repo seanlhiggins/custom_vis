@@ -154,8 +154,10 @@ looker.plugins.visualizations.add({
     } else {
       var colorSettings =  settings.colorPreSet.split(",");
     }
-    document.getElementById("txt01").style.color = config.textColor;
-    document.getElementById("txt01").style.fontFamily = settings.font_style;
+    const chosen_text_colour = config.textColor
+    const chosen_font_style = settings.font_style
+    document.getElementById("txt01").style.color = chosen_text_colour;
+    document.getElementById("txt01").style.fontFamily = chosen_font_style;
 
     ;
 
