@@ -31,7 +31,7 @@ looker.plugins.visualizations.add({
       label: "Font Style",
       values: [
         {"Helvetica": "Helvetica"},
-        {"Arial": "Arial"},
+        {"Impact": "Impact"},
         {"Times New Roman": "Times New Roman"}
       ],
       display: "select",
@@ -135,12 +135,12 @@ looker.plugins.visualizations.add({
     this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstCell);
 
     // Set the size to the user-selected size
-    if (config.font_align == "left") {
-      document.getElementById("txt01").style.textAlign = "left";
+    if (config.font_align == "right") {
+      document.getElementById("txt01").style.textAlign = "right";
     } else if (config.font_align == "center") {
       document.getElementById("txt01").style.textAlign = "center";
     } else {
-      document.getElementById("txt01").style.textAlign = "right";
+      document.getElementById("txt01").style.textAlign = "left";
     }
     if (config.font_size == "large") {
       document.getElementById("txt01").style.fontSize = "x-large";
@@ -156,15 +156,15 @@ looker.plugins.visualizations.add({
     }
     const chosen_text_colour = config.textColor
     const chosen_font_style = settings.font_style
-    if (config.font_style == "Helvetica") {
-      document.getElementById("txt01").style.fontFamily = "Arial, Helvetica, sans-serif";
-    } else if (config.font_size == "Arial") {
+    if (config.font_style == "Times New Roman") {
+      document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
+    } else if (config.font_style == "Impact") {
       document.getElementById("txt01").style.fontFamily = "Impact,Charcoal,sans-serif";
     } else {
-      document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
+      document.getElementById("txt01").style.fontFamily = "Arial, Helvetica, sans-serif";
     }
     document.getElementById("txt01").style.color = chosen_text_colour;
-    document.getElementById("txt01").style.fontFamily = chosen_font_style;
+    // document.getElementById("txt01").style.fontFamily = chosen_font_style;
 
     ;
 
