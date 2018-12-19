@@ -30,9 +30,9 @@ looker.plugins.visualizations.add({
       type: "string",
       label: "Font Style",
       values: [
-        {"Helvetica": "Helvetica"},
-        {"Impact": "Impact"},
-        {"Times New Roman": "Times New Roman"}
+        {"Helvetica": "helvetica"},
+        {"Impact": "impact"},
+        {"Times New Roman": "times"}
       ],
       display: "select",
       default: "Helvetica",
@@ -149,24 +149,13 @@ looker.plugins.visualizations.add({
     } else {
       document.getElementById("txt01").style.fontSize = "small";
     }
-    if (settings.colorPreSet  == 'c') {
-      var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
-    } else {
-      var colorSettings =  settings.colorPreSet.split(",");
-    }
-    const chosen_text_colour = config.textColor
-    const chosen_font_style = settings.font_style
-    if (config.font_style == "Times New Roman") {
+    if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
-    } else if (config.font_style == "Impact") {
+    } else if (config.font_style == "impact") {
       document.getElementById("txt01").style.fontFamily = "Impact,Charcoal,sans-serif";
     } else {
       document.getElementById("txt01").style.fontFamily = "Arial, Helvetica, sans-serif";
     }
-    document.getElementById("txt01").style.color = chosen_text_colour;
-    // document.getElementById("txt01").style.fontFamily = chosen_font_style;
-
     ;
-
   }
 });
