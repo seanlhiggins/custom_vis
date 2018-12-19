@@ -134,9 +134,9 @@ looker.plugins.visualizations.add({
 
     // Set the size to the user-selected size
     if (config.font_align == "left") {
-      document.getElementById("div").style.textAlign = "left";
+      document.getElementById("this._textElement").style.textAlign = "left";
     } else {
-      document.getElementById("div").style.textAlign = "right";
+      document.getElementById("this._textElement").style.textAlign = "right";
     }
     // if (config.font_size == "large") {
     //   this._textElement.innerHTML += "font-size: 72px";
