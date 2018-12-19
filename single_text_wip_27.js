@@ -108,7 +108,7 @@ looker.plugins.visualizations.add({
     // Create a container element to let us center the text.
     var container = element.appendChild(document.createElement("div"));
     container.className = "hello-world-vis";
-
+    container.id = "txt01"
     // Create an element to contain the text.
     this._textElement = container.appendChild(document.createElement("div"));
 
@@ -134,15 +134,15 @@ looker.plugins.visualizations.add({
 
     // Set the size to the user-selected size
     if (config.font_align == "left") {
-      document.getElementById("this._textElement").style.textAlign = "left";
+      document.getElementById("txt01").style.textAlign = "left";
     } else {
-      document.getElementById("this._textElement").style.textAlign = "right";
+      document.getElementById("txt01").style.textAlign = "right";
     }
-    // if (config.font_size == "large") {
-    //   this._textElement.innerHTML += "font-size: 72px";
-    // } else {
-    //   this._textElement.innerHTML += "font-size: 36px";
-    // }
+    if (config.font_size == "large") {
+      document.getElementById("txt01").style.fontSize = "large";
+    } else {
+      document.getElementById("txt01").style.fontSize = "small";
+    }
     // if (settings.colorPreSet  == 'c') {
     //   var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
     // } else {
