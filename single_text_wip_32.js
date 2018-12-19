@@ -156,6 +156,13 @@ looker.plugins.visualizations.add({
     }
     const chosen_text_colour = config.textColor
     const chosen_font_style = settings.font_style
+    if (config.font_style == "Helvetica") {
+      document.getElementById("txt01").style.fontFamily = "Helvetica";
+    } else if (config.font_size == "Arial") {
+      document.getElementById("txt01").style.fontFamily = "Arial";
+    } else {
+      document.getElementById("txt01").style.fontFamily = "Times New Roman";
+    }
     document.getElementById("txt01").style.color = chosen_text_colour;
     document.getElementById("txt01").style.fontFamily = chosen_font_style;
 
