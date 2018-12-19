@@ -156,7 +156,7 @@ looker.plugins.visualizations.add({
     } else {
       document.getElementById("txt01").style.fontFamily = "Arial, Helvetica, sans-serif";
     }
-    document.getElementById("txt01").style.fontColor = config.textColor;
+    document.getElementById("txt01").style.fontColor = String(config.textColor);
 
     ;
   }
