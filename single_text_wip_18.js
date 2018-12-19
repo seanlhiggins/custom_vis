@@ -92,11 +92,15 @@ looker.plugins.visualizations.add({
         }
         .hello-world-text-left {
           text-align: left;
-          color: config.get("textColor");
         }
         .hello-world-text-right {
           text-align: right;
-          color: blue;
+        }
+        .hello-world-text-large {
+          font-size: 72px;
+        }
+        .hello-world-text-small {
+          font-size: 36px;
         }
       </style>
     `;
@@ -133,6 +137,11 @@ looker.plugins.visualizations.add({
       this._textElement.className = "hello-world-text-left";
     } else {
       this._textElement.className = "hello-world-text-right";
+    }
+    if (config.font_size == "large") {
+      this._textElement.className = "hello-world-text-large";
+    } else {
+      this._textElement.className = "hello-world-text-small";
     }
     if (settings.colorPreSet  == 'c') {
       var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
