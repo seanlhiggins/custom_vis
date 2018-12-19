@@ -133,21 +133,22 @@ looker.plugins.visualizations.add({
     this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstCell);
 
     // Set the size to the user-selected size
-    if (config.font_align == "left") {
-      this._textElement.innerHTML += "text-align: left";
-    } else {
-      this._textElement.innerHTML += "text-align: right";
-    }
-    if (config.font_size == "large") {
-      this._textElement.innerHTML += "font-size: 72px";
-    } else {
-      this._textElement.innerHTML += "font-size: 36px";
-    }
-    if (settings.colorPreSet  == 'c') {
-      var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
-    } else {
-      var colorSettings =  settings.colorPreSet.split(",");
-    };
+    // if (config.font_align == "left") {
+    //   this._textElement.innerHTML += "text-align: left";
+    // } else {
+    //   this._textElement.innerHTML += "text-align: right";
+    // }
+    // if (config.font_size == "large") {
+    //   this._textElement.innerHTML += "font-size: 72px";
+    // } else {
+    //   this._textElement.innerHTML += "font-size: 36px";
+    // }
+    // if (settings.colorPreSet  == 'c') {
+    //   var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
+    // } else {
+    //   var colorSettings =  settings.colorPreSet.split(",");
+    // }
+    ;
 
   }
 });
