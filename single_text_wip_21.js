@@ -136,12 +136,12 @@ looker.plugins.visualizations.add({
     if (config.font_align == "left") {
       this._textElement.innerHTML += "text-align: left";
     } else {
-      this._textElement.innerHTML = "text-align: right";
+      this._textElement.innerHTML += "text-align: right";
     }
     if (config.font_size == "large") {
-      this._textElement.innerHTML = "font-size: 72px";
+      this._textElement.innerHTML += "font-size: 72px";
     } else {
-      this._textElement.innerHTML = "font-size: 36px";
+      this._textElement.innerHTML += "font-size: 36px";
     }
     if (settings.colorPreSet  == 'c') {
       var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
