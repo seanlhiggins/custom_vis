@@ -157,11 +157,11 @@ looker.plugins.visualizations.add({
     const chosen_text_colour = config.textColor
     const chosen_font_style = settings.font_style
     if (config.font_style == "Helvetica") {
-      document.getElementById("txt01").style.fontFamily = "Helvetica";
+      document.getElementById("txt01").style.fontFamily = "Arial, Helvetica, sans-serif";
     } else if (config.font_size == "Arial") {
-      document.getElementById("txt01").style.fontFamily = "Arial";
+      document.getElementById("txt01").style.fontFamily = "Impact,Charcoal,sans-serif";
     } else {
-      document.getElementById("txt01").style.fontFamily = "Times New Roman";
+      document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
     }
     document.getElementById("txt01").style.color = chosen_text_colour;
     document.getElementById("txt01").style.fontFamily = chosen_font_style;
