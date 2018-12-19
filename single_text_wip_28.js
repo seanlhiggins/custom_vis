@@ -21,7 +21,7 @@ looker.plugins.visualizations.add({
         {"Right": "right"}
       ],
       display: "radio",
-      default: "large",
+      default: "left",
       section: "Style"    
     },
     textVertPosition: {
@@ -135,19 +135,25 @@ looker.plugins.visualizations.add({
     // Set the size to the user-selected size
     if (config.font_align == "left") {
       document.getElementById("txt01").style.textAlign = "left";
+    } else if (config.font_align == "center") {
+      document.getElementById("txt01").style.textAlign = "center";
     } else {
       document.getElementById("txt01").style.textAlign = "right";
     }
     if (config.font_size == "large") {
+      document.getElementById("txt01").style.fontSize = "x-large";
+    } else if (config.font_size == "medium") {
       document.getElementById("txt01").style.fontSize = "large";
     } else {
       document.getElementById("txt01").style.fontSize = "small";
     }
-    // if (settings.colorPreSet  == 'c') {
-    //   var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
-    // } else {
-    //   var colorSettings =  settings.colorPreSet.split(",");
-    // }
+    if (settings.colorPreSet  == 'c') {
+      var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
+    } else {
+      var colorSettings =  settings.colorPreSet.split(",");
+    }
+    document.getElementById("txt01").style.color = colorSettings;
+
     ;
 
   }
