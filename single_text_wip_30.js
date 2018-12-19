@@ -26,26 +26,38 @@ looker.plugins.visualizations.add({
       default: "left",
       section: "Style"    
     },
-    textVertPosition: {
-      label: 'Text Vertical Offset',
-      min: 0,
-      max: 1,
-      step: 0.01,
-      default: 0.5,
-      section: 'Value',
-      type: 'number',
-      display: 'range'
+    font_style: {
+      type: "string",
+      label: "Font Style",
+      values: [
+        {"Helvetica": "Helvetica"},
+        {"Arial": "Arial"},
+        {"Times New Roman": "Times New Roman"}
+      ],
+      display: "select",
+      default: "Helvetica",
+      section: "Style"    
     },
-    textSize: {
-      label: 'Text Size',
-      min: 0,
-      max: 1,
-      step: 0.01,
-      default: 1,
-      section: 'Value',
-      type: 'number',
-      display: 'range'
-    },
+    // textVertPosition: {
+    //   label: 'Text Vertical Offset',
+    //   min: 0,
+    //   max: 1,
+    //   step: 0.01,
+    //   default: 0.5,
+    //   section: 'Value',
+    //   type: 'number',
+    //   display: 'range'
+    // },
+    // textSize: {
+    //   label: 'Text Size',
+    //   min: 0,
+    //   max: 1,
+    //   step: 0.01,
+    //   default: 1,
+    //   section: 'Value',
+    //   type: 'number',
+    //   display: 'range'
+    // },
     textColor: {
       label: 'Text Color',
       default: '#000000',
@@ -91,18 +103,6 @@ looker.plugins.visualizations.add({
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
           color: green;
-        }
-        .hello-world-text-left {
-          text-align: left;
-        }
-        .hello-world-text-right {
-          text-align: right;
-        }
-        .hello-world-text-large {
-          font-size: 72px;
-        }
-        .hello-world-text-small {
-          font-size: 36px;
         }
       </style>
     `;
@@ -154,7 +154,8 @@ looker.plugins.visualizations.add({
     } else {
       var colorSettings =  settings.colorPreSet.split(",");
     }
-    document.getElementById("txt01").style.color = textColor;
+    document.getElementById("txt01").style.color = `${textColor}`;
+    document.getElementById("txt01").style.fontFamily = `${fontpick}`;
 
     ;
 
