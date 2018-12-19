@@ -134,14 +134,14 @@ looker.plugins.visualizations.add({
 
     // Set the size to the user-selected size
     if (config.font_align == "left") {
-      this._textElement.className = "hello-world-text-left";
+      this._textElement.text-align = "left";
     } else {
-      this._textElement.className = "hello-world-text-right";
+      this._textElement.text-align = "right";
     }
     if (config.font_size == "large") {
-      this._textElement.className = "hello-world-text-large";
+      this._textElement.font-size = "large";
     } else {
-      this._textElement.className = "hello-world-text-small";
+      this._textElement.font-size = "small";
     }
     if (settings.colorPreSet  == 'c') {
       var colorSettings =  settings.colorRange || ['white','green','red']; // put a default in
