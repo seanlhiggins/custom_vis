@@ -50,10 +50,10 @@ looker.plugins.visualizations.add({
     // },
     textSize: {
       label: 'Text Size',
-      min: 0,
-      max: 20,
+      min: 1,
+      max: 30,
       step: 1,
-      default: 1,
+      default: 5,
       section: 'Value',
       type: 'number',
       display: 'range'
@@ -143,21 +143,12 @@ looker.plugins.visualizations.add({
     } else {
       document.getElementById("txt01").style.textAlign = "left";
     }
-    // if (config.font_size == "large") {
-    //   document.getElementById("txt01").style.fontSize = "x-large";
-    // } else if (config.font_size == "medium") {
-    //   document.getElementById("txt01").style.fontSize = "large";
-    // } else {
-    //   document.getElementById("txt01").style.fontSize = "small";
-    // }
+
     var size = config.textSize;
     document.getElementById("txt01").style.fontSize = size + "px";
-    //    document.getElementById("txt01").style.font = "font-size: " + size + "px";
-    // document.getElementById("txt01").style.color = config.textColor.value.toHexString();
-    console.log(config.textSize)  
-    console.log(config.textSize.value)
-    console.log(config.textColor)
-    console.log(config.textColor.value)
+
+    document.getElementById("txt01").style.color = config.textColor;
+
     if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
     } else if (config.font_style == "impact") {
