@@ -48,16 +48,16 @@ looker.plugins.visualizations.add({
     //   type: 'number',
     //   display: 'range'
     // },
-    // textSize: {
-    //   label: 'Text Size',
-    //   min: 0,
-    //   max: 1,
-    //   step: 0.01,
-    //   default: 1,
-    //   section: 'Value',
-    //   type: 'number',
-    //   display: 'range'
-    // },
+    textSize: {
+      label: 'Text Size',
+      min: 0,
+      max: 1,
+      step: 0.01,
+      default: 1,
+      section: 'Value',
+      type: 'number',
+      display: 'range'
+    },
     textColor: {
       label: 'Text Color',
       default: '#dddddd',
@@ -142,13 +142,16 @@ looker.plugins.visualizations.add({
     } else {
       document.getElementById("txt01").style.textAlign = "left";
     }
-    if (config.font_size == "large") {
-      document.getElementById("txt01").style.fontSize = "x-large";
-    } else if (config.font_size == "medium") {
-      document.getElementById("txt01").style.fontSize = "large";
-    } else {
-      document.getElementById("txt01").style.fontSize = "small";
-    }
+    // if (config.font_size == "large") {
+    //   document.getElementById("txt01").style.fontSize = "x-large";
+    // } else if (config.font_size == "medium") {
+    //   document.getElementById("txt01").style.fontSize = "large";
+    // } else {
+    //   document.getElementById("txt01").style.fontSize = "small";
+    // }
+    var size = config.textSize.value;
+    document.getElementById("txt01").style.fontSize = size +"px";
+
     if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
     } else if (config.font_style == "impact") {
