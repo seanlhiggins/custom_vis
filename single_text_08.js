@@ -103,6 +103,7 @@ looker.plugins.visualizations.add({
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
           color: green;
+          a color: config.textColor;
         }
       </style>
     `;
