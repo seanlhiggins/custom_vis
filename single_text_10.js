@@ -50,10 +50,10 @@ looker.plugins.visualizations.add({
     // },
     textSize: {
       label: 'Text Size',
-      min: 1,
-      max: 30,
-      step: 1,
-      default: 5,
+      min: 2,
+      max: 35,
+      step: .5,
+      default: 7,
       section: 'Style',
       type: 'number',
       display: 'range'
@@ -149,6 +149,7 @@ looker.plugins.visualizations.add({
     document.getElementById("txt01").style.fontSize = size + "px";
 
     document.getElementById("txt01").style.color = config.textColor;
+    document.getElementsByClassName("hello-world-vis").style.color = config.textColor;
 
     if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
