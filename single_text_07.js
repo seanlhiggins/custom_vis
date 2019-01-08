@@ -1,19 +1,19 @@
 looker.plugins.visualizations.add({
-  id: "hello_world",
-  label: "Hello World",
+  id: "single_text",
+  label: "Single Text",
   options: {
-    font_size: {
-      type: "string",
-      label: "Font Size",
-      values: [
-        {"Large": "large"},
-        {"Medium": "medium"},
-        {"Small": "small"}
-      ],
-      display: "radio",
-      default: "large",
-      section: "Style"    
-    },
+    // font_size: {
+    //   type: "string",
+    //   label: "Font Size",
+    //   values: [
+    //     {"Large": "large"},
+    //     {"Medium": "medium"},
+    //     {"Small": "small"}
+    //   ],
+    //   display: "radio",
+    //   default: "large",
+    //   section: "Style"    
+    // },
     font_align: {
       type: "string",
       label: "Font Align",
@@ -54,7 +54,7 @@ looker.plugins.visualizations.add({
       max: 30,
       step: 1,
       default: 5,
-      section: 'Value',
+      section: 'Style',
       type: 'number',
       display: 'range'
     },
