@@ -30,12 +30,12 @@ looker.plugins.visualizations.add({
       type: "string",
       label: "Font Style",
       values: [
-        {"Helvetica": "helvetica"},
+        {"Looker": "helvetica"},
         {"Impact": "impact"},
         {"Times New Roman": "times"}
       ],
       display: "select",
-      default: "Helvetica",
+      default: "looker",
       section: "Style"    
     },
     // textVertPosition: {
@@ -154,7 +154,7 @@ looker.plugins.visualizations.add({
     } else if (config.font_style == "impact") {
       document.getElementById("txt01").style.fontFamily = "Impact,Charcoal,sans-serif";
     } else {
-      document.getElementById("txt01").style.fontFamily = "Arial, Helvetica, sans-serif";
+      document.getElementById("txt01").style.fontFamily = "Open Sans, Helvetica, Arial, sans-serif";
     }
       document.getElementById("txt01").style.fontColor = (config.textColor) ? config.textColor : "#ff0000";
 
