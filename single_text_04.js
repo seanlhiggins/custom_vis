@@ -151,7 +151,7 @@ looker.plugins.visualizations.add({
     // }
     var size = config.textSize.value;
     document.getElementById("txt01").style.fontSize = size + "px";
-    document.getElementById("txt01").style.color = config.textColor.value.toHexString();
+    // document.getElementById("txt01").style.color = config.textColor.value.toHexString();
     console.log(config.textSize)  
     console.log(config.textSize.value)
     console.log(config.textColor)
