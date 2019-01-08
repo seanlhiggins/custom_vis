@@ -152,6 +152,11 @@ looker.plugins.visualizations.add({
     var size = config.textSize.value;
     document.getElementById("txt01").style.fontSize = size + "px";
     document.getElementById("txt01").style.color = config.textColor.value.toHexString();
+    console.log(config.textSize)
+    console.log(config.textSize.value)
+    console.log(config.textColor)
+    console.log(config.textColor.value)
+    console.log(config.textColor.value.toHexString())
     if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
     } else if (config.font_style == "impact") {
