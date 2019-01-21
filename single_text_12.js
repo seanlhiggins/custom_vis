@@ -2,18 +2,7 @@ looker.plugins.visualizations.add({
   id: "single_text",
   label: "Single Text",
   options: {
-    // font_size: {
-    //   type: "string",
-    //   label: "Font Size",
-    //   values: [
-    //     {"Large": "large"},
-    //     {"Medium": "medium"},
-    //     {"Small": "small"}
-    //   ],
-    //   display: "radio",
-    //   default: "large",
-    //   section: "Style"    
-    // },
+
     font_align: {
       type: "string",
       label: "Font Align",
@@ -38,16 +27,7 @@ looker.plugins.visualizations.add({
       default: "looker",
       section: "Style"    
     },
-    // textVertPosition: {
-    //   label: 'Text Vertical Offset',
-    //   min: 0,
-    //   max: 1,
-    //   step: 0.01,
-    //   default: 0.5,
-    //   section: 'Value',
-    //   type: 'number',
-    //   display: 'range'
-    // },
+
     textSize: {
       label: 'Text Size',
       min: 2,
@@ -65,27 +45,7 @@ looker.plugins.visualizations.add({
       type: 'string',
       display: 'color'
     },
-    // colorPreSet:
-    // {
-    //   type: 'string',
-    //   display: 'select',
-    //   label: 'Color Range',
-    //   section: 'Data',
-    //   values: [{'Custom': 'c'},
-    //   {'Tomato to Steel Blue': '#F16358,#DF645F,#CD6566,#BB666D,#A96774,#97687B,#856982,#736A89,#616B90,#4F6C97,#3D6D9E'},
-    //   {'Pink to Black': '#170108, #300211, #49031A, #620423, #79052B, #910734, #AA083D, #C30946, #DA0A4E, #F30B57, #F52368, #F63378, #F63C79, #F75389, #F86C9A, #F985AB, #FB9DBC, #FCB4CC, #FDCDDD, #FEE6EE'},
-    //   {'Green to Red': '#7FCDAE, #7ED09C, #7DD389, #85D67C, #9AD97B, #B1DB7A, #CADF79, #E2DF78, #E5C877, #E7AF75, #EB9474, #EE7772'},
-    //   {'White to Green': '#ffffe5,#f7fcb9 ,#d9f0a3,#addd8e,#78c679,#41ab5d,#238443,#006837,#004529'}],
-    //    default: 'c',
-    //   order: 1
-    // },
-    // colorRange: {
-    //   type: 'array',
-    //   label: 'Custom Color Ranges',
-    //   section: 'Data',
-    //   order: 2,
-    //   placeholder: '#fff, red, etc...'
-    // },
+
   },
    
   // Set up the initial state of the visualization
@@ -102,6 +62,9 @@ looker.plugins.visualizations.add({
           justify-content: center;
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
+        }
+        a:link {
+          color: red;
         }
       </style>
     `;
