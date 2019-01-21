@@ -112,7 +112,7 @@ looker.plugins.visualizations.add({
 
     document.getElementById("txt01").style.color = config.textColor;
     var i;
-    var y = document.getElementsByClassName("a");
+    var y = document.getElementsByClassName("single-text");
     for (i = 0; i < y.length; i++) {
       y[i].style.color = config.textColor;
     }
