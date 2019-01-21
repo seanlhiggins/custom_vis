@@ -75,7 +75,7 @@ looker.plugins.visualizations.add({
     container.id = "txt01"
     // Create an element to contain the text.
     this._textElement = container.appendChild(document.createElement("div"));
-    this._textElement.className = "a"
+    this._textElement.className = "single-text"
 
   },
   // Render in response to the data or settings changing
