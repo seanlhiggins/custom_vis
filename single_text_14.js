@@ -63,8 +63,8 @@ looker.plugins.visualizations.add({
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
         }
-        a:link {
-          color: red;
+        .a {
+          color: black;
         }
       </style>
     `;
@@ -110,7 +110,7 @@ looker.plugins.visualizations.add({
     document.getElementById("txt01").style.fontSize = size + "px";
 
     document.getElementById("txt01").style.color = config.textColor;
-    document.getElementById("txt01").a.style.color = config.textColor;
+    document.getElementsByClassName("a").style.color = config.textColor;
 
     if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
