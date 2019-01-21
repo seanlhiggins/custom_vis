@@ -114,7 +114,7 @@ looker.plugins.visualizations.add({
     var i;
     var y = document.getElementsByClassName("a");
     for (i = 0; i < y.length; i++) {
-      y[i].style.color = "green";
+      y[i].style.color = config.textColor;
     }
     // document.getElementsByClassName("a")[0].style.color = config.textColor;
 
