@@ -110,7 +110,12 @@ looker.plugins.visualizations.add({
     document.getElementById("txt01").style.fontSize = size + "px";
 
     document.getElementById("txt01").style.color = config.textColor;
-    document.getElementsByClassName("a").style.color = config.textColor;
+    var i;
+    var y = document.getElementsByClassName("link");
+    for (i = 0; i < y.length; i++) {
+      y[i].style.color = "green";
+    }
+    // document.getElementsByClassName("a")[0].style.color = config.textColor;
 
     if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
