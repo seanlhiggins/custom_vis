@@ -54,7 +54,7 @@ looker.plugins.visualizations.add({
     // Insert a <style> tag with some styles we'll use later.
     var css = element.innerHTML = `
       <style>
-        .hello-world-vis {
+        .a {
           /* Vertical centering */
           height: 100%;
           display: flex;
@@ -63,7 +63,7 @@ looker.plugins.visualizations.add({
           text-align: center;
           font-family: Arial, Helvetica, sans-serif
         }
-        .a {
+        .a:link {
           color: black;
         }
       </style>
@@ -71,7 +71,7 @@ looker.plugins.visualizations.add({
 
     // Create a container element to let us center the text.
     var container = element.appendChild(document.createElement("div"));
-    container.className = "hello-world-vis";
+    container.className = "a";
     container.id = "txt01"
     // Create an element to contain the text.
     this._textElement = container.appendChild(document.createElement("div"));
@@ -110,7 +110,7 @@ looker.plugins.visualizations.add({
     document.getElementById("txt01").style.fontSize = size + "px";
 
     document.getElementById("txt01").style.color = config.textColor;
-    document.getElementsByClassName("a").style.color = config.textColor;
+    document.getElementsByClassName("link").style.color = config.textColor;
 
     if (config.font_style == "times") {
       document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
