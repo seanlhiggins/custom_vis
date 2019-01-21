@@ -54,7 +54,7 @@ looker.plugins.visualizations.add({
     // Insert a <style> tag with some styles we'll use later.
     var css = element.innerHTML = `
       <style>
-        .a {
+        .single-text {
           /* Vertical centering */
           height: 100%;
           display: flex;
@@ -71,10 +71,11 @@ looker.plugins.visualizations.add({
 
     // Create a container element to let us center the text.
     var container = element.appendChild(document.createElement("div"));
-    container.className = "a";
+    container.className = "single-text";
     container.id = "txt01"
     // Create an element to contain the text.
     this._textElement = container.appendChild(document.createElement("div"));
+    this._textElement.className = "a"
 
   },
   // Render in response to the data or settings changing
@@ -111,7 +112,7 @@ looker.plugins.visualizations.add({
 
     document.getElementById("txt01").style.color = config.textColor;
     var i;
-    var y = document.getElementsByClassName("link");
+    var y = document.getElementsByClassName("a");
     for (i = 0; i < y.length; i++) {
       y[i].style.color = "green";
     }
