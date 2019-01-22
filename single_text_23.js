@@ -95,10 +95,10 @@ looker.plugins.visualizations.add({
     var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
     var firstMeasure = firstRow[queryResponse.fields.measures[0].name];
     // Insert the data into the page
-    if (queryResponse.fields.dimensions.length == 0) {
-      this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstMeasure);
+    if (queryResponse.fields.dimensions.length == 1) {
+      this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstCell);
     } else {
-    this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstCell);
+    this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstMeasure);
   }
     // this.set css attr font-size: 
 
