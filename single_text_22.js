@@ -75,7 +75,7 @@ looker.plugins.visualizations.add({
     container.id = "txt01"
     // Create an element to contain the text.
     this._textElement = container.appendChild(document.createElement("div"));
-    this._textElement.className = "single-text"
+    this._textElement.className = "single-text-2"
 
   },
   // Render in response to the data or settings changing
@@ -85,17 +85,21 @@ looker.plugins.visualizations.add({
     this.clearErrors();
 
     // Throw some errors and exit if the shape of the data isn't what this chart needs
-    if (queryResponse.fields.dimensions.length == 0) {
-      this.addError({title: "No Dimensions", message: "This chart requires dimensions."});
-      return;
-    }
+    // if (queryResponse.fields.dimensions.length == 0) {
+    //   this.addError({title: "No Dimensions", message: "This chart requires dimensions."});
+    //   return;
+    // }
 
     // Grab the first cell of the data
     var firstRow = data[0];
     var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
-
+    var firstMeasure = firstRow[queryResponse.fields.measures[0].name];
     // Insert the data into the page
+    if (queryResponse.fields.dimensions.length == 0) {
+      this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstMeasure);
+    } else {
     this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstCell);
+  }
     // this.set css attr font-size: 
 
     // Set the size to the user-selected size
