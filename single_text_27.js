@@ -52,7 +52,7 @@ looker.plugins.visualizations.add({
   create: function(element, config) {
 
     // Insert a <style> tag with some styles we'll use later.
-    var css = element.innerHTML = """<div class="single-text-wrapper"></div>""";
+    var css = element.innerHTML = `<div class="single-text-wrapper"></div>`;
 
     // Create a container element to let us center the text.
     var container = element.appendChild(document.createElement("div"));
