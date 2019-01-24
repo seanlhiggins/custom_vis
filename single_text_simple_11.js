@@ -52,15 +52,14 @@ looker.plugins.visualizations.add({
 	},
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
 		var color = config.textColor;
-		element.innerHTML = html;
+		var cell = row[queryResponse.fields.dimensions[0].name];
 		var valueText = LookerCharts.Utils.textForCell(cell);		
-		var customHtml = `<a href='#drillmenu' target='_self' style="color:${color}">${valueText}</a>` 
+		var customHtml = `<a href='#drillmenu' target='_self' style="color:${color}">test</a>` 
 		var str = 'hello there';
 		var valueHTML = LookerCharts.Utils.htmlForCell(cell);
 		document.getElementById('foo').innerHTML = LookerCharts.Utils.htmlForCell(cell);
-		var html = `<div id="foo" style="color:${color}">${valueHTML}</div>`;
+		var html = `<div id="foo" style="color:${color}">${valueHTML},${valueText}</div>`;
 		for(var row of data) {
-			var cell = row[queryResponse.fields.dimensions[0].name];
 			html += LookerCharts.Utils.htmlForCell(cell);
 		element.innerHTML = html;
 		}
