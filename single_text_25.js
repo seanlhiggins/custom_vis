@@ -96,7 +96,7 @@ looker.plugins.visualizations.add({
     var firstMeasure = firstRow[queryResponse.fields.measures[0].name];
     // Insert the data into the page
     if (queryResponse.fields.dimensions.length == 1) {
-      this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstCell,"single-text");
+      this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstCell,"single-text-2");
     } else {
       this._textElement.innerHTML = LookerCharts.Utils.htmlForCell(firstMeasure);
     }
