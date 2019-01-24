@@ -55,7 +55,7 @@ looker.plugins.visualizations.add({
 		element.innerHTML = html;
 		// if (config.font_align == "right") {
 		// var str = 'hello there';
-		valueHTML = LookerCharts.Utils.htmlForCell(cell)
+		var valueHTML = LookerCharts.Utils.htmlForCell(cell)
   		document.getElementById('foo').innerHTML = LookerCharts.Utils.htmlForCell(cell);
 		var html = `<div id="foo" style="color:${color}">${valueHTML}</div>`;
 		for(var row of data) {
