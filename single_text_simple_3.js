@@ -48,10 +48,11 @@ looker.plugins.visualizations.add({
 
   },
 	create: function(element, config){
-		element.innerHTML = `"<div id="foo">Ready to render!</h1>"`;
+		element.innerHTML = `"<div id="foo">Ready to render!</div>"`;
 	},
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
-		var html = "";
+		var color = config.textColor
+		var html = `<div id="foo" style=$color></div>`;
 		for(var row of data) {
 			var cell = row[queryResponse.fields.dimensions[0].name];
 			html += LookerCharts.Utils.htmlForCell(cell);
