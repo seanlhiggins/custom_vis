@@ -76,6 +76,9 @@ looker.plugins.visualizations.add({
 		document.getElementById('foo').style.fontSize = size + "px";
 		document.getElementById('foo').style.textAlign = config.font_align;
 		document.getElementById('foo').style.fontFamily = config.font_style;
+		document.getElementById('bar').style.fontSize = size-3 + "px";
+		document.getElementById('bar').style.textAlign = config.font_align;
+		document.getElementById('bar').style.fontFamily = config.font_style;		
 		doneRendering()
 	}
 });
