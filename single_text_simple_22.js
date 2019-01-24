@@ -60,9 +60,9 @@ looker.plugins.visualizations.add({
 		var color = config.textColor;
 		var textInput = config.textLabel;
 		var html = `<div id="foo" style="color:${color}">
-						<div id="bar" style="color:${color}">
-						${textInput}
-						</div>
+						<p id="bar" style="color:${color}">
+						`textInput`
+						</p>
 					</div>`;
 		html += textInput;
 		for(var row of data) {
