@@ -45,14 +45,21 @@ looker.plugins.visualizations.add({
       type: 'string',
       display: 'color'
     },
+    textLabel: {
+      type: 'string',
+	  label: 'Label',
+	  placeholder: 'Add a label or description',
+	  section: 'Style'
+    }
 
   },
 	create: function(element, config){
 		element.innerHTML = `"<div id="foo">Ready to render!</div>"`;
 	},
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
-		var color = config.textColor
-		var html = `<div id="foo" style="color:${color}">LookerCharts.Utils.htmlForCell(cell)</div>`;
+		var color = config.textColor;
+		var textInput = config.textLabel;
+		var html = `<div id="foo" style="color:${color}">${textInput}</div>`;
 		for(var row of data) {
 			var cell = row[queryResponse.fields.dimensions[0].name];
 			html += LookerCharts.Utils.htmlForCell(cell);
