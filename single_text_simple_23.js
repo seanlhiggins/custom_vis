@@ -61,7 +61,7 @@ looker.plugins.visualizations.add({
 		var textInput = config.textLabel;
 		var html = `<div id="foo" style="color:${color}">
 						<p id="bar" style="color:${color}">
-						`textInput`
+						textInput
 						</p>
 					</div>`;
 		html += textInput;
