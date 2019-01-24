@@ -61,6 +61,7 @@ looker.plugins.visualizations.add({
     // Create an element to contain the text.
     this._textElement = container.appendChild(document.createElement("div"));
     this._textElement.className = "single-text-2"
+    container.id = "txt02"
 
   },
   // Render in response to the data or settings changing
@@ -89,17 +90,17 @@ looker.plugins.visualizations.add({
 
     // Set the size to the user-selected size
     if (config.font_align == "right") {
-      document.getElementById("txt01").style.textAlign = "right";
+      document.getElementById("txt02").style.textAlign = "right";
     } else if (config.font_align == "center") {
-      document.getElementById("txt01").style.textAlign = "center";
+      document.getElementById("txt02").style.textAlign = "center";
     } else {
-      document.getElementById("txt01").style.textAlign = "left";
+      document.getElementById("txt02").style.textAlign = "left";
     }
 
     var size = config.textSize;
-    document.getElementById("txt01").style.fontSize = size + "px";
+    document.getElementById("txt02").style.fontSize = size + "px";
 
-    document.getElementById("txt01").style.color = config.textColor;
+    document.getElementById("txt02").style.color = config.textColor;
     // var i;
     // var y = document.getElementsByClassName("single-text");
     // for (i = 0; i < y.length; i++) {
@@ -111,11 +112,11 @@ looker.plugins.visualizations.add({
     // document.getElementsByClassName("a")[0].style.color = config.textColor;
 
     if (config.font_style == "times") {
-      document.getElementById("txt01").style.fontFamily = "Times New Roman, serif";
+      document.getElementById("txt02").style.fontFamily = "Times New Roman, serif";
     } else if (config.font_style == "impact") {
-      document.getElementById("txt01").style.fontFamily = "Impact,Charcoal,sans-serif";
+      document.getElementById("txt02").style.fontFamily = "Impact,Charcoal,sans-serif";
     } else {
-      document.getElementById("txt01").style.fontFamily = "Open Sans, Helvetica, Arial, sans-serif";
+      document.getElementById("txt02").style.fontFamily = "Open Sans, Helvetica, Arial, sans-serif";
     }
 
     ;
