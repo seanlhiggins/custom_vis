@@ -51,19 +51,18 @@ looker.plugins.visualizations.add({
 		element.innerHTML = `"<div id="foo">Ready to render!</div>"`;
 	},
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
-		var color = config.textColor;
-		var cell = row[queryResponse.fields.dimensions[0].name];
-		var valueText = LookerCharts.Utils.textForCell(cell);		
-		var customHtml = `<a href='#drillmenu' target='_self' style="color:${color}">test</a>` 
-		var str = 'hello there';
-		var valueHTML = LookerCharts.Utils.htmlForCell(cell);
-		document.getElementById('foo').innerHTML = LookerCharts.Utils.htmlForCell(cell);
-		var html = `<div id="foo" style="color:${color}">${valueHTML},${valueText}</div>`;
+		var color = config.textColor
+		var html = `<div id="foo" style="color:${color}">LookerCharts.Utils.htmlForCell(cell)</div>`;
 		for(var row of data) {
+			var cell = row[queryResponse.fields.dimensions[0].name];
 			html += LookerCharts.Utils.htmlForCell(cell);
-		element.innerHTML = html;
 		}
-		
+		element.innerHTML = html;
+		var str = 'hello there';
+  		document.getElementById('foo').innerHTML = str;
+  		var size = config.textSize;
+    		document.getElementById('foo').style.fontSize = size + "px";
+		document.getElementById('foo').style.textAlign = config.font_align;
 		doneRendering()
 	}
 });
