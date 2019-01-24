@@ -48,7 +48,7 @@ looker.plugins.visualizations.add({
 
   },
 	create: function(element, config){
-		element.innerHTML = "<h1>Ready to render!</h1>";
+		element.innerHTML = `"<div id="foo">Ready to render!</h1>"`;
 	},
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
 		var html = "";
@@ -57,6 +57,8 @@ looker.plugins.visualizations.add({
 			html += LookerCharts.Utils.htmlForCell(cell);
 		}
 		element.innerHTML = html;
+		var str = 'hello there';
+  		document.getElementById('para').innerHTML = str;
 		doneRendering()
 	}
 });
