@@ -52,7 +52,7 @@ looker.plugins.visualizations.add({
 	},
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
 		var color = config.textColor
-		var html = `<div id="foo" style=color:"${color}"></div>`;
+		var html = `<div id="foo" style="color:${color}">LookerCharts.Utils.htmlForCell(cell)</div>`;
 		for(var row of data) {
 			var cell = row[queryResponse.fields.dimensions[0].name];
 			html += LookerCharts.Utils.htmlForCell(cell);
