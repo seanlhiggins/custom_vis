@@ -57,8 +57,10 @@ looker.plugins.visualizations.add({
 			html += LookerCharts.Utils.htmlForCell(cell);
 		}
 		element.innerHTML = html;
+		if (config.font_align == "right") {
 		var str = 'hello there';
-  		document.getElementById('para').innerHTML = str;
+  		document.getElementById('foo').innerHTML = str;
+  	}
 		doneRendering()
 	}
 });
