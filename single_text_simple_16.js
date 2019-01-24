@@ -62,7 +62,7 @@ looker.plugins.visualizations.add({
 		var html = `<div id="foo" style="color:${color}">${textInput}</div>`;
 		for(var row of data) {
 			var cell = row[queryResponse.fields.dimensions[0].name];
-			html += LookerCharts.Utils.htmlForCell(cell);
+			html += textInput;
 		}
 		element.innerHTML = html;
 		var str = LookerCharts.Utils.textForCell(cell);
