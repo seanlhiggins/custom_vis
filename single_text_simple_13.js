@@ -58,11 +58,9 @@ looker.plugins.visualizations.add({
 			html += LookerCharts.Utils.htmlForCell(cell);
 		}
 		element.innerHTML = html;
-		var str = 'hello there';
+		var str = LookerCharts.Utils.textForCell(cell);
   		document.getElementById('foo').innerHTML = str;
-  		var size = config.textSize;
-    		document.getElementById('foo').style.fontSize = size + "px";
-		document.getElementById('foo').style.textAlign = config.font_align;
+  	
 		doneRendering()
 	}
 });
