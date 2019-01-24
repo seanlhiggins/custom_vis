@@ -60,7 +60,10 @@ looker.plugins.visualizations.add({
 		element.innerHTML = html;
 		var str = LookerCharts.Utils.textForCell(cell);
   		document.getElementById('foo').innerHTML = str;
-  	
+  		var size = config.textSize;
+		document.getElementById('foo').style.fontSize = size + "px";
+		document.getElementById('foo').style.textAlign = config.font_align;
+		document.getElementById('foo').style.fontFamily = config.font_style;
 		doneRendering()
 	}
 });
