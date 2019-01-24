@@ -59,13 +59,18 @@ looker.plugins.visualizations.add({
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
 		var color = config.textColor;
 		var textInput = config.textLabel;
-		var html = `<div id="foo" style="color:${color}"></div>`;
+		var html = `<div id="foo" style="color:${color}">
+						<div id="bar" style="color:${color}">
+						${textInput}
+						</div>
+					</div>`;
 		html += textInput;
 		for(var row of data) {
 			var cell = row[queryResponse.fields.dimensions[0].name];
 		}
 		element.innerHTML = html;
 		var str = LookerCharts.Utils.textForCell(cell);
+		document.getElementById('bar').innerHTML = textInput;
   		document.getElementById('foo').innerHTML = str;
   		var size = config.textSize;
 		document.getElementById('foo').style.fontSize = size + "px";
