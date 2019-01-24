@@ -59,7 +59,7 @@ looker.plugins.visualizations.add({
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
 		var color = config.textColor;
 		var textInput = config.textLabel;
-		var html = `<div id="foo" style="color:${color}">${textInput}</div>`;
+		var html = `<div id="foo" style="color:${color}"></div>`;
 		html += textInput;
 		for(var row of data) {
 			var cell = row[queryResponse.fields.dimensions[0].name];
