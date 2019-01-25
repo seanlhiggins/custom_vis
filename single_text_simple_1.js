@@ -68,9 +68,9 @@ looker.plugins.visualizations.add({
 					</p>`;
 		html += textInput;
 		var firstRow = data[0];
-    	var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
+    		var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
 		element.innerHTML = html;
-		var str = LookerCharts.Utils.textForCell(cell);
+		var str = LookerCharts.Utils.htmlForCell(firstCell);
 		document.getElementById('bar').innerHTML = textInput;
   		document.getElementById('foo').innerHTML = str;
   		var size = config.textSize;
