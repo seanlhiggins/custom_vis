@@ -61,6 +61,7 @@ looker.plugins.visualizations.add({
     	type: 'boolean',
     	label: 'Underline',
     	section: 'Style',
+        display_size: "third",
     	order: 2
     }
 
@@ -95,6 +96,9 @@ looker.plugins.visualizations.add({
 		if (textInput.length > 0){
 			document.getElementById('bar').innerHTML = textInput;
 		}		
+		if (config.textUnderline == true {
+			document.getElementById('foo').style.textDecoration == "underline";
+		})
 		doneRendering()
 	}
 });
