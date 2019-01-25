@@ -13,11 +13,8 @@ looker.plugins.visualizations.add({
       ],
       display: "radio",
       default: "left",
-      section: "Style",
-	  display-size: "half",
-	  order: 1
+      section: "Style"    
     },
-
     font_style: {
       type: "string",
       label: "Font Style",
@@ -28,9 +25,7 @@ looker.plugins.visualizations.add({
       ],
       display: "select",
       default: "looker",
-      section: "Style",
-      display-size: "half",
-      order: 3
+      section: "Style"    
     },
 
     textSize: {
@@ -48,9 +43,7 @@ looker.plugins.visualizations.add({
       default: '#6a26a0',
       section: 'Style',
       type: 'string',
-      display: 'color',
-      display-size: "half",      
-      order: 2
+      display: 'color'
     },
     textLabel: {
       type: 'string',
