@@ -14,8 +14,8 @@ looker.plugins.visualizations.add({
       display: "radio",
       default: "left",
       section: "Style",
-      display_size: "half",
-      order:3
+      // display_size: "half",
+      order:4
     },
     font_style: {
       type: "string",
@@ -29,7 +29,7 @@ looker.plugins.visualizations.add({
       default: "looker",
       section: "Style",
       display_size: "half",
-      order:2
+      order:3
     },
 
     textSize: {
@@ -60,7 +60,8 @@ looker.plugins.visualizations.add({
     textUnderline: {
     	type: 'boolean',
     	label: 'Underline',
-    	section: 'Style'
+    	section: 'Style',
+    	order: 2
     }
 
   },
