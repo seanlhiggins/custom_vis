@@ -58,13 +58,13 @@ looker.plugins.visualizations.add({
 	  placeholder: 'Add a label or description',
 	  section: 'Style'
     },
-    textUnderline: {
-      type: 'boolean',
-      label: 'Underline',
-      section: 'Style',
-      display-size: 'half',
-      order: 4
-    }
+    // textUnderline: {
+    //   type: 'boolean',
+    //   label: 'Underline',
+    //   section: 'Style',
+    //   display-size: 'half',
+    //   order: 4
+    // }
 
   },
 	create: function(element, config){
