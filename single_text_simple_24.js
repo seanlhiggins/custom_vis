@@ -54,16 +54,18 @@ looker.plugins.visualizations.add({
 
   },
 	create: function(element, config){
-		element.innerHTML = `"<div id="foo">Ready to render!</div>"`;
+		element.innerHTML = `<div id="foo" style="color:${color}">
+					</div>
+					<div id="bar" style="color:${color}">
+					</p>`;
 	},
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
 		var color = config.textColor;
 		var textInput = config.textLabel;
 		var html = `<div id="foo" style="color:${color}">
-						<p id="bar" style="color:${color}">
-						textInput
-						</p>
-					</div>`;
+					</div>
+					<div id="bar" style="color:${color}">
+					</p>`;
 		html += textInput;
 		for(var row of data) {
 			var cell = row[queryResponse.fields.dimensions[0].name];
