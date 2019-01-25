@@ -14,7 +14,8 @@ looker.plugins.visualizations.add({
       display: "radio",
       default: "left",
       section: "Style",
-      display_size: "third"
+      display_size: "half",
+      order:3
     },
     font_style: {
       type: "string",
@@ -27,7 +28,8 @@ looker.plugins.visualizations.add({
       display: "select",
       default: "looker",
       section: "Style",
-      display_size: "half"
+      display_size: "half",
+      order:2
     },
 
     textSize: {
@@ -46,13 +48,19 @@ looker.plugins.visualizations.add({
       section: 'Style',
       type: 'string',
       display: 'color',
-      display_size: "third"
+      display_size: "third",
+      order:1 
     },
     textLabel: {
       type: 'string',
 	  label: 'Label',
 	  placeholder: 'Add a label or description',
 	  section: 'Style'
+    },
+    textUnderline: {
+    	type: 'boolean',
+    	label: 'Underline',
+    	section: 'Style'
     }
 
   },
