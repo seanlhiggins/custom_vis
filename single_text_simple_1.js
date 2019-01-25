@@ -14,7 +14,7 @@ looker.plugins.visualizations.add({
       display: "radio",
       default: "left",
       section: "Style",
-	  display-size: 'half',
+	  display-size: "half",
 	  order: 1
     },
 
@@ -29,7 +29,7 @@ looker.plugins.visualizations.add({
       display: "select",
       default: "looker",
       section: "Style",
-      display-size: 'half',
+      display-size: "half",
       order: 3
     },
 
@@ -49,7 +49,7 @@ looker.plugins.visualizations.add({
       section: 'Style',
       type: 'string',
       display: 'color',
-      display-size: 'half',      
+      display-size: "half",      
       order: 2
     },
     textLabel: {
@@ -58,14 +58,6 @@ looker.plugins.visualizations.add({
 	  placeholder: 'Add a label or description',
 	  section: 'Style'
     }
-    // ,
-    // textUnderline: {
-    //   type: 'boolean',
-    //   label: 'Underline',
-    //   section: 'Style',
-    //   display-size: 'half',
-    //   order: 4
-    // }
 
   },
 	create: function(element, config){
@@ -98,9 +90,6 @@ looker.plugins.visualizations.add({
 		if (textInput.length > 0){
 			document.getElementById('bar').innerHTML = textInput;
 		}		
-		// if (config.textUnderline == true){
-		// document.getElementById('foo').style.textDecoration	= "underline";
-		// }
 		doneRendering()
 	}
 });
