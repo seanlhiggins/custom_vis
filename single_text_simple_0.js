@@ -58,13 +58,13 @@ looker.plugins.visualizations.add({
 	  placeholder: 'Add a label or description',
 	  section: 'Style'
     },
-    // textUnderline: {
-    //   type: 'boolean',
-    //   label: 'Underline',
-    //   section: 'Style',
-    //   display-size: 'half',
-    //   order: 4
-    // }
+    textUnderline: {
+      type: 'boolean',
+      label: 'Underline',
+      section: 'Style',
+      display-size: 'half',
+      order: 4
+    }
 
   },
 	create: function(element, config){
@@ -97,9 +97,9 @@ looker.plugins.visualizations.add({
 		if (textInput.length > 0){
 			document.getElementById('bar').innerHTML = textInput;
 		}		
-		if (config.textUnderline == true){
-		document.getElementById('foo').style.textDecoration	= "underline";
-		}
+		// if (config.textUnderline == true){
+		// document.getElementById('foo').style.textDecoration	= "underline";
+		// }
 		doneRendering()
 	}
 });
