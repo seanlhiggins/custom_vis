@@ -13,8 +13,11 @@ looker.plugins.visualizations.add({
       ],
       display: "radio",
       default: "left",
-      section: "Style"    
+      section: "Style",
+	  display-size: 'half',
+	  order: 1
     },
+
     font_style: {
       type: "string",
       label: "Font Style",
@@ -25,15 +28,17 @@ looker.plugins.visualizations.add({
       ],
       display: "select",
       default: "looker",
-      section: "Style"    
+      section: "Style",
+      display-size: 'half',
+      order: 3
     },
 
     textSize: {
       label: 'Text Size',
       min: 2,
-      max: 35,
+      max: 50,
       step: .5,
-      default: 7,
+      default: 15,
       section: 'Style',
       type: 'number',
       display: 'range'
@@ -43,13 +48,22 @@ looker.plugins.visualizations.add({
       default: '#6a26a0',
       section: 'Style',
       type: 'string',
-      display: 'color'
+      display: 'color',
+      display-size: 'half',      
+      order: 2
     },
     textLabel: {
       type: 'string',
 	  label: 'Label',
 	  placeholder: 'Add a label or description',
 	  section: 'Style'
+    },
+    textUnderline: {
+      type: 'boolean',
+      label: 'Underline',
+      section: 'Style',
+      display-size: 'half',
+      order: 4
     }
 
   },
@@ -83,6 +97,9 @@ looker.plugins.visualizations.add({
 		if (textInput.length > 0){
 			document.getElementById('bar').innerHTML = textInput;
 		}		
+		if (config.textUnderline == true){
+		document.getElementById('foo').style.textDecoration	= "underline";
+		}
 		doneRendering()
 	}
 });
