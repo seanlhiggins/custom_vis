@@ -29,7 +29,7 @@ looker.plugins.visualizations.add({
       default: "looker",
       section: "Style",
       display_size: "half",
-      order:3
+      order: 2
     },
 
     textSize: {
@@ -48,7 +48,7 @@ looker.plugins.visualizations.add({
       section: 'Style',
       type: 'string',
       display: 'color',
-      display_size: "third",
+      display_size: "half",
       order:1 
     },
     textLabel: {
@@ -61,8 +61,8 @@ looker.plugins.visualizations.add({
     	type: 'boolean',
     	label: 'Underline',
     	section: 'Style',
-        display_size: "third",
-    	order: 2
+        display_size: "half",
+    	order: 3
     }
 
   },
@@ -97,7 +97,7 @@ looker.plugins.visualizations.add({
 			document.getElementById('bar').innerHTML = textInput;
 		}		
 		if (config.textUnderline == true) {
-			document.getElementById('foo').style.textDecoration == "underline";
+			document.getElementById('foo').style.textDecoration = "underline";
 		}
 		doneRendering()
 	}
