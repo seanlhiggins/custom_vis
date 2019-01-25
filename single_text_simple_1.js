@@ -96,9 +96,9 @@ looker.plugins.visualizations.add({
 		if (textInput.length > 0){
 			document.getElementById('bar').innerHTML = textInput;
 		}		
-		if (config.textUnderline == true {
+		if (config.textUnderline == true) {
 			document.getElementById('foo').style.textDecoration == "underline";
-		})
+		}
 		doneRendering()
 	}
 });
