@@ -40,7 +40,7 @@ looker.plugins.visualizations.add({
     },
     textColor: {
       label: 'Text Color',
-      default: '#dddddd',
+      default: '#6a26a0',
       section: 'Style',
       type: 'string',
       display: 'color'
@@ -71,9 +71,7 @@ looker.plugins.visualizations.add({
     	var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
 		element.innerHTML = html;
 		var str = LookerCharts.Utils.textForCell(firstCell);
-		if (textInput.length > 0){
-		document.getElementById('bar').innerHTML = textInput;
-	}
+		
   		document.getElementById('foo').innerHTML = str;
   		var size = config.textSize;
 		document.getElementById('foo').style.fontSize = size + "px";
@@ -81,7 +79,10 @@ looker.plugins.visualizations.add({
 		document.getElementById('foo').style.fontFamily = config.font_style;
 		document.getElementById('bar').style.fontSize = size-3 + "px";
 		document.getElementById('bar').style.textAlign = config.font_align;
-		document.getElementById('bar').style.fontFamily = config.font_style;		
+		document.getElementById('bar').style.fontFamily = config.font_style;
+		if (textInput.length > 0){
+			document.getElementById('bar').innerHTML = textInput;
+		}		
 		doneRendering()
 	}
 });
