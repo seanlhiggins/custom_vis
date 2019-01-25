@@ -71,7 +71,9 @@ looker.plugins.visualizations.add({
     	var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
 		element.innerHTML = html;
 		var str = LookerCharts.Utils.textForCell(firstCell);
+		if (textInput.length > 0){
 		document.getElementById('bar').innerHTML = textInput;
+	}
   		document.getElementById('foo').innerHTML = str;
   		var size = config.textSize;
 		document.getElementById('foo').style.fontSize = size + "px";
