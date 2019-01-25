@@ -66,7 +66,7 @@ looker.plugins.visualizations.add({
 					</div>
 					<div id="bar" style="color:${color}">
 					</p>`;
-		html += textInput;
+		
 		var firstRow = data[0];
     	var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
 		element.innerHTML = html;
