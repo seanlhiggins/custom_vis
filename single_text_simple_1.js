@@ -26,7 +26,7 @@ looker.plugins.visualizations.add({
       ],
       display: "select",
       default: "looker",
-      section: "Style"    
+      section: "Style",
       display_size: "half"
     },
 
@@ -45,7 +45,7 @@ looker.plugins.visualizations.add({
       default: '#6a26a0',
       section: 'Style',
       type: 'string',
-      display: 'color'
+      display: 'color',
       display_size: "third"
     },
     textLabel: {
