@@ -12,8 +12,7 @@
         type: "array",                                                                     
         label: "Color Range",                                                              
         display: "colors",                                                                 
-        default: ["#dd3333", "#80ce5d", "#f78131", "#369dc1", "#c572d3", "#36c1b3", "#b570 
-", "#ed69af"],                                                                             
+        default: ["#dd3333", "#80ce5d", "#f78131", "#369dc1", "#c572d3", "#36c1b3", "#b57052", "#ed69af"],                                                                                                                                                                                                                                     
       },                                                                                   
       xAxisName: {                                                                         
         label: "Axis Name",                                                                
