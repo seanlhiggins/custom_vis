@@ -30,7 +30,7 @@ Looker Vis Components:
 
 looker.plugins.visualizations.add({
     create: function(element, config){
-        element.innerHTML = "<div id="activity_container"></div>";
+        element.innerHTML = "<div id='activity_container'></div>";
     },
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
         var html = "";
