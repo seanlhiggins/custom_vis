@@ -74,6 +74,11 @@ looker.plugins.visualizations.add({
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
+
+
+Highcharts.setOptions({
+    colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+});
         Highcharts.chart('activity_container', {
 
     chart: {
@@ -113,23 +118,21 @@ looker.plugins.visualizations.add({
         background: [{ // Track for Move
             outerRadius: '112%',
             innerRadius: '88%',
-            backgroundColor: Highcharts.ColorString('#F62366')
+            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Exercise
             outerRadius: '87%',
             innerRadius: '63%',
-            backgroundColor: Highcharts.ColorString('#9DFF02')
+            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Stand
             outerRadius: '62%',
             innerRadius: '38%',
-            backgroundColor: Highcharts.ColorString('#0CCDD6')
-                .setOpacity(0.3)
-                .get(),
+            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
             borderWidth: 0
         }]
     },
@@ -155,7 +158,7 @@ looker.plugins.visualizations.add({
     series: [{
         name: firstCell,
         data: [{
-            color: '#F62366',
+            color: '#F62366'
             radius: '112%',
             innerRadius: '88%',
             y: firstMeas
