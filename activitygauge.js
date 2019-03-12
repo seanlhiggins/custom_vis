@@ -162,8 +162,6 @@ looker.plugins.visualizations.add({
         });
         options = {}
              // Create an option for each measure in the query
-
-
                 for (row of data){
                     var i = 0;
                     var field = row[queryResponse.fields.dimensions[0].name];
@@ -171,12 +169,12 @@ looker.plugins.visualizations.add({
                     options[id] =
                     {
                         label: field.value + " Color",
-                        default: Highcharts.Color(Highcharts.getOptions().colors[i]),
+                        default: '#F62366',
                         section: "Style",
                         type: "string",
                         display: "color"
                     }
-                    i+=1
+                    i+=1;
                     if (i >=3){
                         break
                     }
