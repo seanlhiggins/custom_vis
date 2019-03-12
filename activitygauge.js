@@ -78,8 +78,8 @@ looker.plugins.visualizations.add({
       display: 'color',
       display_size: "half",
       order:1 
-    }
-},
+        }
+        },
     create: function(element, config){
         element.innerHTML = "<div id='activity_container'></div>";
     },
@@ -105,13 +105,26 @@ looker.plugins.visualizations.add({
         var secondCell = LookerCharts.Utils.htmlForCell(dim2);
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
-        var meas1 = firstRow[queryResponse.fields.measures[0].name];
+        var meas1 = firstRow[queryResponse.fields.measure_like[0].name];
         var firstMeas = LookerCharts.Utils.htmlForCell(meas1);
-        var meas2 = secondRow[queryResponse.fields.measures[0].name];
+        var meas2 = secondRow[queryResponse.fields.measure_like[0].name];
         var secondMeas = LookerCharts.Utils.htmlForCell(meas2);
-        var meas3 = thirdRow[queryResponse.fields.measures[0].name];
+        var meas3 = thirdRow[queryResponse.fields.measure_like[0].name];
         var thirdMeas = LookerCharts.Utils.htmlForCell(meas3);
         var firstColour = config.firstColor;
+        
+        queryResponse.fields.measure_like.forEach(function(field) {
+       id = "color_" + field.name
+               options[id] =
+               {
+            label: field.label_short + " Color",
+            default: "#8B7DA8",
+            section: "Style",
+            type: "string",
+            display: "color"
+               }
+             })
+             this.trigger('registerOptions', options)
         console.log(firstCell,secondCell,thirdCell);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
