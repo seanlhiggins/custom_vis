@@ -18,29 +18,36 @@ looker.plugins.visualizations.add({
         </style>`;
         var i=0;
         
-        // var firstRow = data[0];
-        // var secondRow = data[1];
-        // var thirdRow = data[2];
-        // var dim1 = data[0][queryResponse.fields.dimensions[0].name];
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
-        // var dim2 = data[1][queryResponse.fields.dimensions[0].name];
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
-        // var dim3 = data[2][queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
-        // var meas1 = data[0][queryResponse.fields.measures[0].name];
-        var firstMeas = parseFloat(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.measures[0].name]));
-        // var meas2 = data[1][queryResponse.fields.measures[0].name];
-        var secondMeas = parseFloat(LookerCharts.Utils.textForCell(data[1][queryResponse.fields.measures[0].name]));
-        // var meas3 = data[2][queryResponse.fields.measures[0].name];
-        var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measures[0].name]));
+        var firstMeas = parseFloat(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.measure_like[0].name]));
+        var secondMeas = parseFloat(LookerCharts.Utils.textForCell(data[1][queryResponse.fields.measure_like[0].name]));
+        var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measure_like[0].name]));
         var firstColour = config.firstColor;
-        var dimension_head = data[0].name;
+        var dimension_head = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions.name];
         
         console.log(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measures[0].name]), thirdMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
 
+        options = {}
+             // Create an option for each measure in your query
+             queryResponse.fields.measure_like.forEach(function(field) {
+               id = "color_" + field.name
+               options[id] =
+               {
+            label: field.label_short + " Color",
+            default: "#8B7DA8",
+            section: "Style",
+            type: "string",
+            display: "color"
+               }
+             })
+        this.trigger('registerOptions', options) // register options with parent page to update visConfig
+
+   
 
 Highcharts.setOptions({
     colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
