@@ -54,7 +54,7 @@ looker.plugins.visualizations.add({
         var meas1 = firstRow[queryResponse.fields.measures[0].value];
         var meas2 = secondRow[queryResponse.fields.measures[0].value];
         var meas3 = thirdRow[queryResponse.fields.measures[0].value];
-
+        console.log(dim1,dim2,dim3,meas1,meas2,meas3)
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
