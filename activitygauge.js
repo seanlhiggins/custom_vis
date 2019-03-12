@@ -48,12 +48,12 @@ looker.plugins.visualizations.add({
         var firstRow = data[0];
         var secondRow = data[1];
         var thirdRow = data[2];
-        var dim1 = firstRow[queryResponse.fields.dimensions[0].name];
+        var dim1 = firstRow[queryResponse.fields.dimensions[0].value];
         var dim2 = secondRow[queryResponse.fields.dimensions[0].value];
-        var dim3 = thirdRow[queryResponse.fields.dimensions[0].value];
-        var meas1 = firstRow[queryResponse.fields.measures[0].value];
-        var meas2 = secondRow[queryResponse.fields.measures[0].value];
-        var meas3 = thirdRow[queryResponse.fields.measures[0].value];
+        var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
+        var meas1 = firstRow[queryResponse.fields.measures[0].name];
+        var meas2 = secondRow[queryResponse.fields.measures[0].name];
+        var meas3 = thirdRow[queryResponse.fields.measures[0].name];
         console.log(dim1,dim2,dim3,meas1,meas2,meas3);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
