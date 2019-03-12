@@ -61,9 +61,17 @@ Highcharts.setOptions({
     },
 
     title: {
-        text: dimension_head +', '+ measure_head,
+        text: dimension_head
         style: {
-            fontSize: '10px'
+            fontSize: '15px'.
+            color: Highcharts.Color(Highcharts.getOptions().colors[0])
+        }
+    },
+     subtitle: {
+        text: measure_head
+        style: {
+            fontSize: '10px'.
+            color: Highcharts.Color(Highcharts.getOptions().colors[1])
         }
     },
 
@@ -90,21 +98,21 @@ Highcharts.setOptions({
             outerRadius: '112%',
             innerRadius: '88%',
             backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
-                .setOpacity(0.3)
+                .setOpacity(0.1)
                 .get(),
             borderWidth: 0
         }, { // Track for Exercise
             outerRadius: '87%',
             innerRadius: '63%',
             backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1])
-                .setOpacity(0.3)
+                .setOpacity(0.1)
                 .get(),
             borderWidth: 0
         }, { // Track for Stand
             outerRadius: '62%',
             innerRadius: '38%',
             backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
-                .setOpacity(0.3)
+                .setOpacity(0.1)
                 .get(),
             borderWidth: 0
         }]
