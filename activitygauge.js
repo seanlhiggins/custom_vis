@@ -61,11 +61,11 @@ looker.plugins.visualizations.add({
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
         var meas1 = firstRow[queryResponse.fields.measure_like[0].name];
-        var firstMeas = LookerCharts.Utils.htmlForCell(meas1);
+        var firstMeas = Number(LookerCharts.Utils.htmlForCell(meas1));
         var meas2 = secondRow[queryResponse.fields.measure_like[0].name];
-        var secondMeas = LookerCharts.Utils.htmlForCell(meas2);
+        var secondMeas = Number(LookerCharts.Utils.htmlForCell(meas2));
         var meas3 = thirdRow[queryResponse.fields.measure_like[0].name];
-        var thirdMeas = LookerCharts.Utils.htmlForCell(meas3);
+        var thirdMeas = Number(LookerCharts.Utils.htmlForCell(meas3));
         var firstColour = config.firstColor;
         
         
