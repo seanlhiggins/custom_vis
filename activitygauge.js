@@ -2,7 +2,6 @@
 /*
 Looker Vis Components:
 */
-
 looker.plugins.visualizations.add({
     create: function(element, config){
         element.innerHTML = "<div id='activity_container'></div>";
@@ -165,7 +164,7 @@ looker.plugins.visualizations.add({
         options = {}
              // Create an option for the first 4 rows in the query
              var first4rows = data.slice(0,4);
-             for(let i=0;i<3;i++){
+             for(let i=0;i<4;i++){
 
                     var field = first4rows[i][queryResponse.fields.dimensions[0].name];
                     console.log(field,i)
@@ -176,7 +175,8 @@ looker.plugins.visualizations.add({
                         default: Highcharts.getOptions().colors[i],
                         section: "Style",
                         type: "string",
-                        display: "color"
+                        display: "color",
+                        display_size: "third"
                     }
                     console.log(field,i)          
                     }
