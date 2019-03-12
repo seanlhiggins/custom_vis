@@ -21,9 +21,11 @@ looker.plugins.visualizations.add({
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
+        var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
         var firstMeas = parseFloat(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.measure_like[0].name]));
         var secondMeas = parseFloat(LookerCharts.Utils.textForCell(data[1][queryResponse.fields.measure_like[0].name]));
         var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measure_like[0].name]));
+        var fourthMeas = parseFloat(LookerCharts.Utils.textForCell(data[3][queryResponse.fields.measure_like[0].name]));
         // var firstColour = config.firstColor;
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short
@@ -34,17 +36,19 @@ looker.plugins.visualizations.add({
         options = {}
              // Create an option for each measure in your query
                 for (row of data){
+                    let i = 0;
                 var field = row[queryResponse.fields.dimensions[0].name];
                     console.log(field.value)
                id = "color_" + field.value
                options[id] =
                {
                 label: field.value + " Color",
-                default: "#8B7DA8",
+                default: Highcharts.Color(Highcharts.getOptions().colors[i]),
                 section: "Style",
                 type: "string",
                 display: "color"
                    }
+                   i++;
                 }   
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 Highcharts.setOptions({
@@ -85,7 +89,7 @@ Highcharts.setOptions({
         positioner: function (labelWidth) {
             return {
                 x: (this.chart.chartWidth - labelWidth) / 2,
-                y: (this.chart.plotHeight / 2)
+                y: (this.chart.plotHeight / 2) + 15
             };
         }
     },
@@ -94,23 +98,30 @@ Highcharts.setOptions({
         startAngle: 0,
         endAngle: 360,
         background: [{ // Track for Move
-            outerRadius: '112%',
-            innerRadius: '88%',
+            outerRadius: '100%',
+            innerRadius: '85%',
             backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
                 .setOpacity(0.1)
                 .get(),
             borderWidth: 0
         }, { // Track for Exercise
-            outerRadius: '87%',
-            innerRadius: '63%',
+            outerRadius: '84%',
+            innerRadius: '70%',
             backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1])
                 .setOpacity(0.1)
                 .get(),
             borderWidth: 0
         }, { // Track for Stand
-            outerRadius: '62%',
-            innerRadius: '38%',
+            outerRadius: '69%',
+            innerRadius: '55%',
             backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
+                .setOpacity(0.1)
+                .get(),
+            borderWidth: 0
+        }, { // Track for Party
+            outerRadius: '54%',
+            innerRadius: '40%',
+            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[3])
                 .setOpacity(0.1)
                 .get(),
             borderWidth: 0
@@ -138,26 +149,34 @@ Highcharts.setOptions({
     series: [{
         name: firstCell,
         data: [{
-            color: '#F62366',
-            radius: '112%',
-            innerRadius: '88%',
+            color: Highcharts.Color(Highcharts.getOptions().colors[0]),
+            radius: '100%',
+            innerRadius: '85%',
             y: firstMeas
         }]
     }, {
         name: secondCell,
         data: [{
-            color: '#9DFF02',
-            radius: '87%',
-            innerRadius: '63%',
+            color: Highcharts.Color(Highcharts.getOptions().colors[1]),
+            radius: '84%',
+            innerRadius: '70%',
             y: secondMeas
         }]
     }, {
         name: thirdCell,
         data: [{
-            color: '#0CCDD6',
-            radius: '62%',
-            innerRadius: '38%',
+            color: Highcharts.Color(Highcharts.getOptions().colors[2]),
+            radius: '69%',
+            innerRadius: '55%',
             y: thirdMeas
+        }]
+    }, {
+        name: fourthCell,
+        data: [{
+            color: Highcharts.Color(Highcharts.getOptions().colors[3]),
+            radius: '54%',
+            innerRadius: '40%',
+            y: fourthMeas
         }]
     }]
 });
