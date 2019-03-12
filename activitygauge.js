@@ -137,7 +137,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: secondCell,
                 data: [{
-                    color: Highcharts.ColorString('#9DFF02'),
+                    color: '#9DFF02',
                     radius: '84%',
                     innerRadius: '70%',
                     y: secondMeas
@@ -145,7 +145,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: thirdCell,
                 data: [{
-                    color: Highcharts.Color('#0CCDD6'),
+                    color: '#0CCDD6',
                     radius: '69%',
                     innerRadius: '55%',
                     y: thirdMeas
@@ -153,7 +153,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: fourthCell,
                 data: [{
-                    color: Highcharts.Color('#DDDF00'),
+                    color: '#DDDF00',
                     radius: '54%',
                     innerRadius: '40%',
                     y: fourthMeas
