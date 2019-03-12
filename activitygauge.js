@@ -26,16 +26,16 @@ looker.plugins.visualizations.add({
         var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measure_like[0].name]));
         // var firstColour = config.firstColor;
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
-        var measure_head = queryResponse.fields.measure_like[0].label_short;
-        console.log(data[0]);
+        var measure_head = queryResponse.fields.measure_like[0].label_short
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
 
         options = {}
              // Create an option for each measure in your query
-             for(let i = 0; i<2;i++){
-                data[i][queryResponse.fields.dimensions[0]].name.forEach(function(field) {
+                queryResponse.fields.dimensions.forEach(function(field) {
+                console.log(data[0].field[0].name);
+
                id = "color_" + field.name
                options[id] =
                {
@@ -46,7 +46,7 @@ looker.plugins.visualizations.add({
                 display: "color"
                    }
                  })
-            }
+            
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 
    
