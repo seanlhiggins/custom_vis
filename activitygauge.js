@@ -58,6 +58,9 @@ looker.plugins.visualizations.add({
                 color: Highcharts.Color(Highcharts.getOptions().colors[1])
                 }
             },
+            credits: {
+                    enabled: false
+                },
             tooltip: {
                 borderWidth: 0,
                 backgroundColor: 'none',
@@ -174,6 +177,7 @@ looker.plugins.visualizations.add({
                         type: "string",
                         display: "color"
                     }
+                    console.log(i);
                     i+=1;
                     if (i >=3){
                         break
