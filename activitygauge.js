@@ -197,7 +197,7 @@ looker.plugins.visualizations.add({
     series: [{
         name: firstCell,
         data: [{
-            color: firstColour,
+            color: Highcharts.getOptions().colors[1],
             radius: '112%',
             innerRadius: '88%',
             y: firstMeas
