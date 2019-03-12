@@ -29,62 +29,17 @@ Looker Vis Components:
 */
 
 looker.plugins.visualizations.add({
-    options: {
-
-    // font_align: {
-    //   type: "string",
-    //   label: "Font Align",
-    //   values: [
-    //     {"Left": "left"},
-    //     {"Center": "center"},
-    //     {"Right": "right"}
-    //   ],
-    //   display: "radio",
-    //   default: "left",
-    //   section: "Style",
-    //   // display_size: "half",
-    //   order:4
-    // },
-    // font_style: {
-    //   type: "string",
-    //   label: "Font Style",
-    //   values: [
-    //     {"Looker": "helvetica"},
-    //     {"Impact": "impact"},
-    //     {"Times New Roman": "times"}
-    //   ],
-    //   display: "select",
-    //   default: "looker",
-    //   section: "Style",
-    //   display_size: "half",
-    //   order: 2
-    // },
-
-    // textSize: {
-    //   label: 'Text Size',
-    //   min: 2,
-    //   max: 50,
-    //   step: .5,
-    //   default: 15,
-    //   section: 'Style',
-    //   type: 'number',
-    //   display: 'range'
-    // },
-    firstColor: {
-      label: 'First Color',
-      default: '#6a26a0',
-      section: 'Style',
-      type: 'string',
-      display: 'color',
-      display_size: "half",
-      order:1 
-        }
-        },
+    
     create: function(element, config){
         element.innerHTML = "<div id='activity_container'></div>";
     },
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
-        var html = "";
+        var html = `<style>.activity_container {
+            margin: 0 auto;
+            max-width: 400px;
+            min-width: 380px;
+        }
+        </style>`;
         var i=0;
         // for(var row of data) {
         // console.log(row);
@@ -113,18 +68,7 @@ looker.plugins.visualizations.add({
         var thirdMeas = LookerCharts.Utils.htmlForCell(meas3);
         var firstColour = config.firstColor;
         
-        queryResponse.fields.measure_like.forEach(function(field) {
-       id = "color_" + field.name
-               options[id] =
-               {
-            label: field.label_short + " Color",
-            default: "#8B7DA8",
-            section: "Style",
-            type: "string",
-            display: "color"
-               }
-             })
-             this.trigger('registerOptions', options)
+        
         console.log(firstCell,secondCell,thirdCell);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
