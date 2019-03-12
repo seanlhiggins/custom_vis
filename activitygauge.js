@@ -42,7 +42,10 @@ looker.plugins.visualizations.add({
             }
         // i++;
         // }
+
         element.innerHTML = html;
+        var container = element.appendChild(document.createElement("div"));
+        container.id = "activity_container";
         Highcharts.chart('activity_container', {
 
     chart: {
