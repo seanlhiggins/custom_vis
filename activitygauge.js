@@ -130,8 +130,8 @@ looker.plugins.visualizations.add({
                 name: firstCell,
                 data: [{
                     color: '#F62366',
-                    radius: '84%',
-                    innerRadius: '70%',
+                    radius: '100%',
+                    innerRadius: '85%',
                     y: firstMeas
                 }]
             }, {
