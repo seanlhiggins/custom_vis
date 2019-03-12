@@ -32,7 +32,48 @@ looker.plugins.visualizations.add({
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
-                options = {}
+                options = {
+                            font_style: {
+                              type: "string",
+                              label: "Font Style",
+                              values: [
+                                {"Looker": "helvetica"},
+                                {"Impact": "impact"},
+                                {"Times New Roman": "times"}
+                              ],
+                              display: "select",
+                              default: "looker",
+                              section: "Style",
+                              display_size: "half",
+                              order: 2
+                            },
+
+                            textSize: {
+                              label: 'Text Size',
+                              min: 2,
+                              max: 50,
+                              step: .5,
+                              default: 15,
+                              section: 'Style',
+                              type: 'number',
+                              display: 'range'
+                            },
+                            textColor: {
+                              label: 'Text Color',
+                              default: '#6a26a0',
+                              section: 'Style',
+                              type: 'string',
+                              display: 'color',
+                              display_size: "half",
+                              order:1 
+                            },
+                            textLabel: {
+                              type: 'string',
+                              label: 'Label',
+                              placeholder: 'Add a label or description',
+                              section: 'Style'
+                            }
+                }
              // Create an option for the first 4 rows in the query
              var first4rows = data.slice(0,4);
              for(let i=0;i<4;i++){
@@ -63,15 +104,15 @@ looker.plugins.visualizations.add({
             title: {
                 text: dimension_head,
                 style: {
-                    fontSize: '15px',
-                    color: Highcharts.getOptions().colors[0]
+                    fontSize: config.textSize,
+                    color: config.color_0
                 }
             },
             subtitle: {
-                text: measure_head,
+                text: config.textLabel,
                 style: {
                 fontSize: '10px',
-                color: Highcharts.Color(Highcharts.getOptions().colors[1])
+                color: config.textColor
                 }
             },
             credits: {
@@ -179,10 +220,7 @@ looker.plugins.visualizations.add({
                 }]
             }]
         });
-
-                
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
-        console.log(config);
         doneRendering()
     }
 });
