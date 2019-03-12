@@ -35,12 +35,8 @@ looker.plugins.visualizations.add({
              // Create an option for each measure in your query
                 queryResponse.fields.dimensions.forEach(function(field) {
                 console.log(queryResponse);
-                console.log(queryResponse.fields);
-                console.log(queryResponse.fields.dimensions);
-                console.log(data[0][queryResponse.fields.dimensions[0]]);
-                for(let i =0; i<2; i++){
-                console.log(LookerCharts.Utils.htmlForCell(data[i][queryResponse.fields.dimensions[i].name]))
-            }
+                console.log(data[0][queryResponse.fields.dimensions[0].name]);
+                console.log(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.dimensions[0].name]);
                id = "color_" + field.name
                options[id] =
                {
