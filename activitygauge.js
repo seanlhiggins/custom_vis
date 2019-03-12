@@ -53,7 +53,7 @@ looker.plugins.visualizations.add({
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].value];
         var meas1 = firstRow[queryResponse.fields.measures[0].value];
         var meas2 = secondRow[queryResponse.fields.measures[0].value];
-        var meas2 = thirdRow[queryResponse.fields.measures[0].value];
+        var meas3 = thirdRow[queryResponse.fields.measures[0].value];
 
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
