@@ -35,6 +35,7 @@ looker.plugins.visualizations.add({
              // Create an option for each measure in your query
                 queryResponse.fields.dimensions.forEach(function(field) {
                 console.log(queryResponse);
+                console.log(data)
                 console.log(data[0][queryResponse.fields.dimensions[0].name]);
                 console.log(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.dimensions[0].name]));
                id = "color_" + field.name
@@ -83,7 +84,7 @@ Highcharts.setOptions({
         positioner: function (labelWidth) {
             return {
                 x: (this.chart.chartWidth - labelWidth) / 2,
-                y: (this.chart.plotHeight / 2) - 15
+                y: (this.chart.plotHeight / 2)
             };
         }
     },
