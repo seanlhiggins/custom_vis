@@ -96,7 +96,7 @@ looker.plugins.visualizations.add({
         backgroundColor: 'none',
         shadow: false,
         style: {
-            fontSize: '16px'
+            fontSize: '10px'
         },
         pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
         positioner: function (labelWidth) {
@@ -113,21 +113,21 @@ looker.plugins.visualizations.add({
         background: [{ // Track for Move
             outerRadius: '112%',
             innerRadius: '88%',
-            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
+            backgroundColor: '#F62366'
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Exercise
             outerRadius: '87%',
             innerRadius: '63%',
-            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1])
+            backgroundColor: '#9DFF02'
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Stand
             outerRadius: '62%',
             innerRadius: '38%',
-            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
+            backgroundColor: '#0CCDD6'
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
@@ -155,7 +155,7 @@ looker.plugins.visualizations.add({
     series: [{
         name: firstCell,
         data: [{
-            color: Highcharts.getOptions().colors[0],
+            color: '#F62366'
             radius: '112%',
             innerRadius: '88%',
             y: firstMeas
@@ -163,7 +163,7 @@ looker.plugins.visualizations.add({
     }, {
         name: secondCell,
         data: [{
-            color: Highcharts.getOptions().colors[1],
+            color: '#9DFF02',
             radius: '87%',
             innerRadius: '63%',
             y: secondMeas
@@ -171,7 +171,7 @@ looker.plugins.visualizations.add({
     }, {
         name: thirdCell,
         data: [{
-            color: Highcharts.getOptions().colors[2],
+            color: '#0CCDD6',
             radius: '62%',
             innerRadius: '38%',
             y: thirdMeas
