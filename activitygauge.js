@@ -23,7 +23,6 @@ looker.plugins.visualizations.add({
         var secondMeas = parseFloat(LookerCharts.Utils.textForCell(data[1][queryResponse.fields.measure_like[0].name]));
         var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measure_like[0].name]));
         var fourthMeas = parseFloat(LookerCharts.Utils.textForCell(data[3][queryResponse.fields.measure_like[0].name]));
-        // var firstColour = config.firstColor;
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short;
         element.innerHTML = html;
@@ -48,7 +47,7 @@ looker.plugins.visualizations.add({
                 text: dimension_head,
                 style: {
                     fontSize: '15px',
-                    color: Highcharts.Color(Highcharts.getOptions().colors[0])
+                    color: Highcharts.getOptions().colors[0]
                 }
             },
             subtitle: {
@@ -132,7 +131,7 @@ looker.plugins.visualizations.add({
             series: [{
                 name: firstCell,
                 data: [{
-                    color: '#F62366',
+                    color: Highcharts.getOptions().colors[0],
                     radius: '100%',
                     innerRadius: '85%',
                     y: firstMeas
@@ -140,7 +139,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: secondCell,
                 data: [{
-                    color: '#9DFF02',
+                    color: Highcharts.getOptions().colors[1],
                     radius: '84%',
                     innerRadius: '70%',
                     y: secondMeas
@@ -148,7 +147,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: thirdCell,
                 data: [{
-                    color: '#0CCDD6',
+                    color: Highcharts.getOptions().colors[2],
                     radius: '69%',
                     innerRadius: '55%',
                     y: thirdMeas
@@ -156,7 +155,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: fourthCell,
                 data: [{
-                    color: '#DDDF00',
+                    color: Highcharts.getOptions().colors[3],
                     radius: '54%',
                     innerRadius: '40%',
                     y: fourthMeas
@@ -164,24 +163,19 @@ looker.plugins.visualizations.add({
             }]
         });
         options = {}
-             // Create an option for each measure in the query
+             // Create an option for the first 4 rows in the query
              var first4rows = data.slice(0,4);
                 for (row of first4rows){
-                    var i = 0;
                     var field = row[queryResponse.fields.dimensions[0].name];
                     id = "color_" + field.value
                     options[id] =
                     {
-                        label: field.value + " Color",
+                        label: field.value,
                         default: '#F62366',
                         section: "Style",
                         type: "string",
                         display: "color"
-                    }
-                    console.log(i);
-                    i+=1;
-                    if (i >=3){
-                        break
+                    }                   
                     }
                 }
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
