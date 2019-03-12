@@ -166,15 +166,20 @@ looker.plugins.visualizations.add({
              // Create an option for the first 4 rows in the query
              var first4rows = data.slice(0,4);
                 for (row of first4rows){
+                    var i = 0;
                     var field = row[queryResponse.fields.dimensions[0].name];
                     id = "color_" + field.value
                     options[id] =
                     {
                         label: field.value,
-                        default: '#F62366',
+                        default: Highcharts.getOptions().colors[i],
                         section: "Style",
                         type: "string",
                         display: "color"
+                    }
+                    i+=1;
+                    if(i >= 3){
+                        break
                     }                   
                     }
                 
