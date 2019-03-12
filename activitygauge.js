@@ -30,21 +30,7 @@ looker.plugins.visualizations.add({
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
 
-        options = {}
-             // Create an option for each measure in the query
-                for (row of data){
-                var field = row[queryResponse.fields.dimensions[0].name];
-                    console.log(field.value)
-               id = "color_" + field.value
-               options[id] =
-               {
-                label: field.value + " Color",
-                default: Highcharts.Color(Highcharts.getOptions().colors[0]),
-                section: "Style",
-                type: "string",
-                display: "color"
-                   }
-                }   
+
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
@@ -175,6 +161,21 @@ looker.plugins.visualizations.add({
                 }]
             }]
         });
+        options = {}
+             // Create an option for each measure in the query
+                for (row of data){
+                var field = row[queryResponse.fields.dimensions[0].name];
+                    console.log(field.value)
+               id = "color_" + field.value
+               options[id] =
+               {
+                label: field.value + " Color",
+                default: Highcharts.Color(Highcharts.getOptions().colors[0]),
+                section: "Style",
+                type: "string",
+                display: "color"
+                   }
+                }   
         doneRendering()
     }
 });
