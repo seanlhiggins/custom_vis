@@ -133,6 +133,8 @@ Highcharts.setOptions({
             outerRadius: '62%',
             innerRadius: '38%',
             backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
+                .setOpacity(0.3)
+                .get(),
             borderWidth: 0
         }]
     },
