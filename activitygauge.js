@@ -35,13 +35,13 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
         var html = "";
         var i=0
-        while (i < 3) { 
+        // while (i < 3) { 
             for(var row of data) {
                 var cell = row[queryResponse.fields.dimensions[0].name];
                 html += LookerCharts.Utils.htmlForCell(cell);
             }
-        i++;
-            }
+        // i++;
+        // }
         element.innerHTML = html;
         Highcharts.chart('activity_container', {
 
@@ -130,7 +130,7 @@ looker.plugins.visualizations.add({
             y: 80
         }]
     }, {
-        name: row[queryResponse.fields.dimensions[1].name],
+        name: 'Test',
         data: [{
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
@@ -138,7 +138,7 @@ looker.plugins.visualizations.add({
             y: 65
         }]
     }, {
-        name: row[queryResponse.fields.dimensions[2].name],
+        name: 'Test2',
         data: [{
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
