@@ -127,17 +127,17 @@ looker.plugins.visualizations.add({
             },
 
             series: [{
-                name: secondCell,
+                name: firstMeas,
                 data: [{
                     color: '#F62366',
                     radius: '84%',
                     innerRadius: '70%',
-                    y: secondMeas
+                    y: firstMeas
                 }]
             }, {
                 name: secondCell,
                 data: [{
-                    color: Highcharts.Color(Highcharts.getOptions().colors[1]),
+                    color: Highcharts.ColorString('#9DFF02'),
                     radius: '84%',
                     innerRadius: '70%',
                     y: secondMeas
@@ -145,7 +145,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: thirdCell,
                 data: [{
-                    color: Highcharts.Color(Highcharts.getOptions().colors[2]),
+                    color: Highcharts.Color('#0CCDD6'),
                     radius: '69%',
                     innerRadius: '55%',
                     y: thirdMeas
@@ -153,7 +153,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: fourthCell,
                 data: [{
-                    color: Highcharts.Color(Highcharts.getOptions().colors[3]),
+                    color: Highcharts.Color('#DDDF00'),
                     radius: '54%',
                     innerRadius: '40%',
                     y: fourthMeas
@@ -162,18 +162,22 @@ looker.plugins.visualizations.add({
         });
         options = {}
              // Create an option for each measure in the query
+                console.log(data.length)
+
                 for (row of data){
-                var field = row[queryResponse.fields.dimensions[0].name];
+                    
+                    var field = row[queryResponse.fields.dimensions[0].name];
                     console.log(field.value)
-               id = "color_" + field.value
-               options[id] =
-               {
-                label: field.value + " Color",
-                default: Highcharts.Color(Highcharts.getOptions().colors[0]),
-                section: "Style",
-                type: "string",
-                display: "color"
-                   }
+
+                    id = "color_" + field.value
+                    options[id] =
+                    {
+                        label: field.value + " Color",
+                        default: Highcharts.Color(Highcharts.getOptions().colors[0]),
+                        section: "Style",
+                        type: "string",
+                        display: "color"
+                    }
                 }
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 
