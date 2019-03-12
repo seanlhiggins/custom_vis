@@ -31,7 +31,6 @@ looker.plugins.visualizations.add({
         container.id = "activity_container";
 
 
-        this.trigger('registerOptions', options) // register options with parent page to update visConfig
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
@@ -176,6 +175,8 @@ looker.plugins.visualizations.add({
                 display: "color"
                    }
                 }   
+        this.trigger('registerOptions', options) // register options with parent page to update visConfig
+
         doneRendering()
     }
 });
