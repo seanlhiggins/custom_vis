@@ -37,8 +37,8 @@ looker.plugins.visualizations.add({
         var html = `<style>
             #activity_container {
             margin: 0 auto;
-            max-width: 400px;
-            min-width: 380px;
+            max-width: 300px;
+            min-width: 280px;
         }
         </style>`;
         var i=0;
@@ -62,13 +62,13 @@ looker.plugins.visualizations.add({
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
         var meas1 = firstRow[queryResponse.fields.measures[0].name];
-        var firstMeas = LookerCharts.Utils.textForCell(meas1);
+        var firstMeas = Number(LookerCharts.Utils.textForCell(meas1));
         var meas2 = secondRow[queryResponse.fields.measures[0].name];
-        var secondMeas = LookerCharts.Utils.textForCell(meas2);
+        var secondMeas = Number(LookerCharts.Utils.textForCell(meas2));
         var meas3 = thirdRow[queryResponse.fields.measures[0].name];
-        var thirdMeas = LookerCharts.Utils.textForCell(meas3);
+        var thirdMeas = Number(LookerCharts.Utils.textForCell(meas3));
         var firstColour = config.firstColor;
-        
+        var dimension_head = data[0].name;
         
         console.log(data);
         element.innerHTML = html;
