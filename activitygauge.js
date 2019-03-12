@@ -160,7 +160,7 @@ Highcharts.setOptions({
     series: [{
         name: firstCell,
         data: [{
-            color: '#F62366'
+            color: '#F62366',
             radius: '112%',
             innerRadius: '88%',
             y: firstMeas
