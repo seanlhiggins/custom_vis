@@ -1,28 +1,3 @@
-// Uncomment to style it like Apple Watch
-/*
-if (!Highcharts.theme) {
-    Highcharts.setOptions({
-        chart: {
-            backgroundColor: 'black'
-        },
-        colors: ['#F62366', '#9DFF02', '#0CCDD6'],
-        title: {
-            style: {
-                color: 'silver'
-            }
-        },
-        tooltip: {
-            style: {
-                color: 'silver'
-            }
-        }
-    });
-}
-// */
-
-/**
- * In the chart render event, add icons on top of the circular shapes
- */
 
 /*
 Looker Vis Components:
@@ -42,25 +17,16 @@ looker.plugins.visualizations.add({
         }
         </style>`;
         var i=0;
-        // for(var row of data) {
-        // console.log(row);
-        // var dim1 = row[0];
-        // var dim2 = row[1];
-        // var dim3 = row[2];
-        // var meas1 = 50;
-        // var meas2 = 60;
-        // var meas3 = 90;
-        // }
-        // console.log(data);
-        var firstRow = data[0];
-        var secondRow = data[1];
-        var thirdRow = data[2];
-        var dim1 = firstRow[queryResponse.fields.dimensions[0].name];
-        var firstCell = LookerCharts.Utils.htmlForCell(dim1);
-        var dim2 = secondRow[queryResponse.fields.dimensions[0].name];
-        var secondCell = LookerCharts.Utils.htmlForCell(dim2);
-        var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
-        var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
+        
+        // var firstRow = data[0];
+        // var secondRow = data[1];
+        // var thirdRow = data[2];
+        // var dim1 = data[0][queryResponse.fields.dimensions[0].name];
+        var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
+        // var dim2 = data[1][queryResponse.fields.dimensions[0].name];
+        var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
+        // var dim3 = data[2][queryResponse.fields.dimensions[0].name];
+        var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
         var meas1 = firstRow[queryResponse.fields.measures[0].name];
         var firstMeas = Number(LookerCharts.Utils.textForCell(meas1));
         var meas2 = secondRow[queryResponse.fields.measures[0].name];
@@ -70,7 +36,7 @@ looker.plugins.visualizations.add({
         var firstColour = config.firstColor;
         var dimension_head = data[0].name;
         
-        console.log(data,dimension_head);
+        console.log(LookerCharts.Utils.textForCell(meas3), thirsMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
