@@ -12,8 +12,8 @@ looker.plugins.visualizations.add({
         var html = `<style>
             #activity_container {
             margin: 0 auto;
-            max-width: 400px;
-            min-width: 380px;
+            max-width: 300px;
+            min-width: 280px;
         }
         </style>`;
         var i=0;
@@ -73,7 +73,7 @@ Highcharts.setOptions({
         positioner: function (labelWidth) {
             return {
                 x: (this.chart.chartWidth - labelWidth) / 2,
-                y: (this.chart.plotHeight / 2)
+                y: (this.chart.plotHeight / 2) - 15
             };
         }
     },
