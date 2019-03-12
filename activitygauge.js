@@ -129,7 +129,7 @@ looker.plugins.visualizations.add({
                 positioner: function (labelWidth) {
                     return {
                         x: (this.chart.chartWidth - labelWidth) / 2,
-                        y: (this.chart.plotHeight / 2) + 15
+                        y: (this.chart.plotHeight / 2) + 10
                     };
                 }
             },
