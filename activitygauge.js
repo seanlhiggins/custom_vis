@@ -36,7 +36,7 @@ looker.plugins.visualizations.add({
                 queryResponse.fields.dimensions.forEach(function(field) {
                 console.log(queryResponse);
                 console.log(data[0][queryResponse.fields.dimensions[0].name]);
-                console.log(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.dimensions[0].name]);
+                console.log(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.dimensions[0].name]));
                id = "color_" + field.name
                options[id] =
                {
