@@ -34,10 +34,13 @@ looker.plugins.visualizations.add({
         options = {}
              // Create an option for each measure in your query
                 for (row of data){
+                    
+                    let i = 0;
+
                     console.log(row);
                 var field = row[queryResponse.fields.dimensions[0].name];
                     console.log(field.value)
-               id = "color_" + row
+               id = "color_" + i
                options[id] =
                {
                 label: field.value + " Color",
@@ -46,6 +49,7 @@ looker.plugins.visualizations.add({
                 type: "string",
                 display: "color"
                    }
+                   i++;
                  }           
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 
