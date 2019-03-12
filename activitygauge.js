@@ -165,7 +165,7 @@ looker.plugins.visualizations.add({
         options = {}
              // Create an option for the first 4 rows in the query
              var first4rows = data.slice(0,4);
-                for (row of first4rows){
+                for (var row in first4rows){
                     var i = 0;
                     var field = row[queryResponse.fields.dimensions[0].name];
                     console.log(field,i)
