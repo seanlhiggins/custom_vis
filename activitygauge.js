@@ -176,13 +176,12 @@ looker.plugins.visualizations.add({
                         section: "Style",
                         type: "string",
                         display: "color",
-                        display_size: "third"
-                    }
-                    console.log(field,i)          
+                        display_size: "half"
+                    }   
                     }
                 
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
-
+        console.log(config);
         doneRendering()
     }
 });
