@@ -62,15 +62,15 @@ looker.plugins.visualizations.add({
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
         var meas1 = firstRow[queryResponse.fields.measures[0].name];
-        var firstMeas = Number(LookerCharts.Utils.textForCell(meas1));
+        var firstMeas = LookerCharts.Utils.textForCell(meas1);
         var meas2 = secondRow[queryResponse.fields.measures[0].name];
-        var secondMeas = Number(LookerCharts.Utils.textForCell(meas2));
+        var secondMeas = LookerCharts.Utils.textForCell(meas2);
         var meas3 = thirdRow[queryResponse.fields.measures[0].name];
-        var thirdMeas = Number(LookerCharts.Utils.textForCell(meas3));
+        var thirdMeas = LookerCharts.Utils.textForCell(meas3);
         var firstColour = config.firstColor;
         
         
-        console.log(firstCell,firstMeas,secondMeas,thirdMeas);
+        console.log(data);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
@@ -87,7 +87,7 @@ looker.plugins.visualizations.add({
     title: {
         text: 'Activity',
         style: {
-            fontSize: '24px'
+            fontSize: '10px'
         }
     },
 
