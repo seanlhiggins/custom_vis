@@ -34,7 +34,8 @@ looker.plugins.visualizations.add({
         element.innerHTML = "<div id='activity_container'></div>";
     },
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
-        var html = `<style>.activity_container {
+        var html = `<style>
+            #activity_container {
             margin: 0 auto;
             max-width: 400px;
             min-width: 380px;
@@ -69,7 +70,7 @@ looker.plugins.visualizations.add({
         var firstColour = config.firstColor;
         
         
-        console.log(firstCell,secondCell,thirdCell);
+        console.log(firstMeas,secondMeas,thirdMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
