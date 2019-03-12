@@ -113,21 +113,21 @@ looker.plugins.visualizations.add({
         background: [{ // Track for Move
             outerRadius: '112%',
             innerRadius: '88%',
-            backgroundColor: '#F62366'
+            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[3])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Exercise
             outerRadius: '87%',
             innerRadius: '63%',
-            backgroundColor: '#9DFF02'
+            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[4])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Stand
             outerRadius: '62%',
             innerRadius: '38%',
-            backgroundColor: '#0CCDD6'
+            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[5])
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
@@ -155,7 +155,7 @@ looker.plugins.visualizations.add({
     series: [{
         name: firstCell,
         data: [{
-            color: '#F62366',
+            color: '#F62366'
             radius: '112%',
             innerRadius: '88%',
             y: firstMeas
