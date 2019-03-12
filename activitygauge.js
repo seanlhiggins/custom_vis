@@ -36,11 +36,11 @@ looker.plugins.visualizations.add({
                 for (row of data){
                     console.log(row);
                 var field = row[queryResponse.fields.dimensions[0].name];
-                    console.log(field)
-               id = "color_" + field
+                    console.log(field.value)
+               id = "color_" + field.value
                options[id] =
                {
-                label: field + " Color",
+                label: field.value + " Color",
                 default: "#8B7DA8",
                 section: "Style",
                 type: "string",
