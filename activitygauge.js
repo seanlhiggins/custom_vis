@@ -32,6 +32,24 @@ looker.plugins.visualizations.add({
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
+                options = {}
+             // Create an option for the first 4 rows in the query
+             var first4rows = data.slice(0,4);
+             for(let i=0;i<4;i++){
+
+                    var field = first4rows[i][queryResponse.fields.dimensions[0].name];
+                    console.log(field,i)
+                    id = "color_" + i
+                    options[id] =
+                    {
+                        label: field.value,
+                        default: Highcharts.getOptions().colors[i],
+                        section: "Style",
+                        type: "string",
+                        display: "color",
+                        display_size: "half"
+                    }   
+                    }
         Highcharts.chart('activity_container', {
 
             chart: {
@@ -130,7 +148,7 @@ looker.plugins.visualizations.add({
             series: [{
                 name: firstCell,
                 data: [{
-                    color: Highcharts.getOptions().colors[0],
+                    color: config.color_0,
                     radius: '100%',
                     innerRadius: '85%',
                     y: firstMeas
@@ -161,24 +179,7 @@ looker.plugins.visualizations.add({
                 }]
             }]
         });
-        options = {}
-             // Create an option for the first 4 rows in the query
-             var first4rows = data.slice(0,4);
-             for(let i=0;i<4;i++){
 
-                    var field = first4rows[i][queryResponse.fields.dimensions[0].name];
-                    console.log(field,i)
-                    id = "color_" + field.value
-                    options[id] =
-                    {
-                        label: field.value,
-                        default: Highcharts.getOptions().colors[i],
-                        section: "Style",
-                        type: "string",
-                        display: "color",
-                        display_size: "half"
-                    }   
-                    }
                 
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         console.log(config);
