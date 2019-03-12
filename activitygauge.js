@@ -113,21 +113,21 @@ looker.plugins.visualizations.add({
         background: [{ // Track for Move
             outerRadius: '112%',
             innerRadius: '88%',
-            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[3])
+            backgroundColor: Highcharts.ColorString('#F62366')
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Exercise
             outerRadius: '87%',
             innerRadius: '63%',
-            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[4])
+            backgroundColor: Highcharts.ColorString('#9DFF02')
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
         }, { // Track for Stand
             outerRadius: '62%',
             innerRadius: '38%',
-            backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[5])
+            backgroundColor: Highcharts.ColorString('#0CCDD6')
                 .setOpacity(0.3)
                 .get(),
             borderWidth: 0
