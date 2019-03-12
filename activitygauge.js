@@ -44,7 +44,7 @@ looker.plugins.visualizations.add({
                 type: "string",
                 display: "color"
                    }
-                 }            
+                 })            
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 
    
