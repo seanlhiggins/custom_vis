@@ -165,7 +165,8 @@ looker.plugins.visualizations.add({
         });
         options = {}
              // Create an option for each measure in the query
-                for (row of data.length<4){
+             var first4rows = data.slice(0,4);
+                for (row of first4rows){
                     var i = 0;
                     var field = row[queryResponse.fields.dimensions[0].name];
                     id = "color_" + field.value
