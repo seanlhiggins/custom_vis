@@ -33,8 +33,10 @@ looker.plugins.visualizations.add({
 
         options = {}
              // Create an option for each measure in your query
-                data.queryResponse.fields.dimensions[0].forEach(function(field) {
-                // console.log(data[0].field.name);
+                queryResponse.fields.dimensions[0].forEach(function(field) {
+                console.log(queryResponse);
+                console.log(queryResponse.fields);
+                console.log(queryResponse.fields.dimensions);
 
                id = "color_" + field.name
                options[id] =
