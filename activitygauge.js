@@ -36,14 +36,16 @@ looker.plugins.visualizations.add({
         var html = "";
         var i=0;
         for(var row of data) {
-
-        var dim1 = row[queryResponse.fields.dimensions[0].name];
-        var dim2 =row[queryResponse.fields.dimensions[1].name];
-        var dim3 =row[queryResponse.fields.dimensions[2].name];
+        console.log(row);
+        var dim1 = row[0];
+        var dim2 =row[1];
+        var dim3 =row[2];
         var meas1 = 50;
         var meas2 = 60;
         var meas3 = 90;
         }
+        console.log(data);
+        
         // while (i < 3) { 
             // for(var row of data) {
             //     var cell = row[queryResponse.fields.dimensions[0].name];
