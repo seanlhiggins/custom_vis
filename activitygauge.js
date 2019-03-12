@@ -34,13 +34,9 @@ looker.plugins.visualizations.add({
         options = {}
              // Create an option for each measure in your query
                 for (row of data){
-                    
-                    let i = 0;
-
-                    console.log(row);
                 var field = row[queryResponse.fields.dimensions[0].name];
                     console.log(field.value)
-               id = "color_" + field
+               id = "color_" + field.value
                options[id] =
                {
                 label: field.value + " Color",
@@ -49,12 +45,8 @@ looker.plugins.visualizations.add({
                 type: "string",
                 display: "color"
                    }
-                   i++;
                 }   
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
-
-   
-
 Highcharts.setOptions({
     colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
 });
