@@ -48,13 +48,16 @@ looker.plugins.visualizations.add({
         var firstRow = data[0];
         var secondRow = data[1];
         var thirdRow = data[2];
-        var dim1 = firstRow[queryResponse.fields.dimensions[0].value];
-        var dim2 = secondRow[queryResponse.fields.dimensions[0].value];
+        var dim1 = firstRow[queryResponse.fields.dimensions[0].name];
+        var firstCell = LookerCharts.Utils.htmlForCell(dim1);
+        var dim2 = secondRow[queryResponse.fields.dimensions[0].name];
+        var secondCell = LookerCharts.Utils.htmlForCell(dim2);
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
+        var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
         var meas1 = firstRow[queryResponse.fields.measures[0].name];
         var meas2 = secondRow[queryResponse.fields.measures[0].name];
         var meas3 = thirdRow[queryResponse.fields.measures[0].name];
-        console.log(dim1,dim2,dim3,meas1,meas2,meas3);
+        console.log(firstCell,secondCell,thirdCell);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
@@ -137,7 +140,7 @@ looker.plugins.visualizations.add({
     },
 
     series: [{
-        name: dim1,
+        name: firstCell,
         data: [{
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
@@ -145,7 +148,7 @@ looker.plugins.visualizations.add({
             y: 30
         }]
     }, {
-        name: dim2,
+        name: secondCell,
         data: [{
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
@@ -153,7 +156,7 @@ looker.plugins.visualizations.add({
             y: 20
         }]
     }, {
-        name: dim3,
+        name: thirdCell,
         data: [{
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
