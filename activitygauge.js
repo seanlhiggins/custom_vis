@@ -35,11 +35,17 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
         var html = "";
         var i=0
+        var dim1 = row[queryResponse.fields.dimensions[0].name]
+        var dim2 =row[queryResponse.fields.dimensions[1].name]
+        var dim3 =row[queryResponse.fields.dimensions[1].name]
+        var meas1 = 50
+        var meas2 = 60
+        var meas3 = 90
         // while (i < 3) { 
-            for(var row of data) {
-                var cell = row[queryResponse.fields.dimensions[0].name];
-                html += LookerCharts.Utils.htmlForCell(cell);
-            }
+            // for(var row of data) {
+            //     var cell = row[queryResponse.fields.dimensions[0].name];
+            //     html += LookerCharts.Utils.htmlForCell(cell);
+            // }
         // i++;
         // }
 
@@ -125,28 +131,28 @@ looker.plugins.visualizations.add({
     },
 
     series: [{
-        name: row[queryResponse.fields.dimensions[0].name],
+        name: dim1,
         data: [{
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
             innerRadius: '88%',
-            y: 80
+            y: meas1
         }]
     }, {
-        name: 'Test',
+        name: dim2,
         data: [{
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
             innerRadius: '63%',
-            y: 65
+            y: meas2
         }]
     }, {
-        name: 'Test2',
+        name: dim3,
         data: [{
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
             innerRadius: '38%',
-            y: 50
+            y: meas3
         }]
     }]
 });
