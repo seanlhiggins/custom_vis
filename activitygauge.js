@@ -28,11 +28,11 @@ looker.plugins.visualizations.add({
         // var dim3 = data[2][queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
         // var meas1 = data[0][queryResponse.fields.measures[0].name];
-        var firstMeas = Number(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.measures[0].name]));
+        var firstMeas = parseFloat(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.measures[0].name]));
         // var meas2 = data[1][queryResponse.fields.measures[0].name];
-        var secondMeas = Number(LookerCharts.Utils.textForCell(data[1][queryResponse.fields.measures[0].name]));
+        var secondMeas = parseFloat(LookerCharts.Utils.textForCell(data[1][queryResponse.fields.measures[0].name]));
         // var meas3 = data[2][queryResponse.fields.measures[0].name];
-        var thirdMeas = Number(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measures[0].name]));
+        var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measures[0].name]));
         var firstColour = config.firstColor;
         var dimension_head = data[0].name;
         
