@@ -62,11 +62,11 @@ looker.plugins.visualizations.add({
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
         var meas1 = firstRow[queryResponse.fields.measures[0].name];
-        var firstMeas = LookerCharts.Utils.textForCell(meas1);
+        var firstMeas = Number(LookerCharts.Utils.textForCell(meas1));
         var meas2 = secondRow[queryResponse.fields.measures[0].name];
-        var secondMeas = LookerCharts.Utils.textForCell(meas2);
+        var secondMeas = Number(LookerCharts.Utils.textForCell(meas2));
         var meas3 = thirdRow[queryResponse.fields.measures[0].name];
-        var thirdMeas = LookerCharts.Utils.textForCell(meas3);
+        var thirdMeas = Number(LookerCharts.Utils.textForCell(meas3));
         var firstColour = config.firstColor;
         
         
@@ -158,7 +158,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
             innerRadius: '88%',
-            y: 35
+            y: firstMeas
         }]
     }, {
         name: secondCell,
@@ -166,7 +166,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
             innerRadius: '63%',
-            y: 12
+            y: secondMeas
         }]
     }, {
         name: thirdCell,
@@ -174,7 +174,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
             innerRadius: '38%',
-            y: 10
+            y: thirdMeas
         }]
     }]
 });
