@@ -27,7 +27,7 @@ looker.plugins.visualizations.add({
         // var firstColour = config.firstColor;
         // var dimension_head = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions.name]);
         
-        console.log(data.name);
+        console.log(data[0]);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
@@ -63,7 +63,7 @@ Highcharts.setOptions({
     },
 
     title: {
-        text: dimension_head,
+        text: '',
         style: {
             fontSize: '10px'
         }
