@@ -78,7 +78,7 @@ looker.plugins.visualizations.add({
       display: 'color',
       display_size: "half",
       order:1 
-    },
+    }
 },
     create: function(element, config){
         element.innerHTML = "<div id='activity_container'></div>";
