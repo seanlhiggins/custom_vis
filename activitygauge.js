@@ -77,28 +77,28 @@ looker.plugins.visualizations.add({
             pane: {
                 startAngle: 0,
                 endAngle: 360,
-                background: [{ // Track for Dim1
+                background: [{ // Track for Move
                     outerRadius: '100%',
                     innerRadius: '85%',
                     backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
                         .setOpacity(0.1)
                         .get(),
                     borderWidth: 0
-                }, { // Track for Dim2
+                }, { // Track for Exercise
                     outerRadius: '84%',
                     innerRadius: '70%',
                     backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1])
                         .setOpacity(0.1)
                         .get(),
                     borderWidth: 0
-                }, { // Track for Dim3
+                }, { // Track for Stand
                     outerRadius: '69%',
                     innerRadius: '55%',
                     backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
                         .setOpacity(0.1)
                         .get(),
                     borderWidth: 0
-                }, { // Track for Dim4
+                }, { // Track for Party
                     outerRadius: '54%',
                     innerRadius: '40%',
                     backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[3])
@@ -127,12 +127,12 @@ looker.plugins.visualizations.add({
             },
 
             series: [{
-                name: firstCell,
+                name: secondCell,
                 data: [{
-                    color: Highcharts.Color(Highcharts.getOptions().colors[0]),
-                    radius: '100%',
-                    innerRadius: '85%',
-                    y: firstMeas
+                    color: '#F62366',
+                    radius: '84%',
+                    innerRadius: '70%',
+                    y: secondMeas
                 }]
             }, {
                 name: secondCell,
@@ -174,7 +174,7 @@ looker.plugins.visualizations.add({
                 type: "string",
                 display: "color"
                    }
-                }   
+                }
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 
         doneRendering()
