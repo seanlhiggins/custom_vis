@@ -167,7 +167,7 @@ looker.plugins.visualizations.add({
              var first4rows = data.slice(0,4);
                 for (var row in first4rows){
                     var i = 0;
-                    var field = row[queryResponse.fields.dimensions[0].name];
+                    var field = first4rows[row][queryResponse.fields.dimensions[0].name];
                     console.log(field,i)
                     id = "color_" + field.value
                     options[id] =
