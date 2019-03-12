@@ -72,8 +72,8 @@ Highcharts.setOptions({
         pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
         positioner: function (labelWidth) {
             return {
-                x: (this.chart.chartWidth - labelWidth) / 2,
-                y: (this.chart.plotHeight / 2) + 15
+                x: (this.chart.chartWidth - labelWidth),
+                y: (this.chart.plotHeight) + 15
             };
         }
     },
