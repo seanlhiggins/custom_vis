@@ -34,20 +34,17 @@ looker.plugins.visualizations.add({
         options = {}
              // Create an option for each measure in your query
                 for (row of data){
-                console.log(row[queryResponse.fields.dimensions[0].name]);
-            }
-               //  .forEach(function(field){
-               //      console.log(field);
-               // id = "color_" + field.value
-               // options[id] =
-               // {
-               //  label: field.value + " Color",
-               //  default: "#8B7DA8",
-               //  section: "Style",
-               //  type: "string",
-               //  display: "color"
-               //     }
-               //   })            
+                var field = row[queryResponse.fields.dimensions[0].name];
+               id = "color_" + field
+               options[id] =
+               {
+                label: field + " Color",
+                default: "#8B7DA8",
+                section: "Style",
+                type: "string",
+                display: "color"
+                   }
+                 }           
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 
    
