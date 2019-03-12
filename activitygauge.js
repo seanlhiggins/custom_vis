@@ -37,7 +37,7 @@ looker.plugins.visualizations.add({
         var i=0
         while (i < 3) { 
             for(var row of data) {
-                var cell = row[queryResponse.fields.dimensions[i].name];
+                var cell = row[queryResponse.fields.dimensions[0].name];
                 html += LookerCharts.Utils.htmlForCell(cell);
             }
         i++;
