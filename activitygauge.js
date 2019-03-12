@@ -37,7 +37,7 @@ looker.plugins.visualizations.add({
                     console.log(row);
                 var field = row[queryResponse.fields.dimensions[0].name];
                     console.log(field.value)
-               id = "color_" + field.value
+               id = "color_" + row
                options[id] =
                {
                 label: field.value + " Color",
@@ -52,7 +52,7 @@ looker.plugins.visualizations.add({
    
 
 Highcharts.setOptions({
-    colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+    colors: [config.options[color_0], '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
 });
         Highcharts.chart('activity_container', {
 
