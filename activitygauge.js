@@ -26,7 +26,7 @@ looker.plugins.visualizations.add({
         var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measure_like[0].name]));
         // var firstColour = config.firstColor;
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
-        
+        var measure_head = queryResponse.fields.measure_like[0].label_short;
         console.log(data[0]);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
@@ -34,8 +34,8 @@ looker.plugins.visualizations.add({
 
         options = {}
              // Create an option for each measure in your query
-             
-                queryResponse.fields.dimensions.forEach(function(field) {
+             for(let i = 0; i++){}
+                queryResponse.fields.dimensions[i].forEach(function(field) {
                id = "color_" + field.name
                options[id] =
                {
@@ -46,7 +46,7 @@ looker.plugins.visualizations.add({
                 display: "color"
                    }
                  })
-            
+            }
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
 
    
@@ -65,7 +65,7 @@ Highcharts.setOptions({
     },
 
     title: {
-        text: dimension_head,
+        text: dimension_head +', '+ measure_head,
         style: {
             fontSize: '10px'
         }
