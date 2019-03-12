@@ -36,7 +36,7 @@ looker.plugins.visualizations.add({
         var firstColour = config.firstColor;
         var dimension_head = data[0].name;
         
-        console.log(LookerCharts.Utils.textForCell(meas3), thirsMeas);
+        console.log(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measures[0].name]), thirsMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
