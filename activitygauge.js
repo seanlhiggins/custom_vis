@@ -70,7 +70,7 @@ looker.plugins.visualizations.add({
         var firstColour = config.firstColor;
         
         
-        console.log(firstMeas,secondMeas,thirdMeas);
+        console.log(firstCell,firstMeas,secondMeas,thirdMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
@@ -155,10 +155,10 @@ looker.plugins.visualizations.add({
     series: [{
         name: firstCell,
         data: [{
-            color: Highcharts.getOptions().colors[1],
+            color: Highcharts.getOptions().colors[0],
             radius: '112%',
             innerRadius: '88%',
-            y: 15
+            y: 10
         }]
     }, {
         name: secondCell,
@@ -166,7 +166,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
             innerRadius: '63%',
-            y: 25
+            y: 15
         }]
     }, {
         name: thirdCell,
@@ -174,7 +174,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
             innerRadius: '38%',
-            y: 23
+            y: 16
         }]
     }]
 });
