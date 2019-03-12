@@ -142,7 +142,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
             innerRadius: '88%',
-            y: meas1
+            y: 30
         }]
     }, {
         name: dim2,
@@ -150,7 +150,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
             innerRadius: '63%',
-            y: meas2
+            y: 20
         }]
     }, {
         name: dim3,
@@ -158,7 +158,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
             innerRadius: '38%',
-            y: meas3
+            y: 10
         }]
     }]
 });
