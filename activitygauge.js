@@ -37,7 +37,7 @@ looker.plugins.visualizations.add({
                 console.log(queryResponse);
                 console.log(queryResponse.fields);
                 console.log(queryResponse.fields.dimensions);
-                console.log(data[0]queryResponse.fields.dimensions);
+                console.log(data[0][queryResponse.fields.dimensions]);
 
                id = "color_" + field.name
                options[id] =
