@@ -74,6 +74,7 @@ Highcharts.setOptions({
             color: Highcharts.Color(Highcharts.getOptions().colors[1])
         }
     },
+    
 
     tooltip: {
         borderWidth: 0,
