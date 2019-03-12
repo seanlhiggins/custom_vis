@@ -29,6 +29,57 @@ Looker Vis Components:
 */
 
 looker.plugins.visualizations.add({
+    options: {
+
+    // font_align: {
+    //   type: "string",
+    //   label: "Font Align",
+    //   values: [
+    //     {"Left": "left"},
+    //     {"Center": "center"},
+    //     {"Right": "right"}
+    //   ],
+    //   display: "radio",
+    //   default: "left",
+    //   section: "Style",
+    //   // display_size: "half",
+    //   order:4
+    // },
+    // font_style: {
+    //   type: "string",
+    //   label: "Font Style",
+    //   values: [
+    //     {"Looker": "helvetica"},
+    //     {"Impact": "impact"},
+    //     {"Times New Roman": "times"}
+    //   ],
+    //   display: "select",
+    //   default: "looker",
+    //   section: "Style",
+    //   display_size: "half",
+    //   order: 2
+    // },
+
+    // textSize: {
+    //   label: 'Text Size',
+    //   min: 2,
+    //   max: 50,
+    //   step: .5,
+    //   default: 15,
+    //   section: 'Style',
+    //   type: 'number',
+    //   display: 'range'
+    // },
+    firstColor: {
+      label: 'First Color',
+      default: '#6a26a0',
+      section: 'Style',
+      type: 'string',
+      display: 'color',
+      display_size: "half",
+      order:1 
+    },
+},
     create: function(element, config){
         element.innerHTML = "<div id='activity_container'></div>";
     },
@@ -55,8 +106,12 @@ looker.plugins.visualizations.add({
         var dim3 = thirdRow[queryResponse.fields.dimensions[0].name];
         var thirdCell = LookerCharts.Utils.htmlForCell(dim3);
         var meas1 = firstRow[queryResponse.fields.measures[0].name];
+        var firstMeas = LookerCharts.Utils.htmlForCell(meas1);
         var meas2 = secondRow[queryResponse.fields.measures[0].name];
+        var secondMeas = LookerCharts.Utils.htmlForCell(meas2);
         var meas3 = thirdRow[queryResponse.fields.measures[0].name];
+        var thirdMeas = LookerCharts.Utils.htmlForCell(meas3);
+        var firstColour = config.firstColor;
         console.log(firstCell,secondCell,thirdCell);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
@@ -142,10 +197,10 @@ looker.plugins.visualizations.add({
     series: [{
         name: firstCell,
         data: [{
-            color: Highcharts.getOptions().colors[0],
+            color: firstColour,
             radius: '112%',
             innerRadius: '88%',
-            y: 30
+            y: firstMeas
         }]
     }, {
         name: secondCell,
@@ -153,7 +208,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
             innerRadius: '63%',
-            y: 20
+            y: secondMeas
         }]
     }, {
         name: thirdCell,
@@ -161,7 +216,7 @@ looker.plugins.visualizations.add({
             color: Highcharts.getOptions().colors[2],
             radius: '62%',
             innerRadius: '38%',
-            y: 10
+            y: thirdMeas
         }]
     }]
 });
