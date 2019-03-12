@@ -35,24 +35,25 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
         var html = "";
         var i=0;
-        for(var row of data) {
-        console.log(row);
-        var dim1 = row[0];
-        var dim2 =row[1];
-        var dim3 =row[2];
-        var meas1 = 50;
-        var meas2 = 60;
-        var meas3 = 90;
-        }
-        console.log(data);
-        
-        // while (i < 3) { 
-            // for(var row of data) {
-            //     var cell = row[queryResponse.fields.dimensions[0].name];
-            //     html += LookerCharts.Utils.htmlForCell(cell);
-            // }
-        // i++;
+        // for(var row of data) {
+        // console.log(row);
+        // var dim1 = row[0];
+        // var dim2 = row[1];
+        // var dim3 = row[2];
+        // var meas1 = 50;
+        // var meas2 = 60;
+        // var meas3 = 90;
         // }
+        // console.log(data);
+        var firstRow = data[0];
+        var secondRow = data[1];
+        var thirdRow = data[2];
+        var dim1 = firstRow[queryResponse.fields.dimensions[0].name];
+        var dim2 = secondRow[queryResponse.fields.dimensions[0].value];
+        var dim3 = thirdRow[queryResponse.fields.dimensions[0].value];
+        var meas1 = firstRow[queryResponse.fields.measures[0].value];
+        var meas2 = secondRow[queryResponse.fields.measures[0].value];
+        var meas2 = thirdRow[queryResponse.fields.measures[0].value];
 
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
