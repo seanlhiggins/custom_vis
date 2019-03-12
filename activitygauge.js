@@ -52,7 +52,7 @@ looker.plugins.visualizations.add({
    
 
 Highcharts.setOptions({
-    colors: [config.options[color_0], '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+    colors: [config.options['color_0'], '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
 });
         Highcharts.chart('activity_container', {
 
