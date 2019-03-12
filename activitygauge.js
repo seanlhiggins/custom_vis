@@ -37,8 +37,8 @@ looker.plugins.visualizations.add({
         var html = `<style>
             #activity_container {
             margin: 0 auto;
-            max-width: 300px;
-            min-width: 280px;
+            max-width: 400px;
+            min-width: 380px;
         }
         </style>`;
         var i=0;
@@ -70,7 +70,7 @@ looker.plugins.visualizations.add({
         var firstColour = config.firstColor;
         var dimension_head = data[0].name;
         
-        console.log(data);
+        console.log(data,dimension_head);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
@@ -85,7 +85,7 @@ looker.plugins.visualizations.add({
     },
 
     title: {
-        text: 'Activity',
+        text: dimension_head,
         style: {
             fontSize: '10px'
         }
