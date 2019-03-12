@@ -63,14 +63,14 @@ Highcharts.setOptions({
     title: {
         text: dimension_head
         style: {
-            fontSize: '15px'.
+            fontSize: '15px',
             color: Highcharts.Color(Highcharts.getOptions().colors[0])
         }
     },
      subtitle: {
         text: measure_head
         style: {
-            fontSize: '10px'.
+            fontSize: '10px',
             color: Highcharts.Color(Highcharts.getOptions().colors[1])
         }
     },
