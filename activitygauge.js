@@ -99,28 +99,28 @@ looker.plugins.visualizations.add({
                 background: [{ // Track for Dim1
                     outerRadius: '100%',
                     innerRadius: '85%',
-                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
+                    backgroundColor: Highcharts.Color(config.color_0)
                         .setOpacity(0.1)
                         .get(),
                     borderWidth: 0
                 }, { // Track for Dim2
                     outerRadius: '84%',
                     innerRadius: '70%',
-                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1])
+                    backgroundColor: Highcharts.Color(config.color_1)
                         .setOpacity(0.1)
                         .get(),
                     borderWidth: 0
                 }, { // Track for Dim3
                     outerRadius: '69%',
                     innerRadius: '55%',
-                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
+                    backgroundColor: Highcharts.Color(config.color_2)
                         .setOpacity(0.1)
                         .get(),
                     borderWidth: 0
                 }, { // Track for Dim4
                     outerRadius: '54%',
                     innerRadius: '40%',
-                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[3])
+                    backgroundColor: Highcharts.Color(config.color_3)
                         .setOpacity(0.1)
                         .get(),
                     borderWidth: 0
@@ -156,7 +156,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: secondCell,
                 data: [{
-                    color: Highcharts.getOptions().colors[1],
+                    color: config.color_1,
                     radius: '84%',
                     innerRadius: '70%',
                     y: secondMeas
@@ -164,7 +164,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: thirdCell,
                 data: [{
-                    color: Highcharts.getOptions().colors[2],
+                    color: config.color_2,
                     radius: '69%',
                     innerRadius: '55%',
                     y: thirdMeas
@@ -172,7 +172,7 @@ looker.plugins.visualizations.add({
             }, {
                 name: fourthCell,
                 data: [{
-                    color: Highcharts.getOptions().colors[3],
+                    color: config.color_3,
                     radius: '54%',
                     innerRadius: '40%',
                     y: fourthMeas
