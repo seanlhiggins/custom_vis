@@ -165,9 +165,9 @@ looker.plugins.visualizations.add({
         options = {}
              // Create an option for the first 4 rows in the query
              var first4rows = data.slice(0,4);
-                for (var row in first4rows){
-                    var i = 0;
-                    var field = first4rows[row][queryResponse.fields.dimensions[0].name];
+             for(let i=0;i<3;i++){
+
+                    var field = first4rows[i][queryResponse.fields.dimensions[0].name];
                     console.log(field,i)
                     id = "color_" + field.value
                     options[id] =
@@ -178,10 +178,7 @@ looker.plugins.visualizations.add({
                         type: "string",
                         display: "color"
                     }
-                    i+=1;
-                    if(i >= 3){
-                        break
-                    }                   
+                    console.log(field,i)          
                     }
                 
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
