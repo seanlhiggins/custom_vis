@@ -197,7 +197,7 @@ looker.plugins.visualizations.add({
             },
             legend: {
                   labelFormatter: function() {
-                    return '<span style="text-weight:bold;color:' + config.color_1 + '">' + this.name + '</span>';
+                    return '<span style="color:#6a26a0">' + this.name + '</span>';
                   },
                   enabled: config.legendtoggle,
                   symbolWidth: 0
