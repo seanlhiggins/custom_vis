@@ -70,6 +70,11 @@ looker.plugins.visualizations.add({
                               label: 'Label',
                               placeholder: 'Add a label or description',
                               section: 'Style'
+                            },
+                            legendtoggle: {
+                                type: 'boolean',
+                                display: 'select',
+                                default: false
                             }
                 }
              // Create an option for the first 4 rows in the query
@@ -94,7 +99,10 @@ looker.plugins.visualizations.add({
 
             chart: {
                 type: 'solidgauge',
-                height: '110%',
+                height: '100%',
+                style: {
+                    font_family: config.font_style
+                }
                 /* events: {
                     render: renderIcons
                 } */
@@ -185,6 +193,9 @@ looker.plugins.visualizations.add({
                     showInLegend: true,
 
                 }
+            },
+            legend:{
+                enabled: config.legendtoggle
             },
 
             series: [{
