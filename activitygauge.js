@@ -37,9 +37,9 @@ looker.plugins.visualizations.add({
                               type: "string",
                               label: "Font Style",
                               values: [
-                                {"Looker": "helvetica"},
-                                {"Impact": "impact"},
-                                {"Times New Roman": "times"}
+                                {"Looker": "Helvetica"},
+                                {"Impact": "Impact"},
+                                {"Arial": "Arial"}
                               ],
                               display: "select",
                               default: "looker",
