@@ -197,13 +197,15 @@ looker.plugins.visualizations.add({
                 }
             },
             legend:{
-                enabled: config.legendtoggle,
-                labelFormatter: function() {
-                return '<span style="text-weight:bold;color:' + this.userOptions.color + '">' + this.name + '</span>';
-                }
+                enabled: config.legendtoggle
+                // ,
+                // labelFormatter: function() {
+                // return '<span style="text-weight:bold;color:' + this.userOptions.color + '">' + this.name + '</span>';
+                // }
             },
 
             series: [{
+                marker: {enabled:false},
                 name: firstCell,
                 data: [{
                     color: config.color_0,
