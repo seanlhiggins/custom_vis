@@ -72,8 +72,10 @@ looker.plugins.visualizations.add({
                               section: 'Style'
                             },
                             legendtoggle: {
+                                label: 'Legend on/off',
                                 type: 'boolean',
                                 display: 'select',
+                                section: "Style",
                                 default: false
                             }
                 }
