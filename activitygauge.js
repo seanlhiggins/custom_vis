@@ -177,8 +177,7 @@ looker.plugins.visualizations.add({
             },
 
             yAxis: {
-                min: 0,
-                max: firstMeas,
+
                 lineWidth: 0,
                 tickPositions: []
             },
