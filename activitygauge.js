@@ -172,7 +172,12 @@ looker.plugins.visualizations.add({
                 min: 0,
                 max: 100,
                 lineWidth: 0,
-                tickPositions: []
+                tickPositions: [],
+                stops: [
+                        [0.1, config.color_0], // green
+                        [0.5, config.color_0], // yellow
+                        [0.9, config.color_0] // red
+                      ]
             },
 
             plotOptions: {
