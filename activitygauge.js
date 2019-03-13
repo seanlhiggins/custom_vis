@@ -175,8 +175,8 @@ looker.plugins.visualizations.add({
                 tickPositions: [],
                 stops: [
                         [0.1, config.color_0], // green
-                        [0.5, config.color_0], // yellow
-                        [0.9, config.color_0] // red
+                        [0.5, config.color_1], // yellow
+                        [0.9, config.color_2] // red
                       ]
             },
 
