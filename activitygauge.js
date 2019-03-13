@@ -44,7 +44,6 @@ looker.plugins.visualizations.add({
                               display: "select",
                               default: "looker",
                               section: "Style",
-                              display_size: "half",
                               order: 2
                             },
 
@@ -64,7 +63,6 @@ looker.plugins.visualizations.add({
                               section: 'Style',
                               type: 'string',
                               display: 'color',
-                              display_size: "half",
                               order:1 
                             },
                             textLabel: {
@@ -168,46 +166,12 @@ looker.plugins.visualizations.add({
                 }]
             },
 
-            yAxis: [{
+            yAxis: {
                 min: 0,
                 max: 100,
                 lineWidth: 0,
-                tickPositions: [],
-                stops: [
-                        [0.1, '#b0498d'],
-                        [0.5, '#EFD7E7']
-                      ]
+                tickPositions: []
             },
-            {
-                min: 0,
-                max: 100,
-                lineWidth: 0,
-                tickPositions: [],
-                stops: [
-                        [0.1, '#24CBE5'],
-                        [0.5, '#DDDF00']
-                      ]
-            },
-            {
-                min: 0,
-                max: 100,
-                lineWidth: 0,
-                tickPositions: [],
-                stops: [
-                        [0.1, '#64E572'],
-                        [0.5, '#FF9655']
-                      ]
-            },
-            {
-                min: 0,
-                max: 100,
-                lineWidth: 0,
-                tickPositions: [],
-                stops: [
-                        [0.1, '#b0498d'],
-                        [0.5, '#FFF263']
-                      ]
-            }],
 
             plotOptions: {
                 solidgauge: {
@@ -216,7 +180,9 @@ looker.plugins.visualizations.add({
                     },
                     linecap: 'round',
                     stickyTracking: false,
-                    rounded: true
+                    rounded: true,
+                    showInLegend: true,
+
                 }
             },
 
