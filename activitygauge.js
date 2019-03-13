@@ -84,7 +84,6 @@ looker.plugins.visualizations.add({
              for(let i=0;i<4;i++){
 
                     var field = first4rows[i][queryResponse.fields.dimensions[0].name];
-                    console.log(field,i)
                     id = "color_" + i
                     options[id] =
                     {
@@ -197,9 +196,10 @@ looker.plugins.visualizations.add({
                 }
             },
             legend: {
-                  labelFormatter: function() {
-                    return '<span style="text-weight:bold;color:' + this.userOptions.color + '">' + this.name + '</span>';
-                  },
+                              labelFormatter: function () {
+                        return this.name + ' (click to hide)';
+                    },
+                  enabled: config.legendtoggle,
                   symbolWidth: 0
                 },
 
