@@ -86,7 +86,8 @@ looker.plugins.visualizations.add({
                         section: "Style",
                         type: "string",
                         display: "color",
-                        display_size: "half"
+                        display_size: "half",
+                        order: 1
                     }   
                     }
         Highcharts.chart('activity_container', {
