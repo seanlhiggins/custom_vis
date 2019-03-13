@@ -196,9 +196,9 @@ looker.plugins.visualizations.add({
                 }
             },
             legend: {
-                              labelFormatter: function () {
-                        return this.name + ' (click to hide)';
-                    },
+                  labelFormatter: function() {
+                    return '<span style="text-weight:bold;color:' + config.color_1 + '">' + this.name + '</span>';
+                  },
                   enabled: config.legendtoggle,
                   symbolWidth: 0
                 },
