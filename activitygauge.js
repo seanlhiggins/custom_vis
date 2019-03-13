@@ -24,6 +24,7 @@ looker.plugins.visualizations.add({
         var fourthMeas = parseFloat(LookerCharts.Utils.textForCell(data[3][queryResponse.fields.measure_like[0].name]));
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short;
+        console.log(firstMeas,secondMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
