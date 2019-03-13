@@ -168,17 +168,46 @@ looker.plugins.visualizations.add({
                 }]
             },
 
-            yAxis: {
+            yAxis: [{
                 min: 0,
                 max: 100,
                 lineWidth: 0,
                 tickPositions: []
-                // stops: [
-                //         [0.1, config.color_0], // green
-                //         [0.5, config.color_1], // yellow
-                //         [0.9, config.color_2] // red
-                //       ]
+                stops: [
+                        [0.1, '#b0498d'],
+                        [0.5, '#EFD7E7']
+                      ]
             },
+            {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: []
+                stops: [
+                        [0.1, '#24CBE5'],
+                        [0.5, '#DDDF00']
+                      ]
+            },
+            {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: []
+                stops: [
+                        [0.1, '#64E572'],
+                        [0.5, '#FF9655']
+                      ]
+            },
+            {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: []
+                stops: [
+                        [0.1, '#b0498d'],
+                        [0.5, '#FFF263']
+                      ]
+            }],
 
             plotOptions: {
                 solidgauge: {
