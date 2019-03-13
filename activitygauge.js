@@ -196,17 +196,16 @@ looker.plugins.visualizations.add({
 
                 }
             },
-            legend:{
-                enabled: config.legendtoggle
-                // ,
-                // labelFormatter: function() {
-                // return '<span style="text-weight:bold;color:' + this.userOptions.color + '">' + this.name + '</span>';
-                // }
-            },
+            legend: {
+                  labelFormatter: function() {
+                    return '<span style="text-weight:bold;color:' + this.userOptions.color + '">' + this.name + '</span>';
+                  },
+                  symbolWidth: 0
+                },
 
             series: [{
-                marker: {enabled:false},
                 name: firstCell,
+                marker: {enabled:false},
                 data: [{
                     color: config.color_0,
                     radius: '100%',
@@ -215,6 +214,7 @@ looker.plugins.visualizations.add({
                 }]
             }, {
                 name: secondCell,
+                marker: {enabled:false},
                 data: [{
                     color: config.color_1,
                     radius: '84%',
@@ -223,6 +223,7 @@ looker.plugins.visualizations.add({
                 }]
             }, {
                 name: thirdCell,
+                marker: {enabled:false},
                 data: [{
                     color: config.color_2,
                     radius: '69%',
@@ -231,6 +232,7 @@ looker.plugins.visualizations.add({
                 }]
             }, {
                 name: fourthCell,
+                marker: {enabled:false},
                 data: [{
                     color: config.color_3,
                     radius: '54%',
