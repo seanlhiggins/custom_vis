@@ -172,7 +172,7 @@ looker.plugins.visualizations.add({
                 min: 0,
                 max: 100,
                 lineWidth: 0,
-                tickPositions: []
+                tickPositions: [],
                 stops: [
                         [0.1, '#b0498d'],
                         [0.5, '#EFD7E7']
@@ -182,7 +182,7 @@ looker.plugins.visualizations.add({
                 min: 0,
                 max: 100,
                 lineWidth: 0,
-                tickPositions: []
+                tickPositions: [],
                 stops: [
                         [0.1, '#24CBE5'],
                         [0.5, '#DDDF00']
@@ -192,7 +192,7 @@ looker.plugins.visualizations.add({
                 min: 0,
                 max: 100,
                 lineWidth: 0,
-                tickPositions: []
+                tickPositions: [],
                 stops: [
                         [0.1, '#64E572'],
                         [0.5, '#FF9655']
@@ -202,7 +202,7 @@ looker.plugins.visualizations.add({
                 min: 0,
                 max: 100,
                 lineWidth: 0,
-                tickPositions: []
+                tickPositions: [],
                 stops: [
                         [0.1, '#b0498d'],
                         [0.5, '#FFF263']
