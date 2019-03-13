@@ -15,8 +15,7 @@ looker.plugins.visualizations.add({
         }
         </style>`;
         var first4rows = data.slice(0,4);
-        var field = first4rows[i][queryResponse.fields.dimensions[0].name];
-        var altmeas1 = first4rows[i][queryResponse.fields.dimensions[0].name].value;
+        var altmeas1 = first4rows[0][queryResponse.fields.dimensions[0].name].value;
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
@@ -27,7 +26,7 @@ looker.plugins.visualizations.add({
         var fourthMeas = parseFloat(LookerCharts.Utils.textForCell(data[3][queryResponse.fields.measure_like[0].name]));
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short;
-        console.log(firstMeas,secondMeas,altmeas1);
+        console.log(firstMeas,secondMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
@@ -86,6 +85,7 @@ looker.plugins.visualizations.add({
              // Create an option for the first 4 rows in the query
              for(let i=0;i<4;i++){
 
+                    var field = first4rows[i][queryResponse.fields.dimensions[0].name];
                     id = "color_" + i
                     options[id] =
                     {
