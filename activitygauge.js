@@ -15,18 +15,14 @@ looker.plugins.visualizations.add({
         }
         </style>`;
         var first4rows = data.slice(0,4);
-        var altmeas1 = first4rows[0][queryResponse.fields.measure_like[0].name].value;
-        var altmeas2 = first4rows[1][queryResponse.fields.measure_like[0].name].value;
-        var altmeas3 = first4rows[2][queryResponse.fields.measure_like[0].name].value;
-        var altmeas4 = first4rows[3][queryResponse.fields.measure_like[0].name].value;
+        var firstMeas = first4rows[0][queryResponse.fields.measure_like[0].name].value;
+        var secondMeas = first4rows[1][queryResponse.fields.measure_like[0].name].value;
+        var thirdMeas = first4rows[2][queryResponse.fields.measure_like[0].name].value;
+        var fourthMeas = first4rows[3][queryResponse.fields.measure_like[0].name].value;
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
         var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
-        var firstMeas = parseFloat(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.measure_like[0].name]));
-        var secondMeas = parseFloat(LookerCharts.Utils.textForCell(data[1][queryResponse.fields.measure_like[0].name]));
-        var thirdMeas = parseFloat(LookerCharts.Utils.textForCell(data[2][queryResponse.fields.measure_like[0].name]));
-        var fourthMeas = parseFloat(LookerCharts.Utils.textForCell(data[3][queryResponse.fields.measure_like[0].name]));
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short;
         console.log(firstMeas,secondMeas,altmeas1,altmeas2,altmeas3,altmeas4);
