@@ -178,7 +178,7 @@ looker.plugins.visualizations.add({
 
             yAxis: {
                 min: 0,
-                max: 100,
+                max: parseFloat(LookerCharts.Utils.textForCell(data[0][queryResponse.fields.measure_like[0].name],
                 lineWidth: 0,
                 tickPositions: []
             },
