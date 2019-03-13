@@ -13,6 +13,12 @@ looker.plugins.visualizations.add({
             max-width: 300px;
             min-width: 280px;
         }
+        .highcharts-title {
+            font-family: 'Helvetica';
+        }
+        .highcharts-subtitle {
+            font-family: 'Helvetica';
+        }
         </style>`;
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
@@ -42,7 +48,7 @@ looker.plugins.visualizations.add({
                                 {"Arial": "Arial"}
                               ],
                               display: "select",
-                              default: "looker",
+                              default: "Looker",
                               section: "Style",
                               order: 2
                             },
@@ -101,9 +107,7 @@ looker.plugins.visualizations.add({
             chart: {
                 type: 'solidgauge',
                 height: '100%',
-                style: {
-                    font_family: config.font_style
-                }
+                styledMode: true
                 /* events: {
                     render: renderIcons
                 } */
