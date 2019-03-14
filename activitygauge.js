@@ -15,10 +15,10 @@ looker.plugins.visualizations.add({
         }
         </style>`;
         var first4rows = data.slice(0,4);
-        var firstMeas = first4rows[0][queryResponse.fields.measure_like[0].name].value;
-        var secondMeas = first4rows[1][queryResponse.fields.measure_like[0].name].value;
-        var thirdMeas = first4rows[2][queryResponse.fields.measure_like[0].name].value;
-        var fourthMeas = first4rows[3][queryResponse.fields.measure_like[0].name].value;
+        var firstMeas = Math.round(first4rows[0][queryResponse.fields.measure_like[0].name].value * 10) / 10;
+        var secondMeas = Math.round(first4rows[1][queryResponse.fields.measure_like[0].name].value * 10) / 10;
+        var thirdMeas = Math.round(first4rows[2][queryResponse.fields.measure_like[0].name].value * 10) / 10;
+        var fourthMeas = Math.round(first4rows[3][queryResponse.fields.measure_like[0].name].value * 10) / 10;
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
