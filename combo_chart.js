@@ -34,7 +34,7 @@ looker.plugins.visualizations.add({
         }
         var fourthMeasArray = [];
         for(let i=0;i<4;i++){
-            fourthMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
+            fourthMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
         }
 
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
