@@ -11,7 +11,8 @@ looker.plugins.visualizations.add({
             #combo_container {
             margin: 0 auto;
             max-width: 300px;
-            min-width: 280px;
+            min-width: 310px;
+            height: 400px;
         }
         </style>`;
         var first4rows = data.slice(0,4);
@@ -36,13 +37,23 @@ looker.plugins.visualizations.add({
         for(let i=0;i<4;i++){
             fourthMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
         }
-
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
         var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
-        var measure_head = queryResponse.fields.measure_like[0].label_short;
+        var measure_header_1 = queryResponse.fields.measure_like[0].label_short;
+        var measure_header_2 = queryResponse.fields.measure_like[1].label_short;
+        var measure_header_3 = queryResponse.fields.measure_like[2].label_short;
+        var measure_header_4 = queryResponse.fields.measure_like[3].label_short;
+
+
+        function getSum(total, num) {
+          return total + Math.round(num);
+        }
+
+       
+
         console.log(queryResponse,data);
         console.log(firstMeasArray,secondMeasArray,thirdMeasArray,fourthMeasArray);
         element.innerHTML = html;
@@ -126,7 +137,7 @@ Highcharts.chart('combo_container', {
     },
     labels: {
         items: [{
-            html: measure_head,
+            html: dimension_head,
             style: {
                 left: '50px',
                 top: '18px',
@@ -136,19 +147,19 @@ Highcharts.chart('combo_container', {
     },
     series: [{
         type: 'column',
-        name: 'Jane',
+        name: measure_header_1,
         data: firstMeasArray
     }, {
         type: 'column',
-        name: 'John',
+        name: measure_header_2,
         data: secondMeasArray
     }, {
         type: 'column',
-        name: 'Joe',
+        name: measure_header_3,
         data: thirdMeasArray
     }, {
         type: 'spline',
-        name: 'Average',
+        name: measure_header_4,
         data: fourthMeasArray,
         marker: {
             lineWidth: 2,
@@ -159,16 +170,16 @@ Highcharts.chart('combo_container', {
         type: 'pie',
         name: 'Total consumption',
         data: [{
-            name: 'Jane',
-            y: 13,
+            name: measure_header_1,
+            y: firstMeasArray.reduce(getSum, 0),
             color: config.color_0 // Jane's color
         }, {
-            name: 'John',
-            y: 23,
+            name: measure_header_2,
+            y: secondMeasArray.reduce(getSum, 0),
             color: config.color_1 // John's color
         }, {
-            name: 'Joe',
-            y: 19,
+            name: measure_header_3,
+            y: thirdMeasArray.reduce(getSum, 0),
             color: config.color_2 // Joe's color
         }],
         center: [100, 80],
