@@ -11,7 +11,7 @@ looker.plugins.visualizations.add({
             #combo_container {
             margin: 0 auto;
             min-width: 310px;
-            height: 400px;
+            height: 300px;
             font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
         }
         </style>`;
@@ -114,7 +114,7 @@ looker.plugins.visualizations.add({
              // Create an option for the first 4 rows in the query
              for(let i=0;i<=3;i++){
 
-                    var field = queryResponse.fields.measure_like[i].name;
+                    var field = queryResponse.fields.measure_like[i].label_short;
                     id = "color_" + i
                     options[id] =
                     {
