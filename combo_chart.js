@@ -117,7 +117,7 @@ looker.plugins.visualizations.add({
                     }   
                     }
 
-Highcharts.chart('container', {
+Highcharts.chart('combo_container', {
     title: {
         text: 'Combination chart'
     },
