@@ -108,7 +108,7 @@ looker.plugins.visualizations.add({
                                 type: 'boolean',
                                 display: 'select',
                                 section: "Style",
-                                default: false
+                                default: true
                             }
                 }
              // Create an option for the first 4 rows in the query
@@ -158,12 +158,20 @@ Highcharts.chart('combo_container', {
     //         }
     //     }]
     // },
+    tooltip: {
+      shared: true,
+      headerFormat: "",
+      pointFormatter: function() {
+        let y = this.y
+        if(this.series.index == 3){
+            y = y.toFixed(2)
+        }
+        return "\u003cspan style=\"color:"+this.series.color+"\"\u003e■\u003c/span\u003e "+this.series.name+": \u003cb\u003eR"+y+"\u003c/b\u003e\u003cbr/\u003e"
+      }
+    },
     legend: {
-          labelFormatter: function() {
-            return '<span style="color:#6a26a0">' + this.name + '</span>';
-          },
           enabled: config.legendtoggle,
-          symbolWidth: 0
+          itemStyle:{"fontSize": config.textSize}
         },
     series: [{
         type: 'column',
