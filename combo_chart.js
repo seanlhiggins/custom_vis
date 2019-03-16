@@ -11,16 +11,12 @@ looker.plugins.visualizations.add({
             #combo_container {
             margin: 0 auto;
             min-width: 310px;
-            height: 300px;
+            height: 350px;
             font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
         }
         </style>`;
         var first4rows = data.slice(0,4);
-        var firstMeas = Math.round(first4rows[0][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-        var secondMeas = Math.round(first4rows[1][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-        var thirdMeas = Math.round(first4rows[2][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-        var fourthMeas = Math.round(first4rows[3][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-
+       // A bunch of arrays to store the measure value for passing into the series later
         var firstMeasArray = [];
         for(let i=0;i<4;i++){
             firstMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
@@ -37,6 +33,8 @@ looker.plugins.visualizations.add({
         for(let i=0;i<4;i++){
             fourthMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
         }
+       // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
+
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
@@ -47,15 +45,13 @@ looker.plugins.visualizations.add({
         var measure_header_3 = queryResponse.fields.measure_like[2].label_short;
         var measure_header_4 = queryResponse.fields.measure_like[3].label_short;
 
+       // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
 
         function getSum(total, num) {
           return total + Math.round(num);
         }
 
        
-
-        console.log(queryResponse,data);
-        console.log(firstMeasArray,secondMeasArray,thirdMeasArray,fourthMeasArray);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "combo_container";
@@ -89,14 +85,17 @@ looker.plugins.visualizations.add({
                               type: 'number',
                               display: 'range'
                             },
-                            textColor: {
-                              label: 'Text Color',
-                              default: '#6a26a0',
-                              section: 'Style',
-                              type: 'string',
-                              display: 'color',
-                              order:1 
-                            },
+
+                            pieSize: {
+                              label: 'Pie Size',
+                              min: 50,
+                              max: 100,
+                              step: 1,
+                              default: 100,
+                              section: 'Pie Style',
+                              type: 'number',
+                              display: 'range'
+                            }
                             textLabel: {
                               type: 'string',
                               label: 'Subtitle',
@@ -120,7 +119,7 @@ looker.plugins.visualizations.add({
                     {
                         label: field,
                         default: Highcharts.getOptions().colors[i],
-                        section: "Style",
+                        section: "Pie Style",
                         type: "string",
                         display: "color",
                         display_size: "half",
@@ -206,8 +205,8 @@ Highcharts.chart('combo_container', {
             y: firstMeasArray[3],
             color: config.color_3 // dim 3's color
         }],
-        center: [50, 80],
-        size: 100,
+        center: [50, 0],
+        size: config.pieSize,
         showInLegend: false,
         dataLabels: {
             enabled: false
@@ -232,8 +231,8 @@ Highcharts.chart('combo_container', {
             y: secondMeasArray[3],
             color: config.color_3 // dim 3's color
         }],
-        center: [250, 80],
-        size: 100,
+        center: [250, 0],
+        size: config.pieSize,
         showInLegend: false,
         dataLabels: {
             enabled: false
@@ -258,8 +257,8 @@ Highcharts.chart('combo_container', {
             y: thirdMeasArray[3],
             color: config.color_3 // dim 3's color
         }],
-        center: [450, 80],
-        size: 100,
+        center: [450, 0],
+        size: config.pieSize,
         showInLegend: false,
         dataLabels: {
             enabled: false
