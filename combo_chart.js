@@ -26,11 +26,11 @@ looker.plugins.visualizations.add({
         }
         var secondMeasArray = [];
         for(let i=0;i<4;i++){
-            secondMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
+            secondMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
         }
         var thirdMeasArray = [];
         for(let i=0;i<4;i++){
-            thirdMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
+            thirdMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[2].name].value * 10) / 10)
         }
         var fourthMeasArray = [];
         for(let i=0;i<4;i++){
