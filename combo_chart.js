@@ -112,13 +112,13 @@ looker.plugins.visualizations.add({
                             }
                 }
              // Create an option for the first 4 rows in the query
-             for(let i=0;i<4;i++){
+             for(let i=0;i=<3;i++){
 
                     var field = queryResponse.fields.measure_like[i].name;
                     id = "color_" + i
                     options[id] =
                     {
-                        label: field.value,
+                        label: field,
                         default: Highcharts.getOptions().colors[i],
                         section: "Style",
                         type: "string",
@@ -201,6 +201,10 @@ Highcharts.chart('combo_container', {
             name: thirdCell,
             y: firstMeasArray[2],
             color: config.color_2 // dim 3's color
+        }, {
+            name: fourthCell,
+            y: firstMeasArray[3],
+            color: config.color_3 // dim 3's color
         }],
         center: [50, 80],
         size: 100,
@@ -223,6 +227,10 @@ Highcharts.chart('combo_container', {
             name: thirdCell,
             y: secondMeasArray[2],
             color: config.color_2 // dim 3's color
+        }, {
+            name: fourthCell,
+            y: secondMeasArray[3],
+            color: config.color_3 // dim 3's color
         }],
         center: [250, 80],
         size: 100,
@@ -245,6 +253,10 @@ Highcharts.chart('combo_container', {
             name: thirdCell,
             y: thirdMeasArray[2],
             color: config.color_2 // dim 3's color
+        }, {
+            name: fourthCell,
+            y: thirdMeasArray[3],
+            color: config.color_3 // dim 3's color
         }],
         center: [450, 80],
         size: 100,
