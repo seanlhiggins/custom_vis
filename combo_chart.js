@@ -12,6 +12,7 @@ looker.plugins.visualizations.add({
             margin: 0 auto;
             min-width: 310px;
             height: 400px;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
         }
         </style>`;
         var first4rows = data.slice(0,4);
@@ -182,6 +183,50 @@ Highcharts.chart('combo_container', {
             color: config.color_2 // dim 3's color
         }],
         center: [100, 80],
+        size: 100,
+        showInLegend: false,
+        dataLabels: {
+            enabled: false
+        }
+    }, {
+        type: 'pie',
+        name: measure_header_2,
+        data: [{
+            name: firstCell,
+            y: secondMeasArray[0],
+            color: config.color_0 // dim 1's color
+        }, {
+            name: secondCell,
+            y: secondMeasArray[1],
+            color: config.color_1 // dim 2's color
+        }, {
+            name: thirdCell,
+            y: secondMeasArray[2],
+            color: config.color_2 // dim 3's color
+        }],
+        center: [50, 80],
+        size: 100,
+        showInLegend: false,
+        dataLabels: {
+            enabled: false
+        }
+    }, {
+        type: 'pie',
+        name: measure_header_3,
+        data: [{
+            name: firstCell,
+            y: thirdMeasArray[0],
+            color: config.color_0 // dim 1's color
+        }, {
+            name: secondCell,
+            y: thirdMeasArray[1],
+            color: config.color_1 // dim 2's color
+        }, {
+            name: thirdCell,
+            y: thirdMeasArray[2],
+            color: config.color_2 // dim 3's color
+        }],
+        center: [0, 80],
         size: 100,
         showInLegend: false,
         dataLabels: {
