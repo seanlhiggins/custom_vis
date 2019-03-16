@@ -44,6 +44,7 @@ looker.plugins.visualizations.add({
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short;
         console.log(queryResponse,data);
+        console.log(firstMeasArray,secondMeasArray,thirdMeasArray,fourthMeasArray);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "combo_container";
