@@ -113,7 +113,7 @@ looker.plugins.visualizations.add({
              // Create an option for the first 4 rows in the query
              for(let i=0;i<4;i++){
 
-                    var field = first4rows[0][queryResponse.fields.measure_like[i].name];
+                    var field = queryResponse.fields.measure_like[i].name;
                     id = "color_" + i
                     options[id] =
                     {
