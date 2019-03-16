@@ -95,7 +95,7 @@ looker.plugins.visualizations.add({
                               section: 'Pie Style',
                               type: 'number',
                               display: 'range'
-                            }
+                            },
                             textLabel: {
                               type: 'string',
                               label: 'Subtitle',
