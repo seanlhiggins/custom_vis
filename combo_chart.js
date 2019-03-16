@@ -51,6 +51,7 @@ looker.plugins.visualizations.add({
           return total + Math.round(num);
         }
 
+        console.log(queryResponse,data);
        
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
@@ -180,6 +181,7 @@ Highcharts.chart('combo_container', {
         type: 'spline',
         name: measure_header_4,
         data: fourthMeasArray,
+        dashStyle: 'shortdot',
         marker: {
             lineWidth: 2,
             lineColor: config.color_3,
