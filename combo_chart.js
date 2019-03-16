@@ -99,7 +99,7 @@ looker.plugins.visualizations.add({
                             },
                             textLabel: {
                               type: 'string',
-                              label: 'Label',
+                              label: 'Subtitle',
                               placeholder: 'Add a label or description',
                               section: 'Style'
                             },
@@ -130,21 +130,41 @@ looker.plugins.visualizations.add({
 
 Highcharts.chart('combo_container', {
     title: {
-        text: 'Combination chart'
-    },
+                text: dimension_head,
+                style: {
+                    fontSize: config.textSize,
+                    color: config.color_0
+                }
+            },subtitle: {
+                text: config.textLabel,
+                style: {
+                fontSize: '10px',
+                color: config.textColor
+                }
+            },
+            credits: {
+                    enabled: false
+                },
     xAxis: {
         categories: [firstCell, secondCell, thirdCell, fourthCell]
     },
-    labels: {
-        items: [{
-            html: dimension_head,
-            style: {
-                left: '50px',
-                top: '18px',
-                color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-            }
-        }]
-    },
+    // labels: {
+    //     items: [{
+    //         html: dimension_head,
+    //         style: {
+    //             left: '50px',
+    //             top: '18px',
+    //             color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+    //         }
+    //     }]
+    // },
+    legend: {
+          labelFormatter: function() {
+            return '<span style="color:#6a26a0">' + this.name + '</span>';
+          },
+          enabled: config.legendtoggle,
+          symbolWidth: 0
+        },
     series: [{
         type: 'column',
         name: measure_header_1,
@@ -182,7 +202,7 @@ Highcharts.chart('combo_container', {
             y: firstMeasArray[2],
             color: config.color_2 // dim 3's color
         }],
-        center: [100, 80],
+        center: [50, 80],
         size: 100,
         showInLegend: false,
         dataLabels: {
@@ -226,7 +246,7 @@ Highcharts.chart('combo_container', {
             y: thirdMeasArray[2],
             color: config.color_2 // dim 3's color
         }],
-        center: [500, 80],
+        center: [400, 80],
         size: 100,
         showInLegend: false,
         dataLabels: {
