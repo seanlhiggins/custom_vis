@@ -27,7 +27,7 @@ looker.plugins.visualizations.add({
         }
         var thirdMeasArray = [];
         for(let i=0;i<4;i++){
-            thirdMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[2].name].value * 10) / 10)
+            thirdMeasArray.push(first4rows[i][queryResponse.fields.measure_like[2].name].rendered)
         }
         var fourthMeasArray = [];
         for(let i=0;i<4;i++){
@@ -39,6 +39,7 @@ looker.plugins.visualizations.add({
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
         var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
+        var testmeasure = 
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_header_1 = queryResponse.fields.measure_like[0].label_short;
         var measure_header_2 = queryResponse.fields.measure_like[1].label_short;
@@ -51,7 +52,7 @@ looker.plugins.visualizations.add({
           return total + Math.round(num);
         }
 
-        console.log(queryResponse,data);
+        console.log(queryResponse,data,firstCell);
        
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
@@ -166,7 +167,7 @@ Highcharts.chart('combo_container', {
         // if(this.series.index == 3){
         //     y = y.toFixed(2)
         // }
-        return LookerCharts.Utils.htmlForCell(this.series.name);
+        return LookerCharts.Utils.htmlForCell(firstCell);
       }
     },
     legend: {
