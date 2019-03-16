@@ -162,11 +162,11 @@ Highcharts.chart('combo_container', {
       shared: true,
       headerFormat: "",
       pointFormatter: function() {
-        let y = this.y
-        if(this.series.index == 3){
-            y = y.toFixed(2)
-        }
-        return "\u003cspan style=\"color:"+this.series.color+"\"\u003e■\u003c/span\u003e "+this.series.name+": \u003cb\u003eR"+y+"\u003c/b\u003e\u003cbr/\u003e"
+        // let y = this.y
+        // if(this.series.index == 3){
+        //     y = y.toFixed(2)
+        // }
+        return LookerCharts.Utils.htmlForCell(this.series.name);
       }
     },
     legend: {
