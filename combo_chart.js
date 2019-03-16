@@ -22,19 +22,19 @@ looker.plugins.visualizations.add({
 
         var firstMeasArray = [];
         for(let i=0;i<4;i++){
-            firstMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[i].name].value * 10) / 10)
+            firstMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
         var secondMeasArray = [];
         for(let i=0;i<4;i++){
-            secondMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[i].name].value * 10) / 10)
+            secondMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
         var thirdMeasArray = [];
         for(let i=0;i<4;i++){
-            thirdMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[i].name].value * 10) / 10)
+            thirdMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
         var fourthMeasArray = [];
         for(let i=0;i<4;i++){
-            fourthMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[i].name].value * 10) / 10)
+            fourthMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
 
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
