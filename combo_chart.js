@@ -113,7 +113,7 @@ looker.plugins.visualizations.add({
              // Create an option for the first 4 rows in the query
              for(let i=0;i<4;i++){
 
-                    var field = first4rows[i][queryResponse.fields.measure_like[0].name];
+                    var field = first4rows[0][queryResponse.fields.measure_like[i].name];
                     id = "color_" + i
                     options[id] =
                     {
@@ -183,7 +183,7 @@ Highcharts.chart('combo_container', {
         }],
         center: [100, 80],
         size: 100,
-        showInLegend: true,
+        showInLegend: false,
         dataLabels: {
             enabled: false
         }
