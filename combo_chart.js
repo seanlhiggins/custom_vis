@@ -10,7 +10,6 @@ looker.plugins.visualizations.add({
         var html = `<style>
             #combo_container {
             margin: 0 auto;
-            max-width: 300px;
             min-width: 310px;
             height: 400px;
         }
@@ -114,7 +113,7 @@ looker.plugins.visualizations.add({
              // Create an option for the first 4 rows in the query
              for(let i=0;i<4;i++){
 
-                    var field = first4rows[i][queryResponse.fields.dimensions[0].name];
+                    var field = first4rows[i][queryResponse.fields.measure_like[0].name];
                     id = "color_" + i
                     options[id] =
                     {
@@ -168,19 +167,19 @@ Highcharts.chart('combo_container', {
         }
     }, {
         type: 'pie',
-        name: 'Total consumption',
+        name: measure_header_1,
         data: [{
-            name: measure_header_1,
-            y: firstMeasArray.reduce(getSum, 0),
-            color: config.color_0 // Jane's color
+            name: firstCell,
+            y: firstMeasArray[0],
+            color: config.color_0 // dim 1's color
         }, {
-            name: measure_header_2,
-            y: secondMeasArray.reduce(getSum, 0),
-            color: config.color_1 // John's color
+            name: secondCell,
+            y: firstMeasArray[1],
+            color: config.color_1 // dim 2's color
         }, {
-            name: measure_header_3,
-            y: thirdMeasArray.reduce(getSum, 0),
-            color: config.color_2 // Joe's color
+            name: thirdCell,
+            y: firstMeasArray[2],
+            color: config.color_2 // dim 3's color
         }],
         center: [100, 80],
         size: 100,
