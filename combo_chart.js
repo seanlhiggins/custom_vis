@@ -204,7 +204,7 @@ Highcharts.chart('combo_container', {
             y: secondMeasArray[2],
             color: config.color_2 // dim 3's color
         }],
-        center: [50, 80],
+        center: [250, 80],
         size: 100,
         showInLegend: false,
         dataLabels: {
@@ -226,7 +226,7 @@ Highcharts.chart('combo_container', {
             y: thirdMeasArray[2],
             color: config.color_2 // dim 3's color
         }],
-        center: [0, 80],
+        center: [500, 80],
         size: 100,
         showInLegend: false,
         dataLabels: {
