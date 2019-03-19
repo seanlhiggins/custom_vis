@@ -18,20 +18,21 @@ looker.plugins.visualizations.add({
         // Get the number of measures the user has selected
         var numMeasures = queryResponse.fields.measure_like.length;
         var numDimensions = data.length
-        console.log(numMeasures,numDimensions);
+
         var firstnrows = data.slice(0,numDimensions);
        // A bunch of arrays to store the measure value for passing into the series later
         var firstMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
-        var firstMeasArrayTest = [];
-
-        queryResponse.fields.measure_like.forEach(function(measurevalue){
-            firstMeasArrayTest.push(measurevalue)
+        for(let i=0;i<numDimensions;i++){
+            var measureArrayTesti = []
+        firstnrows[i]queryResponse.fields.measure_like.forEach(function(measurevalue){
+            measureArrayTesti.push(measurevalue)
         });
+    }
 
-        console.log(firstMeasArrayTest);
+        console.log(measureArrayTest0);
         var secondMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             secondMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
