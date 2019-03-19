@@ -36,7 +36,7 @@ looker.plugins.visualizations.add({
         console.log(somelist);
 
         for(let i=3;i<numMeasures;i++){
-            var w["arr_"+i] = [];
+            w["arr_"+i] = [];
             firstnrows.forEach(function(measurevalue){
             w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
             console.log(w["arr_"+i]);
