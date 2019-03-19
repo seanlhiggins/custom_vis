@@ -255,19 +255,19 @@ Highcharts.chart('combo_container', {
         type: 'pie',
         name: measurenames[0],
         data: [{
-            name: firstCell,
+            name: dimensionvalues[0],
             y: firstMeasArray[0],
             color: config.color_0 // dim 1's color
         }, {
-            name: secondCell,
+            name: dimensionvalues[1],
             y: firstMeasArray[1],
             color: config.color_1 // dim 2's color
         }, {
-            name: thirdCell,
+            name: dimensionvalues[2],
             y: firstMeasArray[2],
             color: config.color_2 // dim 3's color
         }, {
-            name: fourthCell,
+            name: dimensionvalues[3],
             y: firstMeasArray[3],
             color: config.color_3 // dim 3's color
         }],
@@ -280,19 +280,19 @@ Highcharts.chart('combo_container', {
         type: 'pie',
         name: measurenames[1],
         data: [{
-            name: firstCell,
+            name: dimensionvalues[0],
             y: secondMeasArray[0],
             color: config.color_0 // dim 1's color
         }, {
-            name: secondCell,
+            name: dimensionvalues[1],
             y: secondMeasArray[1],
             color: config.color_1 // dim 2's color
         }, {
-            name: thirdCell,
+            name: dimensionvalues[2],
             y: secondMeasArray[2],
             color: config.color_2 // dim 3's color
         }, {
-            name: fourthCell,
+            name: dimensionvalues[3],
             y: secondMeasArray[3],
             color: config.color_3 // dim 3's color
         }],
@@ -305,19 +305,19 @@ Highcharts.chart('combo_container', {
         type: 'pie',
         name: measurenames[2],
         data: [{
-            name: firstCell,
+            name: dimensionvalues[0],
             y: thirdMeasArray[0],
             color: config.color_0 // dim 1's color
         }, {
-            name: secondCell,
+            name: dimensionvalues[1],
             y: thirdMeasArray[1],
             color: config.color_1 // dim 2's color
         }, {
-            name: thirdCell,
+            name: dimensionvalues[2],
             y: thirdMeasArray[2],
             color: config.color_2 // dim 3's color
         }, {
-            name: fourthCell,
+            name: dimensionvalues[3],
             y: thirdMeasArray[3],
             color: config.color_3 // dim 3's color
         }],
