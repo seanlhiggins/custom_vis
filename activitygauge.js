@@ -134,7 +134,7 @@ looker.plugins.visualizations.add({
                 style: {
                     fontSize: '10px'
                 },
-                pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
+                pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
                 positioner: function (labelWidth) {
                     return {
                         x: (this.chart.chartWidth - labelWidth) / 2,
