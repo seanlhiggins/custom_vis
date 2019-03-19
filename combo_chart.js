@@ -139,7 +139,7 @@ looker.plugins.visualizations.add({
                         order: 1
                     }
                     measChartTypeId = "charttype" + i
-                      options[id] =
+                      options[measChartTypeId] =
                     {
                         label: field,
                         default: "column",
