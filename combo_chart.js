@@ -159,13 +159,16 @@ Highcharts.chart('combo_container', {
     //         }
     //     }]
     // },
-    plotOptions: {
-        series: {
-            tooltip: {
-                pointFormatter: function () { if(this.index==2){return toFixed(this.x);} else {return 'test';}  }
-            }
-        }
-    },
+    //
+    /* need to put in something to help handle the different data types for the tooltips */
+    //
+    // plotOptions: {
+    //     series: {
+    //         tooltip: {
+    //             pointFormatter: function () { if(this.index==2){return toFixed(this.x);} else {return 'test';}  }
+    //         }
+    //     }
+    // },
     legend: {
           enabled: config.legendtoggle,
           itemStyle:{"fontSize": config.textSize}
