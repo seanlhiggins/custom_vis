@@ -149,7 +149,7 @@ looker.plugins.visualizations.add({
                         display_size: "half",
                         values: [{"Column": "column",
                         "Line":"spline"
-                        }]
+                        }],
                         order: 1
                     } 
                     }
