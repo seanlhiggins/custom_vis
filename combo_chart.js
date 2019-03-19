@@ -29,6 +29,9 @@ looker.plugins.visualizations.add({
 
         console.log(firstnrows[0][queryResponse.fields.measure_like[0].name]);
         console.log(firstnrows);
+        firstnrows.forEach(function(row){
+            console.log(row[queryResponse.fields.measure_like[0].name]);
+        });
         for(let i=0;i<numMeasures;i++){
             w["arr_"+i] = [];
             firstnrows.forEach(function(measurevalue){
