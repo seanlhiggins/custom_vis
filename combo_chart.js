@@ -169,13 +169,23 @@ Highcharts.chart('combo_container', {
     //
     /* need to put in something to help handle the different data types for the tooltips */
     //
-    // plotOptions: {
-    //     series: {
-    //         tooltip: {
-    //             pointFormatter: function () { if(this.index==2){return toFixed(this.x);} else {return 'test';}  }
-    //         }
-    //     }
-    // },
+    plotOptions: {
+        series: {
+            events: {
+                legendItemClick:function(){
+
+                     var index = this.index,
+                         chart = this.chart,
+                         series = chart.series,
+                         len = series.length,
+                         pieSerie = series[len-1];
+
+                     pieSerie.data[index].setVisible();
+
+                 }
+            }
+        }
+    },
     legend: {
           enabled: config.legendtoggle,
           itemStyle:{"fontSize": "8px", "fontWeight": "normal"}
@@ -224,7 +234,6 @@ Highcharts.chart('combo_container', {
         }],
         center: [50, 0],
         size: config.pieSize,
-        showInLegend: config.pieLegend,
         dataLabels: {
             enabled: false
         }
@@ -250,7 +259,6 @@ Highcharts.chart('combo_container', {
         }],
         center: [250, 0],
         size: config.pieSize,
-        showInLegend: config.pieLegend,
         dataLabels: {
             enabled: false
         }
@@ -276,7 +284,6 @@ Highcharts.chart('combo_container', {
         }],
         center: [450, 0],
         size: config.pieSize,
-        showInLegend: config.pieLegend,
         dataLabels: {
             enabled: false
         }
