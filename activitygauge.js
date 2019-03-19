@@ -70,7 +70,7 @@ looker.plugins.visualizations.add({
                             textLabel: {
                               type: 'string',
                               label: 'Label',
-                              placeholder: 'Add a label or description',
+                              placeholder: measure_head,
                               section: 'Style'
                             },
                             legendtoggle: {
