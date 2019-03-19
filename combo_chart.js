@@ -58,7 +58,11 @@ looker.plugins.visualizations.add({
             fourthMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
         }
        // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
-
+       var dimensionvalues = []
+       data.foreach(function(value){
+        dimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[0].name]));
+       });
+       console.log(dimensionvalues);
         var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
         var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
         var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
