@@ -32,7 +32,7 @@ looker.plugins.visualizations.add({
     //     });
     // }
 
-        console.log(firstnrows[i][queryResponse.fields.measure_like]);
+        console.log(firstnrows[0][queryResponse.fields.measure_like]);
         var secondMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             secondMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
