@@ -25,13 +25,13 @@ looker.plugins.visualizations.add({
         for(let i=0;i<numDimensions;i++){
             firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
-        // var firstMeasArrayTest = [];
+        var firstMeasArrayTest = [];
 
-        // (Math.round(firstnrows[0][queryResponse.fields.measure_like[0].name].value * 10) / 10).forEach(function(measurevalue){
-        //     firstMeasArrayTest.push(measurevalue)
-        // });
+        queryResponse.fields.measure_like.forEach(function(measurevalue){
+            firstMeasArrayTest.push(measurevalue)
+        });
 
-        // console.log(firstMeasArrayTest);
+        console.log(firstMeasArrayTest);
         var secondMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             secondMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
