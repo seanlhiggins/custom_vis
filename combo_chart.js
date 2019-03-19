@@ -142,13 +142,13 @@ looker.plugins.visualizations.add({
                       options[measChartTypeId] =
                     {
                               type: "string",
-                              label: field + "Style",
+                              label: field + " Style",
                               values: [
                                 {"Column": "column"},
                                 {"Line": "spline"}
                               ],
                               display: "select",
-                              default: "Column",
+                              default: "column",
                               section: "Style",
                               display_size:"half",
                               order: 2
