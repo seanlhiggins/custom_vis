@@ -27,7 +27,7 @@ looker.plugins.visualizations.add({
         }
         for(let i=0;i<numDimensions;i++){
             var measureArrayTesti = []
-        firstnrows[i]queryResponse.fields.measure_like.forEach(function(measurevalue){
+            firstnrows[i][queryResponse.fields.measure_like].forEach(function(measurevalue){
             measureArrayTesti.push(measurevalue)
         });
     }
