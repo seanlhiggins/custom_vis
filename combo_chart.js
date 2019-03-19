@@ -33,7 +33,7 @@ looker.plugins.visualizations.add({
 
         });
         console.log(somelist);
-        for(let i=4;i<numMeasures;i++){
+        for(let i=3;i<numMeasures;i++){
             w["arr_"+i] = [];
             firstnrows.forEach(function(measurevalue){
             w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
@@ -73,7 +73,7 @@ looker.plugins.visualizations.add({
           return total + Math.round(num);
         }
 
-        console.log(queryResponse,data,firstCell,thirdMeasArray);
+        console.log(queryResponse,data);
        
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
