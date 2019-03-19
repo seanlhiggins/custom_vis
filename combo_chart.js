@@ -34,14 +34,16 @@ looker.plugins.visualizations.add({
 
         });
         console.log(somelist);
+
         for(let i=3;i<numMeasures;i++){
-            w["arr_"+i] = [];
+            var w["arr_"+i] = [];
             firstnrows.forEach(function(measurevalue){
             w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
             console.log(w["arr_"+i]);
 
         });
     }
+        console.log(w["arr_1"]);
 
         var secondMeasArray = [];
         for(let i=0;i<numDimensions;i++){
