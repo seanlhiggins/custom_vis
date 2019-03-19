@@ -143,14 +143,14 @@ looker.plugins.visualizations.add({
                     {
                         label: field,
                         default: "column",
-                        section: "Pie Style",
+                        section: "Style",
                         type: "string",
                         display: "Select",
                         display_size: "half",
                         values: [{"Column": "column",
                         "Line":"spline"
                         }],
-                        order: 1
+                        order: 2
                     } 
                     }
 
