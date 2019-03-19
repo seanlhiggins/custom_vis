@@ -28,7 +28,7 @@ looker.plugins.visualizations.add({
         for(let i=0;i<numDimensions;i++){
             var measureArrayTesti = []
             firstnrows.forEach(function(measurevalue){
-            measureArrayTesti.push(measurevalue[[queryResponse.fields.measure_like[i].name]])
+            measureArrayTesti.push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
         });
     }
 
