@@ -98,6 +98,13 @@ looker.plugins.visualizations.add({
                               type: 'number',
                               display: 'range'
                             },
+                            pieLegend: {
+                                label: 'Pie Legend on/off',
+                                type: 'boolean',
+                                display: 'select',
+                                section: "Style",
+                                default: true
+                            },
                             textLabel: {
                               type: 'string',
                               label: 'Subtitle',
@@ -171,7 +178,7 @@ Highcharts.chart('combo_container', {
     // },
     legend: {
           enabled: config.legendtoggle,
-          itemStyle:{"fontSize": config.textSize}
+          itemStyle:{"fontSize": "8px", "fontWeight": "normal"}
         },
     series: [{
         type: 'column',
@@ -217,7 +224,7 @@ Highcharts.chart('combo_container', {
         }],
         center: [50, 0],
         size: config.pieSize,
-        showInLegend: true,
+        showInLegend: config.pieLegend,
         dataLabels: {
             enabled: false
         }
@@ -243,7 +250,7 @@ Highcharts.chart('combo_container', {
         }],
         center: [250, 0],
         size: config.pieSize,
-        showInLegend: false,
+        showInLegend: config.pieLegend,
         dataLabels: {
             enabled: false
         }
@@ -269,7 +276,7 @@ Highcharts.chart('combo_container', {
         }],
         center: [450, 0],
         size: config.pieSize,
-        showInLegend: false,
+        showInLegend: config.pieLegend,
         dataLabels: {
             enabled: false
         }
