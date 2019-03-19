@@ -18,7 +18,7 @@ looker.plugins.visualizations.add({
         // Get the number of measures the user has selected
         var numMeasures = queryResponse.fields.measure_like.length;
         var numDimensions = data.length
-        // console.log(numMeasures,numDimensions);
+        console.log(numMeasures,numDimensions);
         var firstnrows = data.slice(0,numDimensions);
        // A bunch of arrays to store the measure value for passing into the series later
         var firstMeasArray = [];
@@ -137,7 +137,21 @@ looker.plugins.visualizations.add({
                         display: "color",
                         display_size: "half",
                         order: 1
-                    }   
+                    }
+                    measChartTypeId = "charttype" + i
+                      options[id] =
+                    {
+                        label: field,
+                        default: "column",
+                        section: "Pie Style",
+                        type: "string",
+                        display: "Select",
+                        display_size: "half",
+                        values: [{"Column": "column",
+                        "Line":"spline"
+                        }]
+                        order: 1
+                    } 
                     }
 
 Highcharts.chart('combo_container', {
@@ -195,19 +209,19 @@ Highcharts.chart('combo_container', {
           itemStyle:{"fontSize": "8px", "fontWeight": "normal"}
         },
     series: [{
-        type: 'column',
+        type: config.charttype_1,
         name: measure_header_1,
         data: firstMeasArray
     }, {
-        type: 'column',
+        type: config.charttype_2,
         name: measure_header_2,
         data: secondMeasArray
     }, {
-        type: 'column',
+        type: config.charttype_3,
         name: measure_header_3,
         data: thirdMeasArray
     }, {
-        type: 'spline',
+        type: config.charttype_4,
         name: measure_header_4,
         data: fourthMeasArray,
         dashStyle: 'shortdot',
