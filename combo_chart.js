@@ -27,7 +27,7 @@ looker.plugins.visualizations.add({
         }
         var thirdMeasArray = [];
         for(let i=0;i<4;i++){
-            thirdMeasArray.push(first4rows[i][queryResponse.fields.measure_like[2].name].rendered)
+            thirdMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[2].name].value * 10) / 10)
         }
         var fourthMeasArray = [];
         for(let i=0;i<4;i++){
@@ -159,16 +159,12 @@ Highcharts.chart('combo_container', {
     //         }
     //     }]
     // },
-    tooltip: {
-      shared: true,
-      headerFormat: "",
-      pointFormatter: function() {
-        // let y = this.y
-        // if(this.series.index == 3){
-        //     y = y.toFixed(2)
-        // }
-        return LookerCharts.Utils.htmlForCell(firstCell);
-      }
+    plotOptions: {
+        series: {
+            tooltip: {
+                pointFormatter: function () { if(this.index==2){return toFixed(this.x);} else {return 'test';}  }
+            }
+        }
     },
     legend: {
           enabled: config.legendtoggle,
