@@ -27,8 +27,9 @@ looker.plugins.visualizations.add({
         }
         var w = window;
 
+            
+        var somelist = []
         firstnrows.forEach(function(row){
-            somelist = []
             somelist.push(row[queryResponse.fields.measure_like[0].name].value);
 
         });
