@@ -27,10 +27,13 @@ looker.plugins.visualizations.add({
         }
         var w = window;
 
-        console.log(firstnrows[0][queryResponse.fields.measure_like[0].name]);
+        console.log(firstnrows[0][queryResponse.fields.measure_like[0].name].value);
         console.log(firstnrows);
         firstnrows.forEach(function(row){
-            console.log(row[queryResponse.fields.measure_like[0].name]);
+            somelist = []
+            somelist.push(row[queryResponse.fields.measure_like[0].name].value);
+            console.log(somelist);
+
         });
         for(let i=0;i<numMeasures;i++){
             w["arr_"+i] = [];
