@@ -217,7 +217,7 @@ Highcharts.chart('combo_container', {
         }],
         center: [50, 0],
         size: config.pieSize,
-        showInLegend: false,
+        showInLegend: true,
         dataLabels: {
             enabled: false
         }
