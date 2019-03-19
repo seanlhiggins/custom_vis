@@ -25,6 +25,13 @@ looker.plugins.visualizations.add({
         for(let i=0;i<numDimensions;i++){
             firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
+        var firstMeasArrayTest = [];
+
+        (Math.round(firstnrows[0][queryResponse.fields.measure_like[0].name].value * 10) / 10).forEach(function(measurevalue){
+            firstMeasArrayTest.push(measurevalue)
+        });
+
+        console.log(firstMeasArrayTest);
         var secondMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             secondMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
@@ -210,19 +217,19 @@ Highcharts.chart('combo_container', {
           itemStyle:{"fontSize": "8px", "fontWeight": "normal"}
         },
     series: [{
-        type: config.charttype_1,
+        type: config.charttype_0,
         name: measure_header_1,
         data: firstMeasArray
     }, {
-        type: config.charttype_2,
+        type: config.charttype_1,
         name: measure_header_2,
         data: secondMeasArray
     }, {
-        type: config.charttype_3,
+        type: config.charttype_2,
         name: measure_header_3,
         data: thirdMeasArray
     }, {
-        type: config.charttype_4,
+        type: config.charttype_3,
         name: measure_header_4,
         data: fourthMeasArray,
         dashStyle: 'shortdot',
