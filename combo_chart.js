@@ -15,23 +15,27 @@ looker.plugins.visualizations.add({
             font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
         }
         </style>`;
-        var first4rows = data.slice(0,4);
+        // Get the number of measures the user has selected
+        var numMeasures = queryResponse.fields.measure_like.length;
+        var numDimensions = data.length
+        console.log(numMeasures,numDimensions);
+        var firstnrows = data.slice(0,numDimensions);
        // A bunch of arrays to store the measure value for passing into the series later
         var firstMeasArray = [];
-        for(let i=0;i<4;i++){
-            firstMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
+        for(let i=0;i<numDimensions;i++){
+            firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         }
         var secondMeasArray = [];
-        for(let i=0;i<4;i++){
-            secondMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
+        for(let i=0;i<numDimensions;i++){
+            secondMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
         }
         var thirdMeasArray = [];
-        for(let i=0;i<4;i++){
-            thirdMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[2].name].value * 10) / 10)
+        for(let i=0;i<numDimensions;i++){
+            thirdMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[2].name].value * 10) / 10)
         }
         var fourthMeasArray = [];
-        for(let i=0;i<4;i++){
-            fourthMeasArray.push(Math.round(first4rows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
+        for(let i=0;i<numDimensions;i++){
+            fourthMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
         }
        // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
 
