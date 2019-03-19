@@ -217,7 +217,7 @@ Highcharts.chart('combo_container', {
                          chart = this.chart,
                          series = chart.series,
                          len = series.length,
-                         pieSerie = series;
+                         pieSerie = series[len];
 
                      pieSerie.data[index].setVisible();
 
