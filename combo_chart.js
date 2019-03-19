@@ -62,17 +62,13 @@ looker.plugins.visualizations.add({
        data.forEach(function(value){
         dimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[0].name]));
        });
-       console.log(dimensionvalues);
-        var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
-        var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
-        var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
-        var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
 
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
-        var measure_header_1 = queryResponse.fields.measure_like[0].label_short;
-        var measure_header_2 = queryResponse.fields.measure_like[1].label_short;
-        var measure_header_3 = queryResponse.fields.measure_like[2].label_short;
-        var measure_header_4 = queryResponse.fields.measure_like[3].label_short;
+        var measurenames = []
+       queryResponse.fields.measure_like.forEach(function(value){
+        measurenames.push(value.label_short);
+       });
+
 
        // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
 
@@ -197,7 +193,7 @@ Highcharts.chart('combo_container', {
                     enabled: false
                 },
     xAxis: {
-        categories: [firstCell, secondCell, thirdCell, fourthCell]
+        categories: [dimensionvalues[0], dimensionvalues[1], dimensionvalues[2], dimensionvalues[3]]
     },
     // labels: {
     //     items: [{
@@ -235,19 +231,19 @@ Highcharts.chart('combo_container', {
         },
     series: [{
         type: config.charttype_0,
-        name: measure_header_1,
+        name: measurenames[0],
         data: firstMeasArray
     }, {
         type: config.charttype_1,
-        name: measure_header_2,
+        name: measurenames[1],
         data: secondMeasArray
     }, {
         type: config.charttype_2,
-        name: measure_header_3,
+        name: measurenames[2],
         data: thirdMeasArray
     }, {
         type: config.charttype_3,
-        name: measure_header_4,
+        name: measurenames[3],
         data: fourthMeasArray,
         dashStyle: 'shortdot',
         marker: {
@@ -257,7 +253,7 @@ Highcharts.chart('combo_container', {
         }
     }, {
         type: 'pie',
-        name: measure_header_1,
+        name: measurenames[0],
         data: [{
             name: firstCell,
             y: firstMeasArray[0],
@@ -282,7 +278,7 @@ Highcharts.chart('combo_container', {
         }
     }, {
         type: 'pie',
-        name: measure_header_2,
+        name: measurenames[1],
         data: [{
             name: firstCell,
             y: secondMeasArray[0],
@@ -307,7 +303,7 @@ Highcharts.chart('combo_container', {
         }
     }, {
         type: 'pie',
-        name: measure_header_3,
+        name: measurenames[2],
         data: [{
             name: firstCell,
             y: thirdMeasArray[0],
