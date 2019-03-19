@@ -141,17 +141,17 @@ looker.plugins.visualizations.add({
                     measChartTypeId = "charttype" + i
                       options[measChartTypeId] =
                     {
-                        label: field,
-                        default: "column",
-                        section: "Style",
-                        type: "string",
-                        display: "Select",
-                        display_size: "half",
-                        values: [{"Column": "column",
-                        "Line":"spline"
-                        }],
-                        order: 2
-                    } 
+                              type: "string",
+                              label: "Chart Style",
+                              values: [
+                                {"Column": "column"},
+                                {"Line": "spline"}
+                              ],
+                              display: "select",
+                              default: "Column",
+                              section: "Style",
+                              order: 2
+                            }
                     }
 
 Highcharts.chart('combo_container', {
