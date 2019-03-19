@@ -18,7 +18,7 @@ looker.plugins.visualizations.add({
         // Get the number of measures the user has selected
         var numMeasures = queryResponse.fields.measure_like.length;
         var numDimensions = data.length
-        console.log(numMeasures,numDimensions);
+        // console.log(numMeasures,numDimensions);
         var firstnrows = data.slice(0,numDimensions);
        // A bunch of arrays to store the measure value for passing into the series later
         var firstMeasArray = [];
