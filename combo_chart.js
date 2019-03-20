@@ -39,7 +39,7 @@ looker.plugins.visualizations.add({
             w["arr_"+i] = [];
             firstnrows.forEach(function(measurevalue){
             w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
-            console.log(w["arr_"+i]);
+            // console.log(w["arr_"+i]);
 
         });
     }
@@ -211,7 +211,8 @@ looker.plugins.visualizations.add({
                         }
                         return yAxisCustomised;
             }
-            var yAxisCustom = customYAxis(config.measureaxis_0)
+            var yAxisCustom = customYAxis(config.measureaxis_0);
+            console.log(yAxisCustom);
 
 Highcharts.chart('combo_container', {
     title: {
@@ -233,8 +234,8 @@ Highcharts.chart('combo_container', {
     xAxis: {
         categories: [dimensionvalues[0], dimensionvalues[1], dimensionvalues[2], dimensionvalues[3]]
     },
+    // passing in a function to have the yAxis be dual depending on a toggle in options the user selects. 
     yAxis: {yAxisCustom
-
     },
     // labels: {
     //     items: [{
