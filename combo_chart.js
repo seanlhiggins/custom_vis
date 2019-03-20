@@ -187,8 +187,8 @@ looker.plugins.visualizations.add({
                             }
                     }
 
-                    function customYAxis (measureaxis) {
-                    var AxisOn = measureaxis,
+                    function customYAxis (x) {
+                    var AxisOn = x,
                         yAxisCustomised;
                 
                         if(AxisOn=false) {
@@ -211,7 +211,7 @@ looker.plugins.visualizations.add({
                         }
                         return yAxisCustomised;
             }
-            console.log(customYAxis(measureaxis_0));
+            console.log(customYAxis(config.measureaxis_0));
 
 Highcharts.chart('combo_container', {
     title: {
@@ -233,9 +233,9 @@ Highcharts.chart('combo_container', {
     xAxis: {
         categories: [dimensionvalues[0], dimensionvalues[1], dimensionvalues[2], dimensionvalues[3]]
     },
-    yAxis: {customYAxis(config.measureaxis_0)
+    // yAxis: {customYAxis(config.measureaxis_0)
 
-    },
+    // },
     // labels: {
     //     items: [{
     //         html: dimension_head,
