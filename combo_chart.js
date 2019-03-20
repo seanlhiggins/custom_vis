@@ -211,6 +211,7 @@ looker.plugins.visualizations.add({
                         }
                         return yAxisCustomised;
             }
+            console.log(yAxisCustomised);
 
 Highcharts.chart('combo_container', {
     title: {
