@@ -233,7 +233,7 @@ Highcharts.chart('combo_container', {
     xAxis: {
         categories: [dimensionvalues[0], dimensionvalues[1], dimensionvalues[2], dimensionvalues[3]]
     },
-    yAxis: {config.measureaxis_0
+    yAxis: {customYAxis(config.measureaxis_0)
 
     },
     // labels: {
