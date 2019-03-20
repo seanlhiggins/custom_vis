@@ -33,7 +33,7 @@ looker.plugins.visualizations.add({
             somelist.push(row[queryResponse.fields.measure_like[0].name].value);
 
         });
-        console.log(somelist);
+        // console.log(somelist);
 
         for(let i=3;i<numMeasures;i++){
             w["arr_"+i] = [];
@@ -43,7 +43,7 @@ looker.plugins.visualizations.add({
 
         });
     }
-        console.log(w["arr_1"]);
+        // console.log(w["arr_1"]);
 
         var secondMeasArray = [];
         for(let i=0;i<numDimensions;i++){
@@ -76,7 +76,7 @@ looker.plugins.visualizations.add({
           return total + Math.round(num);
         }
 
-        console.log(queryResponse,data);
+        // console.log(queryResponse,data);
        
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
@@ -211,7 +211,7 @@ looker.plugins.visualizations.add({
                         }
                         return yAxisCustomised;
             }
-            console.log(customYAxis(config.measureaxis_0));
+            var yAxisCustom = customYAxis(config.measureaxis_0)
 
 Highcharts.chart('combo_container', {
     title: {
@@ -233,9 +233,9 @@ Highcharts.chart('combo_container', {
     xAxis: {
         categories: [dimensionvalues[0], dimensionvalues[1], dimensionvalues[2], dimensionvalues[3]]
     },
-    // yAxis: {customYAxis(config.measureaxis_0)
+    yAxis: {yAxisCustom
 
-    // },
+    },
     // labels: {
     //     items: [{
     //         html: dimension_head,
