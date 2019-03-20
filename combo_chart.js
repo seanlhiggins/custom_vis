@@ -143,6 +143,8 @@ looker.plugins.visualizations.add({
                                 default: true
                             }
                 }
+
+            
              // Create an option for the first 4 rows in the query
              for(let i=0;i<=3;i++){
 
@@ -173,7 +175,42 @@ looker.plugins.visualizations.add({
                               display_size:"half",
                               order: 2
                             }
+                    measAxisId = "measureaxis_" + i                    
+                    options[measAxisId] =
+                    {
+                              type: "boolean",
+                              label: field + " Axis",
+                              display: "select",
+                              default: "column",
+                              section: "Style",
+                              order: 3
+                            }
                     }
+
+                    function customYAxis () {
+                    var AxisOn = config.measureaxis_0,
+                        yAxisCustomised;
+                
+                        if(AxisOn=false) {
+                            yAxisCustomised = {
+                                    title: {
+                                        text: measurenames[0]
+                                    }
+                                }
+                        } else {
+                             yAxisCustomised = [{
+                                    title: {
+                                        text: measurenames[0]
+                                    }
+                             },{
+                                 title: {
+                                        text: 'Values'
+                                    },
+                                 opposite:true
+                             }]
+                        }
+                        return yAxisCustomised;
+            }
 
 Highcharts.chart('combo_container', {
     title: {
@@ -194,6 +231,9 @@ Highcharts.chart('combo_container', {
                 },
     xAxis: {
         categories: [dimensionvalues[0], dimensionvalues[1], dimensionvalues[2], dimensionvalues[3]]
+    },
+    yAxis: {customYAxis
+
     },
     // labels: {
     //     items: [{
@@ -331,6 +371,7 @@ Highcharts.chart('combo_container', {
 
 
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
+
         doneRendering()
     }
 });
