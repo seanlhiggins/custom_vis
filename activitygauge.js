@@ -132,7 +132,7 @@ looker.plugins.visualizations.add({
 
             function customSeries () {
                     var seriesLength = data.length,
-                    variableSeries
+                    var variableSeries ={}
                         if(seriesLength=1) {
                             variableSeries = {
                                 name: dimension_list[0],
