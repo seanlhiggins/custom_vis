@@ -42,15 +42,6 @@ looker.plugins.visualizations.add({
             dimension_list.push(LookerCharts.Utils.htmlForCell(data[i][queryResponse.fields.dimensions[0].name]));
         };
 
-        // var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
-        // var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
-        // var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
-        // var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
-
-        // first4rows.forEach(function(row){
-        //     somelist.push(LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]););
-        // });
-
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short;
         element.innerHTML = html;
@@ -327,18 +318,18 @@ looker.plugins.visualizations.add({
                 tickPositions: []
             },
 
-            // plotOptions: {
-            //     solidgauge: {
-            //         dataLabels: {
-            //             enabled: true
-            //         },
-            //         linecap: 'round',
-            //         stickyTracking: false,
-            //         rounded: true,
-            //         showInLegend: true,
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    linecap: 'round',
+                    stickyTracking: false,
+                    rounded: true,
+                    showInLegend: true,
 
-            //     }
-            // },
+                }
+            },
             legend: {
                   // labelFormatter: function() {
                   //   return '<span style="color:#6a26a0">' + this.name + '</span>';
