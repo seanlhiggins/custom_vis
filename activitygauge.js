@@ -122,10 +122,10 @@ looker.plugins.visualizations.add({
             // Create a custom series depending on the length of the dataset
             console.log(data.length,lengthofdata);
             function customSeries (datalength) {
-                    var variableSeries =[]
+                    var variableSeries;
                     console.log(datalength);
                     if(datalength==1) {
-                        variableSeries = [{
+                        variableSeries = {
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -134,9 +134,9 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[0]
                             }]
-                        }]   
+                        }   
                     } else if(datalength==2) {
-                        variableSeries = [{
+                        variableSeries = {
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -154,10 +154,10 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[1]
                             }]
-                        }]
+                        }
                         
                     } else if(datalength==3) {
-                        variableSeries = [{
+                        variableSeries = {
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -184,10 +184,10 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[2]
                             }]
-                        }]
+                        }
                         
                     } else {
-                        variableSeries = [{
+                        variableSeries = {
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -223,7 +223,7 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[3]
                             }]
-                        }]
+                        }
                     }
                     return variableSeries;
             }
@@ -338,7 +338,7 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: varyseries[]
+            series: varyseries
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
