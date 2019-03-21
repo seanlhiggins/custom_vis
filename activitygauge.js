@@ -1,55 +1,86 @@
-
 /*
 Looker Vis Components:
 */
 looker.plugins.visualizations.add({
     create: function(element, config){
-        element.innerHTML = "<div id='activity_container'></div>";
+        element.innerHTML = "<div id='combo_container'></div>";
     },
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
         var html = `<style>
-            #activity_container {
+            #combo_container {
             margin: 0 auto;
-            max-width: 300px;
-            min-width: 280px;
+            min-width: 310px;
+            height: 400px;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
         }
         </style>`;
-        function getdatalength(){
-            if (data.length >= 4){
-                return 4
-            }
-            else {
-                return data.length
-            }
-        };
-        var lengthofdata = getdatalength();
-        var first4rows = data.slice(0,lengthofdata);
+        // Get the number of measures the user has selected
+        var numMeasures = queryResponse.fields.measure_like.length;
+        var numDimensions = data.length
 
-        var measure_list=[]
-        // measure values
-        for(let i=0;i<lengthofdata;i++){
-            measure_list.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
-        };
+        var firstnrows = data.slice(0,numDimensions);
+       // A bunch of arrays to store the measure value for passing into the series later
+        var firstMeasArray = [];
+        for(let i=0;i<numDimensions;i++){
+            firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
+        }
+        var w = window;
 
-        // get the max and min of the first measure's range so we can set the bounds of the chart within a human readable range
-        
-        var maxofmeasures=Math.max.apply(null, measure_list);
-        var minofmeasures=Math.min.apply(null, measure_list);
-        
-        // dimension html cells
-        var dimension_list = []
-        for(let i=0;i<lengthofdata;i++){
-            dimension_list.push(LookerCharts.Utils.htmlForCell(data[i][queryResponse.fields.dimensions[0].name]));
-        };
+            
+        var somelist = []
+        firstnrows.forEach(function(row){
+            somelist.push(row[queryResponse.fields.measure_like[0].name].value);
+
+        });
+        // console.log(somelist);
+
+        for(let i=3;i<numMeasures;i++){
+            w["arr_"+i] = [];
+            firstnrows.forEach(function(measurevalue){
+            w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
+            // console.log(w["arr_"+i]);
+
+        });
+    }
+        // console.log(w["arr_1"]);
+
+        var secondMeasArray = [];
+        for(let i=0;i<numDimensions;i++){
+            secondMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
+        }
+        var thirdMeasArray = [];
+        for(let i=0;i<numDimensions;i++){
+            thirdMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[2].name].value * 10) / 10)
+        }
+        var fourthMeasArray = [];
+        for(let i=0;i<numDimensions;i++){
+            fourthMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
+        }
+       // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
+       var dimensionvalues = []
+       data.forEach(function(value){
+        dimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[0].name]));
+       });
 
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
-        var measure_head = queryResponse.fields.measure_like[0].label_short;
+        var measurenames = []
+       queryResponse.fields.measure_like.forEach(function(value){
+        measurenames.push(value.label_short);
+       });
+
+
+       // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
+
+        function getSum(total, num) {
+          return total + Math.round(num);
+        }
+
+        // console.log(queryResponse,data);
+       
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
-        container.id = "activity_container";
+        container.id = "combo_container";
 
-
-        // Highcharts config setup //
 
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
@@ -74,24 +105,33 @@ looker.plugins.visualizations.add({
                               min: 2,
                               max: 50,
                               step: .5,
-                              default: 10,
+                              default: 15,
                               section: 'Style',
                               type: 'number',
                               display: 'range'
                             },
-                            textColor: {
-                              label: 'Text Color',
-                              default: '#6a26a0',
-                              section: 'Style',
-                              type: 'string',
-                              display: 'color',
-                              order:1 
+
+                            pieSize: {
+                              label: 'Pie Size',
+                              min: 50,
+                              max: 100,
+                              step: 1,
+                              default: 100,
+                              section: 'Pie Style',
+                              type: 'number',
+                              display: 'range'
+                            },
+                            pieLegend: {
+                                label: 'Pie Legend on/off',
+                                type: 'boolean',
+                                display: 'select',
+                                section: "Pie Style",
+                                default: true
                             },
                             textLabel: {
                               type: 'string',
-                              label: 'Label',
-                              default: measure_head,
-                              placeholder: measure_head,
+                              label: 'Subtitle',
+                              placeholder: 'Add a label or description',
                               section: 'Style'
                             },
                             legendtoggle: {
@@ -99,160 +139,88 @@ looker.plugins.visualizations.add({
                                 type: 'boolean',
                                 display: 'select',
                                 section: "Style",
-                                default: false
+                                default: true
                             }
                 }
-             // Create an option for the first 4 rows in the query
-             for(let i=0;i<lengthofdata;i++){
 
-                    var field = first4rows[i][queryResponse.fields.dimensions[0].name];
+            
+             // Create an option for the first n rows in the query
+             for(let i=0;i<=3;i++){
+
+                    var field = queryResponse.fields.measure_like[i].label_short;
                     id = "color_" + i
                     options[id] =
                     {
-                        label: field.value,
+                        label: field,
                         default: Highcharts.getOptions().colors[i],
-                        section: "Style",
+                        section: "Pie Style",
                         type: "string",
                         display: "color",
                         display_size: "half",
                         order: 1
-                    }   
+                    }
+                    measChartTypeId = "charttype_" + i
+                      options[measChartTypeId] =
+                    {
+                              type: "string",
+                              label: field + " Style",
+                              values: [
+                                {"Column": "column"},
+                                {"Line": "spline"}
+                              ],
+                              display: "select",
+                              default: "column",
+                              section: "Style",
+                              display_size:"half",
+                              order: 2
+                            }
+                    measAxisId = "measureaxis_" + i                    
+                    options[measAxisId] =
+                    {
+                              type: "boolean",
+                              label: field + " Axis",
+                              display: "select",
+                              default: "column",
+                              section: "Style",
+                              order: 3
+                            }
                     }
 
-            // Create a custom series depending on the length of the dataset
-            // console.log(data.length,lengthofdata);
-            function customSeries (datalength) {
-                    var variableSeries;
-                    // console.log(datalength);
-                    if(datalength==1) {
-                        variableSeries = [{
-                            name: dimension_list[0],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[0]
-                            }]
-                        }]   
-                    } else if(datalength==2) {
-                        variableSeries = [{
-                            name: dimension_list[0],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[0]
-                            }]
-                        },{
-                            name: dimension_list[1],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_1,
-                                radius: '84%',
-                                innerRadius: '70%',
-                                y: measure_list[1]
-                            }]
-                        }]
-                        
-                    } else if(datalength==3) {
-                        variableSeries = [{
-                            name: dimension_list[0],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[0]
-                            }]
-                        },{
-                            name: dimension_list[1],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_1,
-                                radius: '84%',
-                                innerRadius: '70%',
-                                y: measure_list[1]
-                            }]
-                        },{
-                            name: dimension_list[2],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_2,
-                                radius: '69%',
-                                innerRadius: '55%',
-                                y: measure_list[2]
-                            }]
-                        }]
-                        
-                    } else {
-                        variableSeries = [{
-                            name: dimension_list[0],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[0]
-                            }]
-                        },{
-                            name: dimension_list[1],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_1,
-                                radius: '84%',
-                                innerRadius: '70%',
-                                y: measure_list[1]
-                            }]
-                        },{
-                            name: dimension_list[2],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_2,
-                                radius: '69%',
-                                innerRadius: '55%',
-                                y: measure_list[2]
-                            }]
-                        },{
-                            name: dimension_list[3],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_3,
-                                radius: '54%',
-                                innerRadius: '40%',
-                                y: measure_list[3]
-                            }]
-                        }]
-                    }
-                    return variableSeries;
+                    function customYAxis (x) {
+                    var AxisOn = x,
+                        yAxisCustomised;
+                
+                        if(AxisOn=false) {
+                            yAxisCustomised = {
+                                    title: {
+                                        text: measurenames[0]
+                                    }
+                                }
+                        } else {
+                             yAxisCustomised = [{
+                                    title: {
+                                        text: measurenames[0]
+                                    }
+                             },{
+                                 title: {
+                                        text: 'Values'
+                                    },
+                                 opposite:true
+                             }]
+                        }
+                        return yAxisCustomised;
             }
-            var varyseries = customSeries(lengthofdata);
-            //
-            console.log(varyseries);
-            var series1=varyseries[0];
-            console.log(series1);
-        Highcharts.chart('activity_container', {
+            var yAxisCustom = customYAxis(config.measureaxis_0);
+            console.log(yAxisCustom);
 
-            chart: {
-                type: 'solidgauge',
-                height: '100%',
-                style:{
-                    font_family: 'Helvetica'
-                }
-                /* events: {
-                    render: renderIcons
-                } */
-            },
-
-            title: {
+Highcharts.chart('combo_container', {
+    title: {
                 text: dimension_head,
                 style: {
                     fontSize: config.textSize,
                     color: config.color_0
                 }
-            },
-            subtitle: {
+            },subtitle: {
                 text: config.textLabel,
                 style: {
                 fontSize: '10px',
@@ -262,86 +230,152 @@ looker.plugins.visualizations.add({
             credits: {
                     enabled: false
                 },
-            tooltip: {
-                borderWidth: 0,
-                backgroundColor: 'none',
-                shadow: false,
-                style: {
-                    fontSize: '10px'
-                },
-                pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
-                positioner: function (labelWidth) {
-                    return {
-                        x: (this.chart.chartWidth - labelWidth) / 2,
-                        y: (this.chart.plotHeight / 2) + 25
-                    };
-                }
-            },
+    exporting:{
+        enabled: false
+    },
+    xAxis: {
+        categories: [dimensionvalues[0], dimensionvalues[1], dimensionvalues[2], dimensionvalues[3]]
+    },
+    // passing in a function to have the yAxis be dual depending on a toggle in options the user selects. 
+    yAxis: {yAxisCustom
+    },
+    // labels: {
+    //     items: [{
+    //         html: dimension_head,
+    //         style: {
+    //             left: '50px',
+    //             top: '18px',
+    //             color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+    //         }
+    //     }]
+    // },
+    //
+    /* need to put in something to help handle the different data types for the tooltips */
+    //
+    plotOptions: {
+        series: {
+            events: {
+                legendItemClick:function(){
 
-            pane: {
-                startAngle: 0,
-                endAngle: 360,
-                background: [{ // Track for Dim1
-                    outerRadius: '100%',
-                    innerRadius: '85%',
-                    backgroundColor: Highcharts.Color(config.color_0)
-                        .setOpacity(0.1)
-                        .get(),
-                    borderWidth: 0
-                }, { // Track for Dim2
-                    outerRadius: '84%',
-                    innerRadius: '70%',
-                    backgroundColor: Highcharts.Color(config.color_1)
-                        .setOpacity(0.1)
-                        .get(),
-                    borderWidth: 0
-                }, { // Track for Dim3
-                    outerRadius: '69%',
-                    innerRadius: '55%',
-                    backgroundColor: Highcharts.Color(config.color_2)
-                        .setOpacity(0.1)
-                        .get(),
-                    borderWidth: 0
-                }, { // Track for Dim4
-                    outerRadius: '54%',
-                    innerRadius: '40%',
-                    backgroundColor: Highcharts.Color(config.color_3)
-                        .setOpacity(0.1)
-                        .get(),
-                    borderWidth: 0
-                }]
-            },
+                     var index = this.index,
+                         chart = this.chart,
+                         series = chart.series,
+                         len = series.length,
+                         pieSerie = series[len-1];
 
-            yAxis: {
-                min: minofmeasures/100*90,
-                max: maxofmeasures/100*110,
-                lineWidth: 0,
-                tickPositions: []
-            },
+                     pieSerie.data[index].setVisible();
 
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        enabled: false
-                    },
-                    linecap: 'round',
-                    stickyTracking: false,
-                    rounded: true,
-                    showInLegend: true,
+                 }
+            }
+        }
+    },
+    legend: {
+          enabled: config.legendtoggle,
+          itemStyle:{"fontSize": "8px", "fontWeight": "normal"}
+        },
+    series: [{
+        type: config.charttype_0,
+        name: measurenames[0],
+        data: firstMeasArray
+    }, {
+        type: config.charttype_1,
+        name: measurenames[1],
+        data: secondMeasArray
+    }, {
+        type: config.charttype_2,
+        name: measurenames[2],
+        data: thirdMeasArray
+    }, {
+        type: config.charttype_3,
+        name: measurenames[3],
+        data: fourthMeasArray,
+        dashStyle: 'shortdot',
+        marker: {
+            lineWidth: 2,
+            lineColor: config.color_3,
+            fillColor: 'white'
+        }
+    }, {
+        type: 'pie',
+        name: measurenames[0],
+        data: [{
+            name: dimensionvalues[0],
+            y: firstMeasArray[0],
+            color: config.color_0 // dim 1's color
+        }, {
+            name: dimensionvalues[1],
+            y: firstMeasArray[1],
+            color: config.color_1 // dim 2's color
+        }, {
+            name: dimensionvalues[2],
+            y: firstMeasArray[2],
+            color: config.color_2 // dim 3's color
+        }, {
+            name: dimensionvalues[3],
+            y: firstMeasArray[3],
+            color: config.color_3 // dim 3's color
+        }],
+        center: [50, 0],
+        size: config.pieSize,
+        dataLabels: {
+            enabled: false
+        }
+    }, {
+        type: 'pie',
+        name: measurenames[1],
+        data: [{
+            name: dimensionvalues[0],
+            y: secondMeasArray[0],
+            color: config.color_0 // dim 1's color
+        }, {
+            name: dimensionvalues[1],
+            y: secondMeasArray[1],
+            color: config.color_1 // dim 2's color
+        }, {
+            name: dimensionvalues[2],
+            y: secondMeasArray[2],
+            color: config.color_2 // dim 3's color
+        }, {
+            name: dimensionvalues[3],
+            y: secondMeasArray[3],
+            color: config.color_3 // dim 3's color
+        }],
+        center: [250, 0],
+        size: config.pieSize,
+        dataLabels: {
+            enabled: false
+        }
+    }, {
+        type: 'pie',
+        name: measurenames[2],
+        data: [{
+            name: dimensionvalues[0],
+            y: thirdMeasArray[0],
+            color: config.color_0 // dim 1's color
+        }, {
+            name: dimensionvalues[1],
+            y: thirdMeasArray[1],
+            color: config.color_1 // dim 2's color
+        }, {
+            name: dimensionvalues[2],
+            y: thirdMeasArray[2],
+            color: config.color_2 // dim 3's color
+        }, {
+            name: dimensionvalues[3],
+            y: thirdMeasArray[3],
+            color: config.color_3 // dim 3's color
+        }],
+        center: [450, 0],
+        size: config.pieSize,
+        dataLabels: {
+            enabled: false
+        }
+    }]
+});
 
-                }
-            },
-            legend: {
-                  // labelFormatter: function() {
-                  //   return '<span style="color:#6a26a0">' + this.name + '</span>';
-                  // },
-                  enabled: config.legendtoggle,
-                  symbolWidth: 0
-                },
 
-            series: varyseries
-        });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
+
         doneRendering()
     }
 });
