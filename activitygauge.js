@@ -129,7 +129,7 @@ looker.plugins.visualizations.add({
                     }
 
             // Create a custom series depending on the length of the dataset
-            console.log(data.length,lengthofdata);
+
             function customSeries (datalength) {
                     var variableSeries ={}
                     if(datalength==1) {
@@ -237,12 +237,7 @@ looker.plugins.visualizations.add({
             }
             var varyseries = customSeries(lengthofdata);
             //
-            console.log(varyseries);
-            console.log(data.length);
-            console.log(lengthofdata);
-            console.log(measure_list);
-            console.log(dimension_list);
-            console.log(first4rows);
+            
         Highcharts.chart('activity_container', {
 
             chart: {
