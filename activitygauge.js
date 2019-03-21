@@ -29,8 +29,10 @@ looker.plugins.visualizations.add({
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
-
-
+        var measure_list = []
+        measure_list.push(firstMeas,secondMeas,thirdMeas,fourthMeas);
+        var maxofmeasures=Math.max.apply(null, measure_list);
+        console.log(maxofmeasures,measure_list);
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
@@ -179,7 +181,7 @@ looker.plugins.visualizations.add({
 
             yAxis: {
                 min: 0,
-                // max: 100,
+                max: maxofmeasures,
                 lineWidth: 0,
                 tickPositions: []
             },
