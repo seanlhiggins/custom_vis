@@ -149,7 +149,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[1],
                             marker: {enabled:false},
                             data: [{
-                                color: config.color_0,
+                                color: config.color_1,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[1]
@@ -170,7 +170,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[1],
                             marker: {enabled:false},
                             data: [{
-                                color: config.color_0,
+                                color: config.color_1,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[1]
@@ -179,7 +179,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[2],
                             marker: {enabled:false},
                             data: [{
-                                color: config.color_0,
+                                color: config.color_2,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[2]
@@ -200,7 +200,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[1],
                             marker: {enabled:false},
                             data: [{
-                                color: config.color_0,
+                                color: config.color_1,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[1]
@@ -209,7 +209,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[2],
                             marker: {enabled:false},
                             data: [{
-                                color: config.color_0,
+                                color: config.color_2,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[2]
@@ -218,7 +218,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[3],
                             marker: {enabled:false},
                             data: [{
-                                color: config.color_0,
+                                color: config.color_3,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[3]
@@ -339,43 +339,7 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: [{
-                            name: dimension_list[0],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[0]
-                            }]
-                        },{
-                            name: dimension_list[1],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[1]
-                            }]
-                        },{
-                            name: dimension_list[2],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[2]
-                            }]
-                        },{
-                            name: dimension_list[3],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[3]
-                            }]
-                        }]
+            series: varyseries
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
