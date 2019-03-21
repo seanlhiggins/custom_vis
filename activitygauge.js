@@ -15,7 +15,7 @@ looker.plugins.visualizations.add({
         }
         </style>`;
         function getdatalength(){
-            if data.length >= 4{
+            if (data.length >= 4){
                 return 4
             }
             else {
