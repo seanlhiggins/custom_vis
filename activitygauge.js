@@ -57,7 +57,7 @@ looker.plugins.visualizations.add({
                               min: 2,
                               max: 50,
                               step: .5,
-                              default: 15,
+                              default: 10,
                               section: 'Style',
                               type: 'number',
                               display: 'range'
@@ -73,6 +73,7 @@ looker.plugins.visualizations.add({
                             textLabel: {
                               type: 'string',
                               label: 'Label',
+                              default: measure_head,
                               placeholder: measure_head,
                               section: 'Style'
                             },
@@ -200,9 +201,9 @@ looker.plugins.visualizations.add({
                 }
             },
             legend: {
-                  labelFormatter: function() {
-                    return '<span style="color:#6a26a0">' + this.name + '</span>';
-                  },
+                  // labelFormatter: function() {
+                  //   return '<span style="color:#6a26a0">' + this.name + '</span>';
+                  // },
                   enabled: config.legendtoggle,
                   symbolWidth: 0
                 },
