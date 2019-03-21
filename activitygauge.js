@@ -339,7 +339,31 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: varyseries
+            series: [{
+        name: 'Move',
+        data: [{
+            color: Highcharts.getOptions().colors[0],
+            radius: '112%',
+            innerRadius: '88%',
+            y: 80
+        }]
+    }, {
+        name: 'Exercise',
+        data: [{
+            color: Highcharts.getOptions().colors[1],
+            radius: '87%',
+            innerRadius: '63%',
+            y: 65
+        }]
+    }, {
+        name: 'Stand',
+        data: [{
+            color: Highcharts.getOptions().colors[2],
+            radius: '62%',
+            innerRadius: '38%',
+            y: 50
+        }]
+    }]
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
