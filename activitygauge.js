@@ -236,6 +236,7 @@ looker.plugins.visualizations.add({
                         }
                         return variableSeries;
             }
+            var varyseries = customSeries()
             //
         Highcharts.chart('activity_container', {
 
@@ -344,7 +345,7 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: [variableSeries]
+            series: [customSeries]
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
