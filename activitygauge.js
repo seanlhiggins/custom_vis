@@ -27,7 +27,7 @@ looker.plugins.visualizations.add({
 
         var measure_list=[]
         // measure values
-        for(let i=0;i<data.length;i++){
+        for(let i=0;i<lengthofdata;i++){
             measure_list.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
         };
 
@@ -38,7 +38,7 @@ looker.plugins.visualizations.add({
         
         // dimension html cells
         var dimension_list = []
-        for(let i=0;i<data.length;i++){
+        for(let i=0;i<lengthofdata;i++){
             dimension_list.push(LookerCharts.Utils.htmlForCell(data[i][queryResponse.fields.dimensions[0].name]));
         };
 
@@ -112,7 +112,7 @@ looker.plugins.visualizations.add({
                             }
                 }
              // Create an option for the first 4 rows in the query
-             for(let i=0;i<data.length;i++){
+             for(let i=0;i<lengthofdata;i++){
 
                     var field = first4rows[i][queryResponse.fields.dimensions[0].name];
                     id = "color_" + i
@@ -131,9 +131,8 @@ looker.plugins.visualizations.add({
             // Create a custom series depending on the length of the dataset
 
             function customSeries () {
-                    var seriesLength = data.length
                     var variableSeries ={}
-                        if(data.length=1) {
+                        if(lengthofdata=1) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
@@ -144,7 +143,7 @@ looker.plugins.visualizations.add({
                                     y: measure_list[0]
                                 }]
                             }   
-                        } else if(data.length=2) {
+                        } else if(lengthofdata=2) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
@@ -165,7 +164,7 @@ looker.plugins.visualizations.add({
                                 }]
                             }
                             
-                        } else if(data.length=3) {
+                        } else if(lengthofdata=3) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
