@@ -327,18 +327,18 @@ looker.plugins.visualizations.add({
                 tickPositions: []
             },
 
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        enabled: false
-                    },
-                    linecap: 'round',
-                    stickyTracking: false,
-                    rounded: true,
-                    showInLegend: true,
+            // plotOptions: {
+            //     solidgauge: {
+            //         dataLabels: {
+            //             enabled: true
+            //         },
+            //         linecap: 'round',
+            //         stickyTracking: false,
+            //         rounded: true,
+            //         showInLegend: true,
 
-                }
-            },
+            //     }
+            // },
             legend: {
                   // labelFormatter: function() {
                   //   return '<span style="color:#6a26a0">' + this.name + '</span>';
@@ -347,7 +347,7 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: varyseries[0]
+            series: varyseries
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
