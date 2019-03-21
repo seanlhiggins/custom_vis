@@ -125,7 +125,7 @@ looker.plugins.visualizations.add({
                     var variableSeries;
                     console.log(datalength);
                     if(datalength==1) {
-                        variableSeries = {
+                        variableSeries = [{
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -136,7 +136,7 @@ looker.plugins.visualizations.add({
                             }]
                         }   
                     } else if(datalength==2) {
-                        variableSeries = {
+                        variableSeries = [{
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -157,7 +157,7 @@ looker.plugins.visualizations.add({
                         }
                         
                     } else if(datalength==3) {
-                        variableSeries = {
+                        variableSeries = [{
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -187,7 +187,7 @@ looker.plugins.visualizations.add({
                         }
                         
                     } else {
-                        variableSeries = {
+                        variableSeries = [{
                             name: dimension_list[0],
                             marker: {enabled:false},
                             data: [{
@@ -223,7 +223,7 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[3]
                             }]
-                        }
+                        }]
                     }
                     return variableSeries;
             }
