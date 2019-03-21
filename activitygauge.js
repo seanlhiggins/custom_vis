@@ -150,8 +150,8 @@ looker.plugins.visualizations.add({
                             marker: {enabled:false},
                             data: [{
                                 color: config.color_1,
-                                radius: '100%',
-                                innerRadius: '85%',
+                                radius: '84%',
+                                innerRadius: '70%',
                                 y: measure_list[1]
                             }]
                         }]
@@ -171,8 +171,8 @@ looker.plugins.visualizations.add({
                             marker: {enabled:false},
                             data: [{
                                 color: config.color_1,
-                                radius: '100%',
-                                innerRadius: '85%',
+                                radius: '84%',
+                                innerRadius: '70%',
                                 y: measure_list[1]
                             }]
                         },{
@@ -180,8 +180,8 @@ looker.plugins.visualizations.add({
                             marker: {enabled:false},
                             data: [{
                                 color: config.color_2,
-                                radius: '100%',
-                                innerRadius: '85%',
+                                radius: '69%',
+                                innerRadius: '55%',
                                 y: measure_list[2]
                             }]
                         }]
@@ -201,8 +201,8 @@ looker.plugins.visualizations.add({
                             marker: {enabled:false},
                             data: [{
                                 color: config.color_1,
-                                radius: '100%',
-                                innerRadius: '85%',
+                                radius: '84%',
+                                innerRadius: '70%',
                                 y: measure_list[1]
                             }]
                         },{
@@ -210,8 +210,8 @@ looker.plugins.visualizations.add({
                             marker: {enabled:false},
                             data: [{
                                 color: config.color_2,
-                                radius: '100%',
-                                innerRadius: '85%',
+                                radius: '69%',
+                                innerRadius: '55%',
                                 y: measure_list[2]
                             }]
                         },{
@@ -219,8 +219,8 @@ looker.plugins.visualizations.add({
                             marker: {enabled:false},
                             data: [{
                                 color: config.color_3,
-                                radius: '100%',
-                                innerRadius: '85%',
+                                radius: '54%',
+                                innerRadius: '40%',
                                 y: measure_list[3]
                             }]
                         }]
@@ -339,31 +339,7 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: [{
-        name: 'Move',
-        data: [{
-            color: Highcharts.getOptions().colors[0],
-            radius: '112%',
-            innerRadius: '88%',
-            y: 80
-        }]
-    }, {
-        name: 'Exercise',
-        data: [{
-            color: Highcharts.getOptions().colors[1],
-            radius: '87%',
-            innerRadius: '63%',
-            y: 65
-        }]
-    }, {
-        name: 'Stand',
-        data: [{
-            color: Highcharts.getOptions().colors[2],
-            radius: '62%',
-            innerRadius: '38%',
-            y: 50
-        }]
-    }]
+            series: varyseries
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
