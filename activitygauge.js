@@ -14,7 +14,7 @@ looker.plugins.visualizations.add({
             min-width: 280px;
         }
         </style>`;
-        var lengthofdata = function getdatalength(){
+        function getdatalength(){
             if data.length >= 4{
                 return 4
             }
@@ -22,6 +22,7 @@ looker.plugins.visualizations.add({
                 return data.length
             }
         };
+        var lengthofdata = getdatalength();
         var first4rows = data.slice(0,lengthofdata);
 
         var measure_list=[]
