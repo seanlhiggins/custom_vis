@@ -134,7 +134,7 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[0]
                             }]
-                        }   
+                        }]   
                     } else if(datalength==2) {
                         variableSeries = [{
                             name: dimension_list[0],
@@ -154,7 +154,7 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[1]
                             }]
-                        }
+                        }]
                         
                     } else if(datalength==3) {
                         variableSeries = [{
@@ -184,7 +184,7 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[2]
                             }]
-                        }
+                        }]
                         
                     } else {
                         variableSeries = [{
