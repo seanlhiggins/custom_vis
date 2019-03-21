@@ -131,7 +131,7 @@ looker.plugins.visualizations.add({
             // Create a custom series depending on the length of the dataset
 
             function customSeries () {
-                    var seriesLength = data.length,
+                    var seriesLength = data.length
                     var variableSeries ={}
                         if(seriesLength=1) {
                             variableSeries = {
