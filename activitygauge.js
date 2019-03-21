@@ -143,7 +143,34 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[0]
                             }]
-                        }   
+                        },{
+                            name: dimension_list[1],
+                            marker: {enabled:false},
+                            data: [{
+                                color: config.color_0,
+                                radius: '100%',
+                                innerRadius: '85%',
+                                y: measure_list[1]
+                            }]
+                        },{
+                            name: dimension_list[2],
+                            marker: {enabled:false},
+                            data: [{
+                                color: config.color_0,
+                                radius: '100%',
+                                innerRadius: '85%',
+                                y: measure_list[2]
+                            }]
+                        },{
+                            name: dimension_list[3],
+                            marker: {enabled:false},
+                            data: [{
+                                color: config.color_0,
+                                radius: '100%',
+                                innerRadius: '85%',
+                                y: measure_list[3]
+                            }]
+                        } 
                     } else if(datalength==2) {
                         variableSeries = {
                             name: dimension_list[0],
@@ -205,34 +232,7 @@ looker.plugins.visualizations.add({
                                 innerRadius: '85%',
                                 y: measure_list[0]
                             }]
-                        },{
-                            name: dimension_list[1],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[1]
-                            }]
-                        },{
-                            name: dimension_list[2],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[2]
-                            }]
-                        },{
-                            name: dimension_list[3],
-                            marker: {enabled:false},
-                            data: [{
-                                color: config.color_0,
-                                radius: '100%',
-                                innerRadius: '85%',
-                                y: measure_list[3]
-                            }]
-                        } 
+                        }   
                     }
                     return variableSeries;
             }
