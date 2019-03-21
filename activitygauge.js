@@ -240,6 +240,7 @@ looker.plugins.visualizations.add({
             //
             console.log(varyseries);
             console.log(data.length);
+            console.log(lengthofdata);
             console.log(measure_list);
             console.log(dimension_list);
             console.log(first4rows);
