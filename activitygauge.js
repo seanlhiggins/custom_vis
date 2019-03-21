@@ -32,7 +32,8 @@ looker.plugins.visualizations.add({
         var measure_list = []
         measure_list.push(firstMeas,secondMeas,thirdMeas,fourthMeas);
         var maxofmeasures=Math.max.apply(null, measure_list);
-        console.log(maxofmeasures,measure_list);
+        var minofmeasures=Math.min.apply(null, measure_list);
+        console.log(maxofmeasures,measure_list,minofmeasures);
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
@@ -180,8 +181,8 @@ looker.plugins.visualizations.add({
             },
 
             yAxis: {
-                min: 0,
-                max: 1000,
+                min: minofmeasures-10,
+                max: maxofmeasures+10,
                 lineWidth: 0,
                 tickPositions: []
             },
