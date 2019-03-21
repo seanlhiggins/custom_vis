@@ -112,7 +112,7 @@ looker.plugins.visualizations.add({
                             }
                 }
              // Create an option for the first 4 rows in the query
-             for(let i=0;i<4;i++){
+             for(let i=0;i<data.length;i++){
 
                     var field = first4rows[i][queryResponse.fields.dimensions[0].name];
                     id = "color_" + i
@@ -133,7 +133,7 @@ looker.plugins.visualizations.add({
             function customSeries () {
                     var seriesLength = data.length
                     var variableSeries ={}
-                        if(seriesLength=1) {
+                        if(data.length=1) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
@@ -144,7 +144,7 @@ looker.plugins.visualizations.add({
                                     y: measure_list[0]
                                 }]
                             }   
-                        } else if(seriesLength=2) {
+                        } else if(data.length=2) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
@@ -165,7 +165,7 @@ looker.plugins.visualizations.add({
                                 }]
                             }
                             
-                        } else if(seriesLength=3) {
+                        } else if(data.length=3) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
