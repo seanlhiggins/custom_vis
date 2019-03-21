@@ -350,7 +350,7 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: [customSeries]
+            series: [varyseries]
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
