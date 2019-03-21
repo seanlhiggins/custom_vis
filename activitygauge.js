@@ -181,8 +181,8 @@ looker.plugins.visualizations.add({
             },
 
             yAxis: {
-                min: minofmeasures-10,
-                max: maxofmeasures+10,
+                min: minofmeasures/100*90,
+                max: maxofmeasures/100*110,
                 lineWidth: 0,
                 tickPositions: []
             },
