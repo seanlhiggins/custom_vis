@@ -25,6 +25,7 @@ looker.plugins.visualizations.add({
         var first4rows = data.slice(0,lengthofdata);
 
         var measure_list=[]
+
         // measure values
         for(let i=0;i<lengthofdata;i++){
             measure_list.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
@@ -36,6 +37,7 @@ looker.plugins.visualizations.add({
         var minofmeasures=Math.min.apply(null, measure_list);
         
         // dimension html cells
+
         var dimension_list = []
         for(let i=0;i<lengthofdata;i++){
             dimension_list.push(LookerCharts.Utils.htmlForCell(data[i][queryResponse.fields.dimensions[0].name]));
@@ -227,10 +229,7 @@ looker.plugins.visualizations.add({
                     return variableSeries;
             }
             var varyseries = customSeries(lengthofdata);
-            //
-            console.log(varyseries);
-            var series1=varyseries[0];
-            console.log(series1);
+
         Highcharts.chart('activity_container', {
 
             chart: {
