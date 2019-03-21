@@ -129,10 +129,10 @@ looker.plugins.visualizations.add({
                     }
 
             // Create a custom series depending on the length of the dataset
-
-            function customSeries () {
+            console.log(data.length,lengthofdata);
+            function customSeries (datalength) {
                     var variableSeries ={}
-                        if(lengthofdata=1) {
+                        if(datalength=1) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
@@ -143,7 +143,7 @@ looker.plugins.visualizations.add({
                                     y: measure_list[0]
                                 }]
                             }   
-                        } else if(lengthofdata=2) {
+                        } else if(datalength=2) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
@@ -164,7 +164,7 @@ looker.plugins.visualizations.add({
                                 }]
                             }
                             
-                        } else if(lengthofdata=3) {
+                        } else if(datalength=3) {
                             variableSeries = {
                                 name: dimension_list[0],
                                 marker: {enabled:false},
@@ -235,7 +235,7 @@ looker.plugins.visualizations.add({
                         }
                         return variableSeries;
             }
-            var varyseries = customSeries()
+            var varyseries = customSeries(lengthofdata);
             //
             console.log(varyseries);
             console.log(data.length);
