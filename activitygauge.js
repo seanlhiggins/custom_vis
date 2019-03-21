@@ -101,7 +101,14 @@ looker.plugins.visualizations.add({
                                 display: 'select',
                                 section: "Style",
                                 default: false
-                            }
+                            },
+                            dataLabels: {
+                                label: 'Data Labels on/off',
+                                type: 'boolean',
+                                display: 'select',
+                                section: "Style",
+                                default: false
+                            },
                 }
              // Create an option for the first 4 rows in the query
              for(let i=0;i<lengthofdata;i++){
@@ -320,7 +327,7 @@ looker.plugins.visualizations.add({
             plotOptions: {
                 solidgauge: {
                     dataLabels: {
-                        enabled: false
+                        enabled: config.dataLabels
                     },
                     linecap: 'round',
                     stickyTracking: false,
