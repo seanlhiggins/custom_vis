@@ -120,10 +120,10 @@ looker.plugins.visualizations.add({
                     }
 
             // Create a custom series depending on the length of the dataset
-            console.log(data.length,lengthofdata);
+            // console.log(data.length,lengthofdata);
             function customSeries (datalength) {
                     var variableSeries;
-                    console.log(datalength);
+                    // console.log(datalength);
                     if(datalength==1) {
                         variableSeries = [{
                             name: dimension_list[0],
