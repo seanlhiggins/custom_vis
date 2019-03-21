@@ -14,26 +14,51 @@ looker.plugins.visualizations.add({
             min-width: 280px;
         }
         </style>`;
-        var first4rows = data.slice(0,4);
-        var firstMeas = Math.round(first4rows[0][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-        var secondMeas = Math.round(first4rows[1][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-        var thirdMeas = Math.round(first4rows[2][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-        var fourthMeas = Math.round(first4rows[3][queryResponse.fields.measure_like[0].name].value * 10) / 10;
-        var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
-        var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
-        var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
-        var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
+        var lengthofdata = function getdatalength(){
+            if data.length >= 4{
+                return 4
+            }
+            else {
+                return data.length
+            }
+        };
+        var first4rows = data.slice(0,lengthofdata);
+
+        var measure_list=[]
+        // measure values
+        for(let i=0;i<data.length;i++){
+            measure_list.push(Math.round(first4rows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
+        };
+
+        // get the max and min of the first measure's range so we can set the bounds of the chart within a human readable range
+        
+        var maxofmeasures=Math.max.apply(null, measure_list);
+        var minofmeasures=Math.min.apply(null, measure_list);
+        
+        // dimension html cells
+        var dimension_list = []
+        for(let i=0;i<data.length;i++){
+            dimension_list.push(LookerCharts.Utils.htmlForCell(data[i][queryResponse.fields.dimensions[0].name]));
+        };
+
+        // var firstCell = LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]);
+        // var secondCell = LookerCharts.Utils.htmlForCell(data[1][queryResponse.fields.dimensions[0].name]);
+        // var thirdCell = LookerCharts.Utils.htmlForCell(data[2][queryResponse.fields.dimensions[0].name]);
+        // var fourthCell = LookerCharts.Utils.htmlForCell(data[3][queryResponse.fields.dimensions[0].name]);
+
+        // first4rows.forEach(function(row){
+        //     somelist.push(LookerCharts.Utils.htmlForCell(data[0][queryResponse.fields.dimensions[0].name]););
+        // });
+
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measure_head = queryResponse.fields.measure_like[0].label_short;
-        console.log(firstMeas,secondMeas);
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "activity_container";
-        var measure_list = []
-        measure_list.push(firstMeas,secondMeas,thirdMeas,fourthMeas);
-        var maxofmeasures=Math.max.apply(null, measure_list);
-        var minofmeasures=Math.min.apply(null, measure_list);
-        console.log(maxofmeasures,measure_list,minofmeasures);
+
+
+        // Highcharts config setup //
+
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
@@ -101,6 +126,116 @@ looker.plugins.visualizations.add({
                         order: 1
                     }   
                     }
+
+            // Create a custom series depending on the length of the dataset
+
+            function customSeries () {
+                    var seriesLength = data.length,
+                    variableSeries
+                        if(seriesLength=1) {
+                            variableSeries = {
+                                name: dimension_list[0],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[0]
+                                }]
+                            }   
+                        } else if(seriesLength=2) {
+                            variableSeries = {
+                                name: dimension_list[0],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[0]
+                                }]
+                            },{
+                                name: dimension_list[1],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[1]
+                                }]
+                            }
+                            
+                        } else if(seriesLength=3) {
+                            variableSeries = {
+                                name: dimension_list[0],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[0]
+                                }]
+                            },{
+                                name: dimension_list[1],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[1]
+                                }]
+                            },{
+                                name: dimension_list[2],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[2]
+                                }]
+                            }
+                            
+                        } else {
+                            variableSeries = {
+                                name: dimension_list[0],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[0]
+                                }]
+                            },{
+                                name: dimension_list[1],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[1]
+                                }]
+                            },{
+                                name: dimension_list[2],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[2]
+                                }]
+                            },{
+                                name: dimension_list[3],
+                                marker: {enabled:false},
+                                data: [{
+                                    color: config.color_0,
+                                    radius: '100%',
+                                    innerRadius: '85%',
+                                    y: measure_list[3]
+                                }]
+                            } 
+                        }
+                        return variableSeries;
+            }
+            //
         Highcharts.chart('activity_container', {
 
             chart: {
@@ -208,43 +343,7 @@ looker.plugins.visualizations.add({
                   symbolWidth: 0
                 },
 
-            series: [{
-                name: firstCell,
-                marker: {enabled:false},
-                data: [{
-                    color: config.color_0,
-                    radius: '100%',
-                    innerRadius: '85%',
-                    y: firstMeas
-                }]
-            }, {
-                name: secondCell,
-                marker: {enabled:false},
-                data: [{
-                    color: config.color_1,
-                    radius: '84%',
-                    innerRadius: '70%',
-                    y: secondMeas
-                }]
-            }, {
-                name: thirdCell,
-                marker: {enabled:false},
-                data: [{
-                    color: config.color_2,
-                    radius: '69%',
-                    innerRadius: '55%',
-                    y: thirdMeas
-                }]
-            }, {
-                name: fourthCell,
-                marker: {enabled:false},
-                data: [{
-                    color: config.color_3,
-                    radius: '54%',
-                    innerRadius: '40%',
-                    y: fourthMeas
-                }]
-            }]
+            series: [variableSeries]
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
