@@ -40,7 +40,7 @@ looker.plugins.visualizations.add({
 
         var dimension_list = []
         for(let i=0;i<lengthofdata;i++){
-            dimension_list.push(LookerCharts.Utils.htmlForCell(data[i][queryResponse.fields.dimensions[0].name]));
+            dimension_list.push(LookerCharts.Utils.textForCell(data[i][queryResponse.fields.dimensions[0].name]));
         };
 
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
@@ -340,7 +340,6 @@ looker.plugins.visualizations.add({
             series: varyseries,
             legend: {
                   labelFormatter: function() {
-                    console.log('<span style="color:' + this.data[0].color + '">' + this.data[0].color + this.name + '</span>');
                     return '<span style="color:' + this.data[0].color + '">'  + this.name + '</span>';
                   },
                   enabled: config.legendtoggle,
