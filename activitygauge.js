@@ -236,7 +236,7 @@ looker.plugins.visualizations.add({
                     return variableSeries;
             }
             var varyseries = customSeries(lengthofdata);
-
+            console.log(varyseries);
         Highcharts.chart('activity_container', {
 
             chart: {
