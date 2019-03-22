@@ -137,7 +137,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[0],
                             marker: {enabled:false},
                             color: config.color_0,
-                            data: [{
+                            data: [{color: config.color_0,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[0]
@@ -148,7 +148,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[0],
                             marker: {enabled:false},
                             color: config.color_0,
-                            data: [{
+                            data: [{color: config.color_0,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[0]
@@ -157,7 +157,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[1],
                             marker: {enabled:false},
                             color: config.color_1,
-                            data: [{
+                            data: [{color: config.color_1,
                                 radius: '84%',
                                 innerRadius: '70%',
                                 y: measure_list[1]
@@ -169,7 +169,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[0],
                             marker: {enabled:false},
                             color: config.color_0,
-                            data: [{
+                            data: [{color: config.color_0,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[0]
@@ -178,7 +178,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[1],
                             marker: {enabled:false},
                             color: config.color_1,
-                            data: [{
+                            data: [{color: config.color_1,
                                 radius: '84%',
                                 innerRadius: '70%',
                                 y: measure_list[1]
@@ -187,7 +187,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[2],
                             marker: {enabled:false},
                             color: config.color_2,
-                            data: [{
+                            data: [{color: config.color_2,
                                 radius: '69%',
                                 innerRadius: '55%',
                                 y: measure_list[2]
@@ -199,7 +199,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[0],
                             marker: {enabled:false},
                             color: config.color_0,
-                            data: [{
+                            data: [{color: config.color_0,
                                 radius: '100%',
                                 innerRadius: '85%',
                                 y: measure_list[0]
@@ -208,7 +208,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[1],
                             marker: {enabled:false},
                             color: config.color_1,
-                            data: [{
+                            data: [{color: config.color_1,
                                 radius: '84%',
                                 innerRadius: '70%',
                                 y: measure_list[1]
@@ -217,7 +217,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[2],
                             marker: {enabled:false},
                             color: config.color_2,
-                            data: [{
+                            data: [{color: config.color_2,
                                 radius: '69%',
                                 innerRadius: '55%',
                                 y: measure_list[2]
@@ -226,7 +226,7 @@ looker.plugins.visualizations.add({
                             name: dimension_list[3],
                             marker: {enabled:false},
                             color: config.color_3,
-                            data: [{
+                            data: [{color: config.color_3,
                                 radius: '54%',
                                 innerRadius: '40%',
                                 y: measure_list[3]
@@ -338,8 +338,8 @@ looker.plugins.visualizations.add({
             },
             legend: {
                   labelFormatter: function() {
-                    console.log('<span style="text-weight:bold;color:' + this.color + this + this.data[0] + '">' + this.name + '</span>');
-                    return '<span style="text-weight:bold;color:' + this.color + '">'   + this.name + '</span>';
+                    console.log('<span style="text-weight:bold;color:' + this.color + this + this.data[0].color + '">' + this.color + this.data[0].color + this.name + '</span>');
+                    return '<span style="text-weight:bold;color:' + this.data[0].color + '">' + this.color + this.data[0].color  + this.name + '</span>';
                   },
                   enabled: config.legendtoggle,
                   symbolWidth: 0
