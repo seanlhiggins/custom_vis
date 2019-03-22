@@ -337,7 +337,7 @@ looker.plugins.visualizations.add({
                 }
             },
 
-            series: varyseries.
+            series: varyseries,
             legend: {
                   labelFormatter: function() {
                     console.log('<span style="color:' + this.data[0].color + '">' + this.data[0].color + this.name + '</span>');
