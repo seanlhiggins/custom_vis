@@ -336,16 +336,16 @@ looker.plugins.visualizations.add({
 
                 }
             },
+
+            series: varyseries.
             legend: {
                   labelFormatter: function() {
                     console.log('<span style="color:' + this.data[0].color + '">' + this.data[0].color + this.name + '</span>');
-                    return '<span style="color:' + this.data[0].color + '">'  + 'this.name' + '</span>';
+                    return '<span style="color:' + this.data[0].color + '">'  + this.name + '</span>';
                   },
                   enabled: config.legendtoggle,
                   symbolWidth: 0
-                },
-
-            series: varyseries
+                }
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
         doneRendering()
