@@ -99,7 +99,7 @@ looker.plugins.visualizations.add({
                                 label: 'Legend on/off',
                                 type: 'boolean',
                                 display: 'select',
-                                section: "Style",
+                                section: "Legend",
                                 default: false
                             },
                             dataLabels: {
@@ -109,6 +109,29 @@ looker.plugins.visualizations.add({
                                 section: "Style",
                                 default: false
                             },
+                            legendAlign: {
+                                label: 'Align',
+                                type: 'boolean',
+                                display: 'select',
+                                section: "Legend",
+                                values: [
+                                {"Left": "left"},
+                                {"Right": "right"},
+                                {"Center": "center"}
+                              ],
+                                default: center
+                            },
+                            legendSize: {
+                                label: 'Size',
+                                type: 'number',
+                                display: 'range',
+                                min: 2,
+                                max: 50,
+                                step: .5,
+                                default: 10,
+                                section: "Legend",
+                                default: false
+                            }
                 }
              // Create an option for the first 4 rows in the query
              for(let i=0;i<lengthofdata;i++){
@@ -340,10 +363,12 @@ looker.plugins.visualizations.add({
             series: varyseries,
             legend: {
                   labelFormatter: function() {
-                    return '<span style="color:' + this.data[0].color + '">'  + this.name + '</span>';
+                    return '<span style="font-size:' + config.legendSize + 'color:' + this.data[0].color + '">'  + this.name + '</span>';
                   },
                   enabled: config.legendtoggle,
-                  symbolWidth: 0
+                  symbolWidth: 0,
+                  align: config.legendAlign,
+                  margin: 0
                 }
         });
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
