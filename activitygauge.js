@@ -111,7 +111,7 @@ looker.plugins.visualizations.add({
                             },
                             legendAlign: {
                                 label: 'Align',
-                                type: 'boolean',
+                                type: 'string',
                                 display: 'select',
                                 section: "Legend",
                                 values: [
@@ -363,7 +363,7 @@ looker.plugins.visualizations.add({
             series: varyseries,
             legend: {
                   labelFormatter: function() {
-                    return '<span style="font-size:' + config.legendSize + 'color:' + this.data[0].color + '">'  + this.name + '</span>';
+                    return '<span style="font-size:' + config.legendSize + 'px;color:' + this.data[0].color + '">'  + this.name + '</span>';
                   },
                   enabled: config.legendtoggle,
                   symbolWidth: 0,
