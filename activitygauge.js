@@ -119,7 +119,7 @@ looker.plugins.visualizations.add({
                                 {"Right": "right"},
                                 {"Center": "center"}
                               ],
-                                default: center
+                                default: "center"
                             },
                             legendSize: {
                                 label: 'Size',
