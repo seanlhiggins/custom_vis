@@ -338,7 +338,7 @@ looker.plugins.visualizations.add({
             },
             legend: {
                   labelFormatter: function() {
-                    console.log('<span style="text-weight:bold;color:' + this.data[0].color + this.data+ '">' + this.name + '</span>');
+                    console.log('<span style="text-weight:bold;color:' + this.data[0].color + '">' + this.name + '</span>');
                     return '<span style="text-weight:bold;color:' + this.data[0].color + '">' + this.name + '</span>';
                   },
                   enabled: config.legendtoggle,
