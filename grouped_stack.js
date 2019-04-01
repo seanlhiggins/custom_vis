@@ -220,11 +220,11 @@ Highcharts.chart('grouped_stack', {
   },
     series: [{
         name: 'x',
-        data: [1,8,9,16],
+        data: firstPivotedMeasArray,
                 stack: 'StackA'
     }, {
         name: 'y',
-        data: [1,7,10,15],
+        data: secondPivotedMeasArray,
         stack: 'StackA'
         },{
         name: 'x',
@@ -237,16 +237,16 @@ Highcharts.chart('grouped_stack', {
         },
         {
         name: 'y',
-        data: [4,5,12,13],
-        stack: 'StackC'
-        },
-         {
-           name: '',
-           data: [0,0,0,0,0,0,0,0],
-           showInLegend: false,
-           stack: 'StackB',
-           xAxis: 1            
+        data: [4,5,12,13]
         }
+        // ,
+        //  {
+        //    name: '',
+        //    data: [0,0,0,0,0,0,0,0],
+        //    showInLegend: false,
+        //    stack: 'StackB',
+        //    xAxis: 1            
+        // }
     ]
 });
 
