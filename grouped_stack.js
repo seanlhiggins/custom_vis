@@ -199,31 +199,10 @@ Highcharts.chart('grouped_stack', {
         text: 'Stacked bar chart'
     },
     xAxis: [{
-          name: uniqueDimensionValues[0],
-          categories: uniqueSecondDimensionValues,
-          labels: {
-            rotation: -90,
-            x: -60,
-            style: {
-              fontSize: '10px',
-              align: 'Right',
-            }
-          },
-          tickWidth: 1,
-          tickLength: 60,
-    },
+          categories: uniqueDimensionValues
+      },
     {   
-       categories: uniqueSecondDimensionValues,
-       opposite: false,
-        labels: {
-          rotation: 0,
-          x: 60,
-          style: {
-            fontSize: '10px',
-            align: 'Right',
-          }
-        },
-        tickWidth: 0,
+       categories: uniqueSecondDimensionValues
     }],
     yAxis: {
         min: 0,
