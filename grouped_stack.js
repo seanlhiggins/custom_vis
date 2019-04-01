@@ -76,6 +76,7 @@ looker.plugins.visualizations.add({
         }
         var uniqueDimensionValues = dimensionvalues.filter(onlyUnique)
         var uniqueSecondDimensionValues = seconddimensionvalues.filter(onlyUnique)
+        console.log(uniqueDimensionValues,uniqueSecondDimensionValues)
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
@@ -208,10 +209,10 @@ Highcharts.chart('grouped_stack', {
       }
     },
     categories: [{
-      name: uniqueDimensionValues[0],
+      name: uniqueDimensionValues,
       categories: uniqueSecondDimensionValues
     }, {
-      name: uniqueDimensionValues[1],
+      name: uniqueDimensionValues,
       categories: uniqueSecondDimensionValues
     }]
   },
