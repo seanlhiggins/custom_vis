@@ -195,7 +195,7 @@ looker.plugins.visualizations.add({
 console.log(queryResponse,data);
 
 var list = ["Search","Display"]
-Highcharts.chart('container', {
+Highcharts.chart('grouped_stack', {
   chart: {
     type: 'bar'
   },
