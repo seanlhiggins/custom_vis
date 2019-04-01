@@ -77,6 +77,8 @@ looker.plugins.visualizations.add({
         var uniqueDimensionValues = dimensionvalues.filter(onlyUnique)
         var uniqueSecondDimensionValues = seconddimensionvalues.filter(onlyUnique)
         console.log(uniqueDimensionValues,uniqueSecondDimensionValues)
+        var list = ["Search","Display"]
+
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
@@ -208,12 +210,12 @@ Highcharts.chart('grouped_stack', {
         fontSize: '10px'
       }
     },
-    categories: [{
-      name: 'test',
-      categories: uniqueDimensionValues
+     categories: [{
+      name: list[0],
+      categories: ['Stack A', 'Stack B', 'Stack C']
     }, {
-      name: 'test',
-      categories: uniqueDimensionValues
+      name: 'Case B',
+      categories: ['Stack A', 'Stack B', 'Stack C']
     }]
   },
     yAxis: {
