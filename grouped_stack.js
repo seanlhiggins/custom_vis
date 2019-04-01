@@ -199,7 +199,8 @@ Highcharts.chart('grouped_stack', {
         text: 'Stacked bar chart'
     },
     xAxis: [{
-          categories: uniqueDimensionValues,
+          name: uniqueDimensionValues[0]
+          categories: uniqueSecondDimensionValues,
           labels: {
             rotation: -90,
             x: -60,
@@ -211,7 +212,7 @@ Highcharts.chart('grouped_stack', {
           tickWidth: 1,
           tickLength: 60,
     },
-    {
+    {   
        categories: uniqueSecondDimensionValues,
        opposite: false,
         labels: {
