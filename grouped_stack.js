@@ -198,12 +198,23 @@ Highcharts.chart('grouped_stack', {
     title: {
         text: 'Stacked bar chart'
     },
-    xAxis: [{
-          categories: uniqueDimensionValues
-      },
-    {   
-       categories: uniqueSecondDimensionValues 
-    }],
+    xAxis: {
+    labels: {
+      rotation: 0,
+      x: -8,
+      align: 'right',
+      style: {
+        fontSize: '10px'
+      }
+    },
+    categories: [{
+      name: uniqueDimensionValues[0],
+      categories: uniqueSecondDimensionValues
+    }, {
+      name: uniqueDimensionValues[1],
+      categories: uniqueSecondDimensionValues
+    }]
+  },
     yAxis: {
         min: 0,
         title: {
@@ -245,7 +256,7 @@ Highcharts.chart('grouped_stack', {
            data: [0,0,0,0,0,0,0,0],
            showInLegend: false,
            stack: 'StackB',
-           xAxis: 2            
+           xAxis: 1            
         }
     ]
 });
