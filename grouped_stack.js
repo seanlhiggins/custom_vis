@@ -255,6 +255,11 @@ Highcharts.chart('grouped_stack', {
         data: [4,5,12,13],
         stack: 'StackB'
         },
+        {
+        name: 'y',
+        data: [4,5,12,13],
+        stack: 'StackC'
+        },
          {
            name: '',
            data: [0,0,0,0,0,0,0,0],
