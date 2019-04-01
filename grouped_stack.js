@@ -21,10 +21,10 @@ looker.plugins.visualizations.add({
         var firstnrows = data.slice(0,numDimensions);
        // A bunch of arrays to store the measure value for passing into the series later
         var firstMeasArray = [];
-        for(let i=0;i<numDimensions;i++){
-            firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
-        }
-        var w = window;
+        // for(let i=0;i<numDimensions;i++){
+        //     firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
+        // }
+        // var w = window;
 
             
         var somelist = []
@@ -34,13 +34,13 @@ looker.plugins.visualizations.add({
         });
         // console.log(somelist);
 
-        for(let i=3;i<numMeasures;i++){
-            w["arr_"+i] = [];
-            firstnrows.forEach(function(measurevalue){
-            w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
-            // console.log(w["arr_"+i]);
+        // for(let i=3;i<numMeasures;i++){
+        //     w["arr_"+i] = [];
+        //     firstnrows.forEach(function(measurevalue){
+        //     w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
+        //     // console.log(w["arr_"+i]);
 
-        });
+        // });
     }
         // console.log(w["arr_1"]);
 
@@ -111,23 +111,7 @@ looker.plugins.visualizations.add({
                               display: 'range'
                             },
 
-                            pieSize: {
-                              label: 'Pie Size',
-                              min: 50,
-                              max: 100,
-                              step: 1,
-                              default: 100,
-                              section: 'Pie Style',
-                              type: 'number',
-                              display: 'range'
-                            },
-                            pieLegend: {
-                                label: 'Pie Legend on/off',
-                                type: 'boolean',
-                                display: 'select',
-                                section: "Pie Style",
-                                default: true
-                            },
+                            
                             textLabel: {
                               type: 'string',
                               label: 'Subtitle',
@@ -215,16 +199,17 @@ looker.plugins.visualizations.add({
 
 Highcharts.chart('grouped_stack', {
         chart: {
-            type: 'column'
+            type: 'bar',
+            inverted: true
         },
 
         xAxis: {
-            categories: ['One', 'Two', 'Three', 'Four', 'Five']
+            categories: dimensionvalues
         },
 
         plotOptions: {
             column: {
-                stacking: 'normal'
+                stacking: 'normal' //add in config option for percent stacking
             }
         },
 
@@ -233,19 +218,19 @@ Highcharts.chart('grouped_stack', {
             {
                 data: [29.9, 71.5, 106.4, 129.2, 144.0],
                 stack: 0,
-                name: 'Cars',
+                name: measurenames[0],
                 tooltip: {
                     pointFormatter: function() {
-                        return this.series.name + ' (North): <b>' + this.y + '</b>';
+                        return this.series.name ;
                     }
                 }
             }, {
                 data: [30, 176.0, 135.6, 148.5, 216.4],
                 stack: 0,
-                name: 'Trucks',
+                name: measurenames[0],
                 tooltip: {
                     pointFormatter: function() {
-                        return this.series.name + ' (North): <b>' + this.y + '</b>';
+                        return this.series.name ;
                     }
                 }
             // second stack
@@ -253,13 +238,13 @@ Highcharts.chart('grouped_stack', {
                 data: [106.4, 129.2, 144.0, 29.9, 71.5],
                 stack: 1,
                 colorIndex: 0,
-                name: 'Cars (South)',
+                name: measurenames[0],
                 linkedTo: 'Cars'
             }, {
                 data: [148.5, 216.4, 30, 176.0, 135.6],
                 stack: 1,
                 colorIndex: 1,
-                name: 'Trucks (South)',
+                name: measurenames[0],
                 linkedTo: 'Trucks'
             }
         ]
