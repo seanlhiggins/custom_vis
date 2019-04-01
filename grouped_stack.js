@@ -30,7 +30,10 @@ looker.plugins.visualizations.add({
        data.forEach(function(value){
         dimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[0].name]));
        });
-
+        var seconddimensionvalues = []
+       data.forEach(function(value){
+        seconddimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[1].name]));
+       });
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measurenames = []
        queryResponse.fields.measure_like.forEach(function(value){
@@ -191,7 +194,13 @@ Highcharts.chart('grouped_stack', {
         },
 
         xAxis: {
-            categories: dimensionvalues
+            categories: [{
+                name:dimensionvalues[0],
+                categories: seconddimensionvalues
+            },{name:dimensionvalues[1],
+                categories: seconddimensionvalues
+            }
+            }]
         },
 
         plotOptions: {
