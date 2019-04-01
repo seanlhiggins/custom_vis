@@ -186,7 +186,7 @@ console.log(queryResponse,data);
 
 Highcharts.chart('grouped_stack', {
         chart: {
-            type: 'bar',
+            type: 'column',
             inverted: true
         },
 
@@ -205,21 +205,12 @@ Highcharts.chart('grouped_stack', {
             {
                 data: firstPivotedMeasArray,
                 stack: 0,
-                name: pivot_list[0],
-                tooltip: {
-                    pointFormatter: function() {
-                        return this.series.name ;
-                    }
-                }
+                name: pivot_list[0]
+                
             }, {
                 data: secondPivotedMeasArray,
                 stack: 0,
-                name: measurenames[0],
-                tooltip: {
-                    pointFormatter: function() {
-                        return this.series.name ;
-                    }
-                }
+                name: pivot_list[1]
             // second stack
             }, {
                 data: [106.4, 129.2, 144.0, 29.9, 71.5],
