@@ -40,7 +40,7 @@ looker.plugins.visualizations.add({
         var pivot_length = queryResponse.pivots.length
         console.log(pivot_length);
         var pivot_list=[] // need to get from the data by 
-
+        var measureLength = queryReponse.fields.measure_like.length
         // pivot values
         for(let i=0;i<pivot_length;i++){
             pivot_list.push([queryResponse.pivots[i].key])
@@ -116,7 +116,7 @@ looker.plugins.visualizations.add({
 
             
              // Create an option for the first n rows in the query
-             for(let i=0;i<=3;i++){
+             for(let i=0;i<=measureLength;i++){
 
                     var field = queryResponse.fields.measure_like[i].label_short;
                     id = "color_" + i
