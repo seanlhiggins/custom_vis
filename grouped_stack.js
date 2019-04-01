@@ -32,7 +32,7 @@ looker.plugins.visualizations.add({
        });
         var seconddimensionvalues = []
        data.forEach(function(value){
-        seconddimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[1].name]));
+        seconddimensionvalues.push(LookerCharts.Utils.textForCell(value[queryResponse.fields.dimensions[1].name]));
        });
        console.log(seconddimensionvalues);
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
@@ -71,6 +71,9 @@ looker.plugins.visualizations.add({
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "grouped_stack";
+        function onlyUnique(value, index, self) { 
+            return self.indexOf(value) === index;
+        }
 
 
         Highcharts.setOptions({
@@ -195,7 +198,7 @@ Highcharts.chart('grouped_stack', {
         },
 
         xAxis: [{
-          categories: dimensionvalues,
+          categories: dimensionvalues.filter(onlyUnique),
           labels: {
             rotation: -90,
             x: -60,
