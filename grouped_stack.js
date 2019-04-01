@@ -43,17 +43,17 @@ looker.plugins.visualizations.add({
 
         // pivot values
         for(let i=0;i<pivot_length;i++){
-            pivot_list.push([queryResponse.pivots[i].key.name])
+            pivot_list.push([queryResponse.pivots[i].key])
         };
         console.log(pivot_list);
         var firstPivotedMeasArray = [];
         for(let i=0;i<numDimensions;i++){
-            firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]].value * 10) / 10)
+            firstPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]].value * 10) / 10)
         }
         console.log(firstPivotedMeasArray);
         var secondPivotedMeasArray = [];
         for(let i=0;i<numDimensions;i++){
-            firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[1]].value * 10) / 10)
+            secondPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[1]].value * 10) / 10)
         }
         console.log(firstPivotedMeasArray);
        // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
