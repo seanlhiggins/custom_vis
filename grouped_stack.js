@@ -195,7 +195,7 @@ looker.plugins.visualizations.add({
                         return yAxisCustomised;
             }
             var yAxisCustom = customYAxis(config.measureaxis_0);
-            console.log(yAxisCustom);
+console.log(queryResponse,data);
 
 Highcharts.chart('grouped_stack', {
         chart: {
