@@ -28,7 +28,7 @@ looker.plugins.visualizations.add({
        // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
        var dimensionvalues = []
        data.forEach(function(value){
-        dimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[0].name]));
+        dimensionvalues.push(LookerCharts.Utils.textForCell(value[queryResponse.fields.dimensions[0].name]));
        });
         var seconddimensionvalues = []
        data.forEach(function(value){
