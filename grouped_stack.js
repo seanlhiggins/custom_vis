@@ -239,24 +239,17 @@ Highcharts.chart('grouped_stack', {
         stack: 'StackA'
         },{
         name: 'x',
-        data: [3,6,11,14],
+        data: secondPivotedMeasArray,
                 stack: 'StackB'
     }, {
         name: 'y',
-        data: [4,5,12,13],
+        data: secondPivotedMeasArray,
         stack: 'StackB'
         },
         {
         name: 'y',
-        data: [4,5,12,13]
-        }
-        ,
-         {
-           name: '',
-           data: [0,0,0,0,0,0,0,0],
-           showInLegend: false,
-           stack: 'StackB',
-           xAxis: 1            
+        data: secondPivotedMeasArray
+        stack: 'StackC'
         }
     ]
 });
