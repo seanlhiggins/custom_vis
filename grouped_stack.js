@@ -34,6 +34,7 @@ looker.plugins.visualizations.add({
        data.forEach(function(value){
         seconddimensionvalues.push(LookerCharts.Utils.htmlForCell(value[queryResponse.fields.dimensions[1].name]));
        });
+       console.log(seconddimensionvalues);
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measurenames = []
        queryResponse.fields.measure_like.forEach(function(value){
@@ -199,7 +200,7 @@ Highcharts.chart('grouped_stack', {
             rotation: -90,
             x: -60,
             style: {
-              fontSize: '10px',
+              fontSize: '5px',
               align: 'Right',
             }
           },
