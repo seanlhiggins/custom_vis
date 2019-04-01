@@ -194,14 +194,15 @@ looker.plugins.visualizations.add({
             var yAxisCustom = customYAxis(config.measureaxis_0);
 console.log(queryResponse,data);
 
-Highcharts.chart('grouped_stack', {
-    chart: {
-        type: 'bar'
-    },
-    title: {
-        text: 'Stacked bar chart'
-    },
-    xAxis: {
+var list = ["Search","Display"]
+Highcharts.chart('container', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: 'Stacked bar chart'
+  },
+  xAxis: {
     labels: {
       rotation: 0,
       x: -8,
@@ -210,52 +211,52 @@ Highcharts.chart('grouped_stack', {
         fontSize: '10px'
       }
     },
-     categories: [{
-      name: 'Case A',
+    categories: [{
+      name: list[0],
       categories: ['Stack A', 'Stack B', 'Stack C']
     }, {
       name: 'Case B',
       categories: ['Stack A', 'Stack B', 'Stack C']
     }]
   },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'x-axis'
-        }
-    },
-    legend: {
-        reversed: true
-    },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'x-axis'
+    }
+  },
+  legend: {
+    reversed: false
+  },
   plotOptions: {
     bar: {
       stacking: 'normal'
     }
   },
-    series: [{
-        name: 'x',
-        data: firstPivotedMeasArray,
-                stack: 'StackA'
-    }, {
-        name: 'y',
-        data: secondPivotedMeasArray,
-        stack: 'StackA'
-        },{
-        name: 'x',
-        data: secondPivotedMeasArray,
-                stack: 'StackB'
-    }, {
-        name: 'y',
-        data: secondPivotedMeasArray,
-        stack: 'StackB'
-        },
-        {
-        name: 'y',
-        data: secondPivotedMeasArray,
-        stack: 'StackC'
-        }
-    ]
+  series: [{
+    name: 'x',
+    data: [5, 3, 4, 5, 6]
+  }, {
+    name: 'y',
+    data: [5, 3, 4, 5, 6]
+  }, {
+    name: 'x',
+    data: [5, 3, 4, 5, 6]
+  }, {
+    name: 'y',
+    data: [5, 3, 4, 5, 6]
+  },
+  {
+    name: 'y',
+    data: [5, 3, 4, 5, 6]
+  },
+  
+  {
+    name: 'y',
+    data: [5, 3, 4, 5, 6]
+  }]
 });
+
 
 
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
