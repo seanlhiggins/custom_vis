@@ -20,42 +20,11 @@ looker.plugins.visualizations.add({
 
         var firstnrows = data.slice(0,numDimensions);
        // A bunch of arrays to store the measure value for passing into the series later
-        var firstMeasArray = [];
-        // for(let i=0;i<numDimensions;i++){
-        //     firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name].value * 10) / 10)
-        // }
-        // var w = window;
 
-            
-        var somelist = []
-        firstnrows.forEach(function(row){
-            somelist.push(row[queryResponse.fields.measure_like[0].name].value);
+ 
 
-        });
-        // console.log(somelist);
 
-        // for(let i=3;i<numMeasures;i++){
-        //     w["arr_"+i] = [];
-        //     firstnrows.forEach(function(measurevalue){
-        //     w["arr_"+i].push(Math.round(measurevalue[queryResponse.fields.measure_like[i].name].value * 10)/10)
-        //     // console.log(w["arr_"+i]);
 
-        // });
-    // }
-        // console.log(w["arr_1"]);
-
-        var secondMeasArray = [];
-        for(let i=0;i<numDimensions;i++){
-            secondMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[1].name].value * 10) / 10)
-        }
-        var thirdMeasArray = [];
-        for(let i=0;i<numDimensions;i++){
-            thirdMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[2].name].value * 10) / 10)
-        }
-        var fourthMeasArray = [];
-        for(let i=0;i<numDimensions;i++){
-            fourthMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[3].name].value * 10) / 10)
-        }
        // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
        var dimensionvalues = []
        data.forEach(function(value){
@@ -67,7 +36,21 @@ looker.plugins.visualizations.add({
        queryResponse.fields.measure_like.forEach(function(value){
         measurenames.push(value.label_short);
        });
+        var pivot_title = queryResponse.fields.pivots[0].label_short;
+        var pivot_length = queryResponse.pivots.length
+        console.log(pivot_length);
+        var pivot_list=[] // need to get from the data by 
 
+        // pivot values
+        for(let i=0;i<pivot_length;i++){
+            pivot_list.push([queryResponse.pivots.key[i].name])
+        };
+        console.log(pivot_list);
+        var firstPivotedMeasArray = [];
+        for(let i=0;i<numDimensions;i++){
+            firstMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]].value * 10) / 10)
+        }
+        console.log(firstPivotedMeasArray);
 
        // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
 
