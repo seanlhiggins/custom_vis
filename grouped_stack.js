@@ -192,17 +192,19 @@ looker.plugins.visualizations.add({
 console.log(queryResponse,data);
 
 Highcharts.chart('grouped_stack', {
-        chart: {
-            type: 'bar'
-        },
-
-        xAxis: [{
-          categories: dimensionvalues.filter(onlyUnique),
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Stacked bar chart'
+    },
+    xAxis: [{
+          categories: ["Case A", "Case B","Case C", "Case D"],
           labels: {
             rotation: -90,
             x: -60,
             style: {
-              fontSize: '5px',
+              fontSize: '10px',
               align: 'Right',
             }
           },
@@ -210,7 +212,7 @@ Highcharts.chart('grouped_stack', {
           tickLength: 60,
     },
     {
-       categories: seconddimensionvalues,
+       categories: ['Male', 'Female','Male', 'Female','Male', 'Female','Male', 'Female'],
        opposite: false,
         labels: {
           rotation: 0,
@@ -222,40 +224,46 @@ Highcharts.chart('grouped_stack', {
         },
         tickWidth: 0,
     }],
-
-        plotOptions: {
-            column: {
-                stacking: 'normal' //add in config option for percent stacking
-            }
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'x-axis'
+        }
+    },
+    legend: {
+        reversed: true
+    },
+  plotOptions: {
+    bar: {
+      stacking: 'normal'
+    }
+  },
+    series: [{
+        name: 'x',
+        data: [1,8,9,16],
+				stack: 'StackA'
+    }, {
+        name: 'y',
+        data: [1,7,10,15],
+        stack: 'StackA'
+        },{
+        name: 'x',
+        data: [3,6,11,14],
+				stack: 'StackB'
+    }, {
+        name: 'y',
+        data: [4,5,12,13],
+        stack: 'StackB'
         },
-
-        series: [
-        // first stack
-            {
-                data: firstPivotedMeasArray,
-                stack: 0,
-                name: pivot_list[0]
-                
-            }, {
-                data: secondPivotedMeasArray,
-                stack: 0,
-                name: pivot_list[1]
-            // second stack
-            }, {
-                data: [106.4, 129.2, 144.0, 29.9, 71.5],
-                stack: 1,
-                colorIndex: 0,
-                name: measurenames[0],
-                linkedTo: 'Cars'
-            }, {
-                data: [148.5, 216.4, 30, 176.0, 135.6],
-                stack: 1,
-                colorIndex: 1,
-                name: measurenames[0],
-                linkedTo: 'Trucks'
-            }
-        ]
-    });
+         {
+           name: '',
+           data: [0,0,0,0,0,0,0,0],
+           showInLegend: false,
+           stack: 'StackB',
+           xAxis: 1            
+        }
+    ]
+});
 
 
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
