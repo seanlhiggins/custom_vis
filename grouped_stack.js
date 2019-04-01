@@ -202,7 +202,7 @@ Highcharts.chart('grouped_stack', {
           categories: uniqueSecondDimensionValues
       },
     {   
-       categories: uniqueDimensionValues + uniqueDimensionValues + uniqueDimensionValues
+       categories: uniqueDimensionValues 
     }],
     yAxis: {
         min: 0,
