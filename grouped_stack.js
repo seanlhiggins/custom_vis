@@ -55,7 +55,7 @@ looker.plugins.visualizations.add({
         for(let i=0;i<numDimensions;i++){
             secondPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[1]].value * 10) / 10)
         }
-        console.log(firstPivotedMeasArray);
+        console.log(secondPivotedMeasArray);
        // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
 
         function getSum(total, num) {
@@ -203,16 +203,16 @@ Highcharts.chart('grouped_stack', {
         series: [
         // first stack
             {
-                data: [29.9, 71.5, 106.4, 129.2, 144.0],
+                data: firstPivotedMeasArray,
                 stack: 0,
-                name: measurenames[0],
+                name: pivot_list[0],
                 tooltip: {
                     pointFormatter: function() {
                         return this.series.name ;
                     }
                 }
             }, {
-                data: [30, 176.0, 135.6, 148.5, 216.4],
+                data: secondPivotedMeasArray,
                 stack: 0,
                 name: measurenames[0],
                 tooltip: {
