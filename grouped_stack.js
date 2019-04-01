@@ -38,24 +38,24 @@ looker.plugins.visualizations.add({
        });
         var pivot_title = queryResponse.fields.pivots[0].label_short;
         var pivot_length = queryResponse.pivots.length
-        console.log(pivot_length);
+
         var pivot_list=[] // need to get from the data by 
         var measureLength = queryResponse.fields.measure_like.length
         // pivot values
         for(let i=0;i<pivot_length;i++){
             pivot_list.push([queryResponse.pivots[i].key])
         };
-        console.log(pivot_list);
+
         var firstPivotedMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             firstPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]].value * 10) / 10)
         }
-        console.log(firstPivotedMeasArray);
+
         var secondPivotedMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             secondPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[1]].value * 10) / 10)
         }
-        console.log(secondPivotedMeasArray);
+
        // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
 
         function getSum(total, num) {
@@ -115,47 +115,47 @@ looker.plugins.visualizations.add({
                 }
 
             
-             // Create an option for the first n rows in the query
-             for(let i=0;i<=measureLength;i++){
+             // Create an option for the first n rows in the query, commented out for now until the final vis is fixed
+             // for(let i=0;i<=1;i++){
 
-                    var field = queryResponse.fields.measure_like[i].label_short;
-                    id = "color_" + i
-                    options[id] =
-                    {
-                        label: field,
-                        default: Highcharts.getOptions().colors[i],
-                        section: "Pie Style",
-                        type: "string",
-                        display: "color",
-                        display_size: "half",
-                        order: 1
-                    }
-                    measChartTypeId = "charttype_" + i
-                      options[measChartTypeId] =
-                    {
-                              type: "string",
-                              label: field + " Style",
-                              values: [
-                                {"Column": "column"},
-                                {"Line": "spline"}
-                              ],
-                              display: "select",
-                              default: "column",
-                              section: "Style",
-                              display_size:"half",
-                              order: 2
-                            }
-                    measAxisId = "measureaxis_" + i                    
-                    options[measAxisId] =
-                    {
-                              type: "boolean",
-                              label: field + " Axis",
-                              display: "select",
-                              default: "column",
-                              section: "Style",
-                              order: 3
-                            }
-                    }
+             //        var field = queryResponse.fields.measure_like[i].label_short;
+             //        id = "color_" + i
+             //        options[id] =
+             //        {
+             //            label: field,
+             //            default: Highcharts.getOptions().colors[i],
+             //            section: "Pie Style",
+             //            type: "string",
+             //            display: "color",
+             //            display_size: "half",
+             //            order: 1
+             //        }
+             //        measChartTypeId = "charttype_" + i
+             //          options[measChartTypeId] =
+             //        {
+             //                  type: "string",
+             //                  label: field + " Style",
+             //                  values: [
+             //                    {"Column": "column"},
+             //                    {"Line": "spline"}
+             //                  ],
+             //                  display: "select",
+             //                  default: "column",
+             //                  section: "Style",
+             //                  display_size:"half",
+             //                  order: 2
+             //                }
+             //        measAxisId = "measureaxis_" + i                    
+             //        options[measAxisId] =
+             //        {
+             //                  type: "boolean",
+             //                  label: field + " Axis",
+             //                  display: "select",
+             //                  default: "column",
+             //                  section: "Style",
+             //                  order: 3
+             //                }
+             //        }
 
                     function customYAxis (x) {
                     var AxisOn = x,
