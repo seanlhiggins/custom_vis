@@ -209,11 +209,11 @@ Highcharts.chart('grouped_stack', {
       }
     },
     categories: [{
-      name: uniqueDimensionValues,
-      categories: uniqueSecondDimensionValues
+      name: 'test',
+      categories: seconddimensionvalues
     }, {
-      name: uniqueDimensionValues,
-      categories: uniqueSecondDimensionValues
+      name: 'test',
+      categories: seconddimensionvalues
     }]
   },
     yAxis: {
