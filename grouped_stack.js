@@ -248,7 +248,7 @@ Highcharts.chart('grouped_stack', {
         },
         {
         name: 'y',
-        data: secondPivotedMeasArray
+        data: secondPivotedMeasArray,
         stack: 'StackC'
         }
     ]
