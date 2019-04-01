@@ -193,8 +193,7 @@ console.log(queryResponse,data);
 
 Highcharts.chart('grouped_stack', {
         chart: {
-            type: 'column',
-            inverted: true
+            type: 'bar'
         },
 
         xAxis: [{
