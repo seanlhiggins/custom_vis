@@ -239,14 +239,14 @@ Highcharts.chart('grouped_stack', {
         name: 'y',
         data: [4,5,12,13]
         }
-        // ,
-        //  {
-        //    name: '',
-        //    data: [0,0,0,0,0,0,0,0],
-        //    showInLegend: false,
-        //    stack: 'StackB',
-        //    xAxis: 1            
-        // }
+        ,
+         {
+           name: '',
+           data: [0,0,0,0,0,0,0,0],
+           showInLegend: false,
+           stack: 'StackB',
+           xAxis: 2            
+        }
     ]
 });
 
