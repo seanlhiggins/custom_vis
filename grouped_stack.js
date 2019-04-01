@@ -210,10 +210,10 @@ Highcharts.chart('grouped_stack', {
     },
     categories: [{
       name: 'test',
-      categories: seconddimensionvalues
+      categories: uniqueDimensionValues
     }, {
       name: 'test',
-      categories: seconddimensionvalues
+      categories: uniqueDimensionValues
     }]
   },
     yAxis: {
