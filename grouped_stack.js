@@ -200,7 +200,7 @@ Highcharts.chart('grouped_stack', {
             },{name:dimensionvalues[1],
                 categories: seconddimensionvalues
             }
-            }]
+            ]
         },
 
         plotOptions: {
