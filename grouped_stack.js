@@ -74,8 +74,8 @@ looker.plugins.visualizations.add({
         function onlyUnique(value, index, self) { 
             return self.indexOf(value) === index;
         }
-
-
+        var uniqueDimensionValues = dimensionvalues.filter(onlyUnique)
+        var uniqueSecondDimensionValues = seconddimensionvalues.filter(onlyUnique)
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
@@ -191,7 +191,7 @@ looker.plugins.visualizations.add({
             var yAxisCustom = customYAxis(config.measureaxis_0);
 console.log(queryResponse,data);
 
-Highcharts.chart('grouped_stack', {
+Highcharts.chart('container', {
     chart: {
         type: 'bar'
     },
@@ -199,7 +199,7 @@ Highcharts.chart('grouped_stack', {
         text: 'Stacked bar chart'
     },
     xAxis: [{
-          categories: ["Case A", "Case B","Case C", "Case D"],
+          categories: uniqueDimensionValues,
           labels: {
             rotation: -90,
             x: -60,
@@ -212,7 +212,7 @@ Highcharts.chart('grouped_stack', {
           tickLength: 60,
     },
     {
-       categories: ['Male', 'Female','Male', 'Female','Male', 'Female','Male', 'Female'],
+       categories: uniqueSecondDimensionValues,
        opposite: false,
         labels: {
           rotation: 0,
@@ -241,7 +241,7 @@ Highcharts.chart('grouped_stack', {
     series: [{
         name: 'x',
         data: [1,8,9,16],
-				stack: 'StackA'
+                stack: 'StackA'
     }, {
         name: 'y',
         data: [1,7,10,15],
@@ -249,7 +249,7 @@ Highcharts.chart('grouped_stack', {
         },{
         name: 'x',
         data: [3,6,11,14],
-				stack: 'StackB'
+                stack: 'StackB'
     }, {
         name: 'y',
         data: [4,5,12,13],
