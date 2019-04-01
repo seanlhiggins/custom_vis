@@ -41,7 +41,7 @@ looker.plugins.visualizations.add({
         //     // console.log(w["arr_"+i]);
 
         // });
-    }
+    // }
         // console.log(w["arr_1"]);
 
         var secondMeasArray = [];
