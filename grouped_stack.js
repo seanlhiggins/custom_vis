@@ -193,23 +193,32 @@ Highcharts.chart('grouped_stack', {
             inverted: true
         },
 
-        xAxis: {
-            labels: {
-              rotation: 0,
-              x: -8,
-              align: 'right',
-              style: {
-                fontSize: '10px'
-              }
-            },
-            categories: [{
-              name: 'Case A',
-              categories: dimensionvalues
-            }, {
-              name: 'Case B',
-              categories: dimensionvalues
-            }]
+        xAxis: [{
+          categories: dimensionvalues,
+          labels: {
+            rotation: -90,
+            x: -60,
+            style: {
+              fontSize: '10px',
+              align: 'Right',
+            }
           },
+          tickWidth: 1,
+          tickLength: 60,
+    },
+    {
+       categories: seconddimensionvalues,
+       opposite: false,
+        labels: {
+          rotation: 0,
+          x: 60,
+          style: {
+            fontSize: '10px',
+            align: 'Right',
+          }
+        },
+        tickWidth: 0,
+    }],
 
         plotOptions: {
             column: {
