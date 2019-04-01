@@ -211,7 +211,7 @@ Highcharts.chart('grouped_stack', {
       }
     },
      categories: [{
-      name: list[0],
+      name: 'Case A',
       categories: ['Stack A', 'Stack B', 'Stack C']
     }, {
       name: 'Case B',
