@@ -40,7 +40,7 @@ looker.plugins.visualizations.add({
         var pivot_length = queryResponse.pivots.length
         console.log(pivot_length);
         var pivot_list=[] // need to get from the data by 
-        var measureLength = queryReponse.fields.measure_like.length
+        var measureLength = queryResponse.fields.measure_like.length
         // pivot values
         for(let i=0;i<pivot_length;i++){
             pivot_list.push([queryResponse.pivots[i].key])
