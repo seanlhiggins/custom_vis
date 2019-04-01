@@ -199,10 +199,10 @@ Highcharts.chart('grouped_stack', {
         text: 'Stacked bar chart'
     },
     xAxis: [{
-          categories: uniqueSecondDimensionValues
+          categories: uniqueDimensionValues
       },
     {   
-       categories: uniqueDimensionValues 
+       categories: uniqueSecondDimensionValues 
     }],
     yAxis: {
         min: 0,
