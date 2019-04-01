@@ -1,10 +1,13 @@
+/*
+Looker Vis Components:
+*/
 looker.plugins.visualizations.add({
     create: function(element, config){
-        element.innerHTML = "<div id='stack_group'></div>";
+        element.innerHTML = "<div id='grouped_stack'></div>";
     },
     updateAsync: function(data, element, config, queryResponse, details, doneRendering){
         var html = `<style>
-            #stack_group {
+            #grouped_stack {
             margin: 0 auto;
             min-width: 310px;
             height: 400px;
@@ -38,7 +41,7 @@ looker.plugins.visualizations.add({
             // console.log(w["arr_"+i]);
 
         });
-    
+    }
         // console.log(w["arr_1"]);
 
         var secondMeasArray = [];
@@ -76,16 +79,147 @@ looker.plugins.visualizations.add({
        
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
-        container.id = "stack_group";
-    }
-    Highcharts.chart('stack_group', {
+        container.id = "grouped_stack";
 
+
+        Highcharts.setOptions({
+            colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+        });
+                options = {
+                            font_style: {
+                              type: "string",
+                              label: "Font Style",
+                              values: [
+                                {"Looker": "Helvetica"},
+                                {"Impact": "Impact"},
+                                {"Arial": "Arial"}
+                              ],
+                              display: "select",
+                              default: "Looker",
+                              section: "Style",
+                              order: 2
+                            },
+
+                            textSize: {
+                              label: 'Text Size',
+                              min: 2,
+                              max: 50,
+                              step: .5,
+                              default: 15,
+                              section: 'Style',
+                              type: 'number',
+                              display: 'range'
+                            },
+
+                            pieSize: {
+                              label: 'Pie Size',
+                              min: 50,
+                              max: 100,
+                              step: 1,
+                              default: 100,
+                              section: 'Pie Style',
+                              type: 'number',
+                              display: 'range'
+                            },
+                            pieLegend: {
+                                label: 'Pie Legend on/off',
+                                type: 'boolean',
+                                display: 'select',
+                                section: "Pie Style",
+                                default: true
+                            },
+                            textLabel: {
+                              type: 'string',
+                              label: 'Subtitle',
+                              placeholder: 'Add a label or description',
+                              section: 'Style'
+                            },
+                            legendtoggle: {
+                                label: 'Legend on/off',
+                                type: 'boolean',
+                                display: 'select',
+                                section: "Style",
+                                default: true
+                            }
+                }
+
+            
+             // Create an option for the first n rows in the query
+             for(let i=0;i<=3;i++){
+
+                    var field = queryResponse.fields.measure_like[i].label_short;
+                    id = "color_" + i
+                    options[id] =
+                    {
+                        label: field,
+                        default: Highcharts.getOptions().colors[i],
+                        section: "Pie Style",
+                        type: "string",
+                        display: "color",
+                        display_size: "half",
+                        order: 1
+                    }
+                    measChartTypeId = "charttype_" + i
+                      options[measChartTypeId] =
+                    {
+                              type: "string",
+                              label: field + " Style",
+                              values: [
+                                {"Column": "column"},
+                                {"Line": "spline"}
+                              ],
+                              display: "select",
+                              default: "column",
+                              section: "Style",
+                              display_size:"half",
+                              order: 2
+                            }
+                    measAxisId = "measureaxis_" + i                    
+                    options[measAxisId] =
+                    {
+                              type: "boolean",
+                              label: field + " Axis",
+                              display: "select",
+                              default: "column",
+                              section: "Style",
+                              order: 3
+                            }
+                    }
+
+                    function customYAxis (x) {
+                    var AxisOn = x,
+                        yAxisCustomised;
+                
+                        if(AxisOn=false) {
+                            yAxisCustomised = {
+                                    title: {
+                                        text: measurenames[0]
+                                    }
+                                }
+                        } else {
+                             yAxisCustomised = [{
+                                    title: {
+                                        text: measurenames[0]
+                                    }
+                             },{
+                                 title: {
+                                        text: 'Values'
+                                    },
+                                 opposite:true
+                             }]
+                        }
+                        return yAxisCustomised;
+            }
+            var yAxisCustom = customYAxis(config.measureaxis_0);
+            console.log(yAxisCustom);
+
+Highcharts.chart('grouped_stack', {
         chart: {
             type: 'column'
         },
 
         xAxis: {
-            categories: dimensionvalues
+            categories: ['One', 'Two', 'Three', 'Four', 'Five']
         },
 
         plotOptions: {
@@ -128,6 +262,12 @@ looker.plugins.visualizations.add({
                 name: 'Trucks (South)',
                 linkedTo: 'Trucks'
             }
-        ]});
-            doneRendering()
-};
+        ]
+    });
+
+
+        this.trigger('registerOptions', options) // register options with parent page to update visConfig
+
+        doneRendering()
+    }
+});
