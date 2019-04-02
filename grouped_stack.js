@@ -84,7 +84,7 @@ looker.plugins.visualizations.add({
         var countUniqueDims = countUnique(dimensionvalues);
         var countUniqueSecondims = countUnique(seconddimensionvalues);
         var pivoted_measure_skip_rows = []
-        for(let j=0, j<uniqueDimensionValues.length,j+countUniqueSecondims){
+        for(let j=0; j<uniqueDimensionValues.length;j+=countUniqueSecondims){
             pivoted_measure_skip_rows.push(firstPivotedMeasArray[j])
         }
         console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
