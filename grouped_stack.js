@@ -112,7 +112,7 @@ looker.plugins.visualizations.add({
         }
         console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
         Highcharts.setOptions({
-            colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+            colors: ['#F62366', '#9DFF02']
         });
                 options = {
                             font_style: {
@@ -249,7 +249,7 @@ Highcharts.chart('grouped_stack', {
     yAxis: {
         min: 0,
         title: {
-            text: 'x-axis'
+            text: measurenames[0]
         }
     },
     legend: {
@@ -262,27 +262,33 @@ Highcharts.chart('grouped_stack', {
   },
     series: [{
         name: uniqueSecondDimensionValues[0],
+        id: 's1',
         data: pivoted_measure_skip_rows,
                 stack: 'StackA'
     }, {
+        id: 's2',
         name: uniqueSecondDimensionValues[0],
         data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
+        linked_to: 's1',
         name: uniqueSecondDimensionValues[1],
         data: pivoted_measure_skip_rows_1,
                 stack: 'StackB'
     }, {
+        linked_to: 's2',
         name: uniqueSecondDimensionValues[1],
         data: pivoted_second_measure_skip_rows_1,
         stack: 'StackB'
         },
         {
+        linked_to: 's1',
         name: uniqueSecondDimensionValues[2],
         data: pivoted_measure_skip_rows_2,
         stack: 'StackC'
         },
         {
+        linked_to: 's2',
         name: uniqueSecondDimensionValues[2],
         data: pivoted_second_measure_skip_rows_2,
         stack: 'StackC'
