@@ -253,7 +253,10 @@ Highcharts.chart('grouped_stack', {
         }
     },
     legend: {
-        reversed: true
+        reversed: true,
+        labelFormatter: function () {
+            return this.name + pivot_list[0];
+        }
     },
   plotOptions: {
     bar: {
