@@ -252,12 +252,12 @@
             for(let i=0;i<=countUniqueSecondims;i++){
                 customSeries += `{
             name: uniqueSecondDimensionValues[i] +', ' + pivot_list_clean[0],
-            id: '0',
+            linked_to: '0',
             data: pivoted_measure_skip_rows,
             color: config.color_0,
             stack: 'Stack'+i
         }, {
-            id: '1',
+            linked_to: '1',
             name: uniqueSecondDimensionValues[i] +', ' + pivot_list_clean[1],
             color: config.color_1,
             data: pivoted_second_measure_skip_rows,
@@ -311,73 +311,8 @@
         // as many series combinations as there are rows for the second dimension
         // Right now, just stopping at 5 since that seems like a logical grouping
         // limit. 
-        series: [{
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
-            id: '0',
-            data: pivoted_measure_skip_rows,
-            color: config.color_0,
-            stack: 'StackA'
-        }, {
-            id: '1',
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows,
-            stack: 'StackA'
-        },{
-            linked_to: '0',
-            name: uniqueSecondDimensionValues[1] +', ' + pivot_list_clean[0],
-            color: config.color_0,
-            data: pivoted_measure_skip_rows_1,
-                    stack: 'StackB'
-        }, {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[1] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows_1,
-            stack: 'StackB'
-            },
-            {
-            linked_to: '0',
-            name: uniqueSecondDimensionValues[2] +', ' + pivot_list_clean[0],
-            color: config.color_0,
-            data: pivoted_measure_skip_rows_2,
-            stack: 'StackC'
-            },
-            {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[2] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows_2,
-            stack: 'StackC'
-            },
-            {
-            linked_to: '0',
-            name: uniqueSecondDimensionValues[3] +', ' + pivot_list_clean[0],
-            color: config.color_0,
-            data: pivoted_measure_skip_rows_2,
-            stack: 'StackD'
-            },
-            {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[3] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows_2,
-            stack: 'StackD'
-            },
-            {
-            linked_to: '0',
-            name: uniqueSecondDimensionValues[4] +', ' + pivot_list_clean[0],
-            color: config.color_0,
-            data: pivoted_measure_skip_rows_2,
-            stack: 'StackE'
-            },
-            {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[4] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows_2,
-            stack: 'StackE'
-            }
+        series: [
+        seriesConstructor()
         ]
     });
 
