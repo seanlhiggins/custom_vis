@@ -43,13 +43,17 @@ looker.plugins.visualizations.add({
         var pivot_title = queryResponse.fields.pivots[0].label_short;
         var pivot_length = queryResponse.pivots.length
 
-        var pivot_list=[] // need to get from the data by 
+        var pivot_list=[] // need to get from the data for pivots a different way
         var measureLength = queryResponse.fields.measure_like.length
         // pivot values
         for(let i=0;i<pivot_length;i++){
             pivot_list.push([queryResponse.pivots[i].key])
         };
+        var pivot_list_clean=[] // need to have a clean list in case there's an order_by_field 
 
+        for(let i=0;i<pivot_length;i++){
+            pivot_list_clean.push([queryResponse.pivots[i].key.split("|",1)])
+        };
         var firstPivotedMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             firstPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]].value * 10) / 10)
@@ -268,40 +272,40 @@ Highcharts.chart('grouped_stack', {
         enabled: false
     },
     series: [{
-        name: uniqueSecondDimensionValues[0] +', ' + pivot_list[0].split('|',1)[0],
+        name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
         id: '0',
         data: pivoted_measure_skip_rows,
         color: config.color_0,
         stack: 'StackA'
     }, {
         id: '1',
-        name: uniqueSecondDimensionValues[0] +', ' + pivot_list[1].split('|',1)[0],
+        name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[1],
         color: config.color_1,
         data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
         linked_to: '0',
-        name: uniqueSecondDimensionValues[1] +', ' + pivot_list[0].split('|',1)[0],
+        name: uniqueSecondDimensionValues[1] +', ' + pivot_list_clean[0],
         color: config.color_0,
         data: pivoted_measure_skip_rows_1,
                 stack: 'StackB'
     }, {
         linked_to: '1',
-        name: uniqueSecondDimensionValues[1] +', ' + pivot_list[1].split('|',1)[0],
+        name: uniqueSecondDimensionValues[1] +', ' + pivot_list_clean[1],
         color: config.color_1,
         data: pivoted_second_measure_skip_rows_1,
         stack: 'StackB'
         },
         {
         linked_to: '0',
-        name: uniqueSecondDimensionValues[2] +', ' + pivot_list[0].split('|',1)[0],
+        name: uniqueSecondDimensionValues[2] +', ' + pivot_list_clean[0],
         color: config.color_0,
         data: pivoted_measure_skip_rows_2,
         stack: 'StackC'
         },
         {
         linked_to: '1',
-        name: uniqueSecondDimensionValues[2] +', ' + pivot_list[1].split('|',1)[0],
+        name: uniqueSecondDimensionValues[2] +', ' + pivot_list_clean[1],
         color: config.color_1,
         data: pivoted_second_measure_skip_rows_2,
         stack: 'StackC'
