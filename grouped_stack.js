@@ -240,13 +240,13 @@ Highcharts.chart('grouped_stack', {
                 color: config.color_0
             }
             },
-    xAxis: [{
-        labels: {
-        categories: uniqueDimensionValues
-    }},{
-        labels: {
-        categories: uniqueSecondDimensionValues
-    }}],
+       xAxis: [{
+                opposite: true,
+                categories: uniqueDimensionValues
+            },{
+                opposite: false
+                categories: uniqueSecondDimensionValues
+            }],
     yAxis: {
         min: 0,
         title: {
