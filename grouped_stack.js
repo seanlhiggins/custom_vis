@@ -210,9 +210,9 @@ Highcharts.chart('grouped_stack', {
         fontSize: '10px'
       }
     },
-     categories: {
+     
       categories: uniqueDimensionValues
-    }
+
   },
     yAxis: {
         min: 0,
