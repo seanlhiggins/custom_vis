@@ -194,15 +194,14 @@ looker.plugins.visualizations.add({
             var yAxisCustom = customYAxis(config.measureaxis_0);
 console.log(queryResponse,data);
 
-var list = ["Search","Display"]
 Highcharts.chart('grouped_stack', {
-  chart: {
-    type: 'bar'
-  },
-  title: {
-    text: 'Stacked bar chart'
-  },
-  xAxis: {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Stacked bar chart'
+    },
+    xAxis: {
     labels: {
       rotation: 0,
       x: -8,
@@ -211,52 +210,49 @@ Highcharts.chart('grouped_stack', {
         fontSize: '10px'
       }
     },
-    categories: [{
-      name: list[0],
+     categories: {
+      name: 'Case A',
       categories: ['Stack A', 'Stack B', 'Stack C']
-    }, {
-      name: 'Case B',
-      categories: ['Stack A', 'Stack B', 'Stack C']
-    }]
-  },
-  yAxis: {
-    min: 0,
-    title: {
-      text: 'x-axis'
     }
   },
-  legend: {
-    reversed: false
-  },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'x-axis'
+        }
+    },
+    legend: {
+        reversed: true
+    },
   plotOptions: {
     bar: {
       stacking: 'normal'
     }
   },
-  series: [{
-    name: 'x',
-    data: [5, 3, 4, 5, 6]
-  }, {
-    name: 'y',
-    data: [5, 3, 4, 5, 6]
-  }, {
-    name: 'x',
-    data: [5, 3, 4, 5, 6]
-  }, {
-    name: 'y',
-    data: [5, 3, 4, 5, 6]
-  },
-  {
-    name: 'y',
-    data: [5, 3, 4, 5, 6]
-  },
-  
-  {
-    name: 'y',
-    data: [5, 3, 4, 5, 6]
-  }]
+    series: [{
+        name: 'x',
+        data: firstPivotedMeasArray,
+                stack: 'StackA'
+    }, {
+        name: 'y',
+        data: secondPivotedMeasArray,
+        stack: 'StackA'
+        },{
+        name: 'x',
+        data: secondPivotedMeasArray,
+                stack: 'StackB'
+    }, {
+        name: 'y',
+        data: secondPivotedMeasArray,
+        stack: 'StackB'
+        },
+        {
+        name: 'y',
+        data: secondPivotedMeasArray,
+        stack: 'StackC'
+        }
+    ]
 });
-
 
 
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
