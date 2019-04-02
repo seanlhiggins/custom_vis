@@ -211,8 +211,7 @@ Highcharts.chart('grouped_stack', {
       }
     },
      categories: {
-      name: 'Case A',
-      categories: ['Stack A', 'Stack B', 'Stack C']
+      categories: uniqueDimensionValues
     }
   },
     yAxis: {
