@@ -309,6 +309,20 @@ Highcharts.chart('grouped_stack', {
         color: config.color_1,
         data: pivoted_second_measure_skip_rows_2,
         stack: 'StackC'
+        },
+        {
+        linked_to: '0',
+        name: uniqueSecondDimensionValues[3] +', ' + pivot_list_clean[0],
+        color: config.color_0,
+        data: pivoted_measure_skip_rows_2,
+        stack: 'StackD'
+        },
+        {
+        linked_to: '1',
+        name: uniqueSecondDimensionValues[3] +', ' + pivot_list_clean[1],
+        color: config.color_1,
+        data: pivoted_second_measure_skip_rows_2,
+        stack: 'StackD'
         }
     ]
 });
