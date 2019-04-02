@@ -246,8 +246,8 @@ Highcharts.chart('grouped_stack', {
         data: pivoted_measure_skip_rows,
                 stack: 'StackA'
     }, {
-        name: 'y',
-        data: secondPivotedMeasArray,
+        name: uniqueSecondDimensionValues[1],
+        data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
         name: 'x',
