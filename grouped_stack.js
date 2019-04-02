@@ -139,7 +139,7 @@
             for(let j=2; j<data.length;j+=countUniqueSecondims){
                 pivoted_second_measure_skip_rows_2.push(secondPivotedMeasArray[j])
             }
-            console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
+            // console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
             Highcharts.setOptions({
                 colors: ['#F62366', '#9DFF02']
             });
@@ -227,10 +227,10 @@
                             return yAxisCustomised;
                 }
                 var yAxisCustom = customYAxis(config.measureaxis_0);
-    console.log(queryResponse,data);
+    // console.log(queryResponse,data);
 
     function seriesConstructor (){
-        var customSeries 
+        var customSeries;
         var seriesEnd = `{
             name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
             id: '0',
@@ -248,8 +248,7 @@
             return seriesEnd
         }
         else {
-            console.log(countUniqueSecondims);
-            for(let i=0;i<=countUniqueSecondims;i++){
+            for(let i=0;i<countUniqueSecondims;i++){
                 customSeries += `{
             name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[0],
             linked_to: '0',
@@ -311,55 +310,7 @@
         // as many series combinations as there are rows for the second dimension
         // Right now, just stopping at 5 since that seems like a logical grouping
         // limit. 
-        series: [{
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
-            linked_to: '0',
-            data: pivoted_measure_skip_rows,
-            color: config.color_0,
-            stack: 'Stack'+0
-        }, {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows,
-            stack: 'Stack'+0
-        },{
-            name: uniqueSecondDimensionValues[1] +', ' + pivot_list_clean[0],
-            linked_to: '0',
-            data: pivoted_measure_skip_rows,
-            color: config.color_0,
-            stack: 'Stack'+1
-        }, {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[1] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows,
-            stack: 'Stack'+1
-        },{
-            name: uniqueSecondDimensionValues[2] +', ' + pivot_list_clean[0],
-            linked_to: '0',
-            data: pivoted_measure_skip_rows,
-            color: config.color_0,
-            stack: 'Stack'+2
-        }, {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[2] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows,
-            stack: 'Stack'+2
-        },{
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
-            id: '0',
-            data: pivoted_measure_skip_rows,
-            color: config.color_0,
-            stack: 'StackA'
-        }, {
-            id: '1',
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows,
-            stack: 'StackA'
-        }
+        series: [seriesConstructor()
         ]
     });
 
