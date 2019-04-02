@@ -250,18 +250,18 @@
         else {
             for(let i=0;i<countUniqueSecondims;i++){
                 customSeries += `{
-            name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[0],
-            linked_to: '0',
-            data: pivoted_measure_skip_rows,
-            color: config.color_0,
-            stack: 'Stack'+${i}
-        }, {
-            linked_to: '1',
-            name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows,
-            stack: 'Stack'+${i}
-        },`
+                    name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[0],
+                    linked_to: '0',
+                    data: pivoted_measure_skip_rows,
+                    color: config.color_0,
+                    stack: 'Stack'${+i}
+                }, {
+                    linked_to: '1',
+                    name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[1],
+                    color: config.color_1,
+                    data: pivoted_second_measure_skip_rows,
+                    stack: 'Stack'${+i}
+                },`
             }
             return customSeries + seriesEnd
         }
