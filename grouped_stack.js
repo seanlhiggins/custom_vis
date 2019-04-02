@@ -229,8 +229,12 @@ Highcharts.chart('grouped_stack', {
         type: 'bar'
     },
     title: {
-        text: 'Stacked bar chart'
-    },
+            text: dimension_head,
+            style: {
+                fontSize: config.textSize,
+                color: config.color_0
+            }
+            },
     xAxis: {
         labels: {
           rotation: 0,
@@ -284,6 +288,7 @@ Highcharts.chart('grouped_stack', {
     }, {
         linked_to: '1',
         name: uniqueSecondDimensionValues[1] +', ' + pivot_list[1],
+        color: config.color_1,
         data: pivoted_second_measure_skip_rows_1,
         stack: 'StackB'
         },
