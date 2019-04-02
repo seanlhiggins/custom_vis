@@ -83,6 +83,7 @@ looker.plugins.visualizations.add({
         var list = ["Search","Display"]
         var countUniqueDims = countUnique(dimensionvalues);
         var countUniqueSecondims = countUnique(seconddimensionvalues);
+        // first pivoted array starting from index 0
         var pivoted_measure_skip_rows = []
         for(let j=0; j<data.length;j+=countUniqueSecondims){
             pivoted_measure_skip_rows.push(firstPivotedMeasArray[j])
@@ -90,6 +91,24 @@ looker.plugins.visualizations.add({
         var pivoted_second_measure_skip_rows = []
         for(let j=0; j<data.length;j+=countUniqueSecondims){
             pivoted_second_measure_skip_rows.push(secondPivotedMeasArray[j])
+        }
+        // second pivoted array starting from index 1
+        var pivoted_measure_skip_rows_1 = []
+        for(let j=1; j<data.length;j+=countUniqueSecondims){
+            pivoted_measure_skip_rows_1.push(firstPivotedMeasArray[j])
+        }
+        var pivoted_second_measure_skip_rows_1 = []
+        for(let j=1; j<data.length;j+=countUniqueSecondims){
+            pivoted_second_measure_skip_rows_1.push(secondPivotedMeasArray[j])
+        }
+          // third pivoted array starting from index 2
+        var pivoted_measure_skip_rows_2 = []
+        for(let j=2; j<data.length;j+=countUniqueSecondims){
+            pivoted_measure_skip_rows_2.push(firstPivotedMeasArray[j])
+        }
+        var pivoted_second_measure_skip_rows_2 = []
+        for(let j=2; j<data.length;j+=countUniqueSecondims){
+            pivoted_second_measure_skip_rows_2.push(secondPivotedMeasArray[j])
         }
         console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
         Highcharts.setOptions({
@@ -246,21 +265,26 @@ Highcharts.chart('grouped_stack', {
         data: pivoted_measure_skip_rows,
                 stack: 'StackA'
     }, {
-        name: uniqueSecondDimensionValues[1],
+        name: uniqueSecondDimensionValues[0],
         data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
-        name: 'x',
-        data: secondPivotedMeasArray,
+        name: uniqueSecondDimensionValues[1],
+        data: pivoted_measure_skip_rows_1,
                 stack: 'StackB'
     }, {
-        name: 'y',
-        data: secondPivotedMeasArray,
+        name: uniqueSecondDimensionValues[1],
+        data: pivoted_second_measure_skip_rows_1,
         stack: 'StackB'
         },
         {
-        name: 'y',
-        data: secondPivotedMeasArray,
+        name: uniqueSecondDimensionValues[2],
+        data: pivoted_measure_skip_rows_2,
+        stack: 'StackC'
+        },
+        {
+        name: uniqueSecondDimensionValues[2],
+        data: pivoted_second_measure_skip_rows_2,
         stack: 'StackC'
         }
     ]
