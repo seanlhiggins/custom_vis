@@ -74,11 +74,20 @@ looker.plugins.visualizations.add({
         function onlyUnique(value, index, self) { 
             return self.indexOf(value) === index;
         }
+        function countUnique(iterable) {
+         return new Set(iterable).size;
+        }
         var uniqueDimensionValues = dimensionvalues.filter(onlyUnique)
         var uniqueSecondDimensionValues = seconddimensionvalues.filter(onlyUnique)
         console.log(uniqueDimensionValues,uniqueSecondDimensionValues)
         var list = ["Search","Display"]
-
+        var countUniqueDims = countUnique(dimensionvalues);
+        var countUniqueSecondims = countUnique(seconddimensionvalues);
+        var pivoted_measure_skip_rows = []
+        for(let i=0, i<uniqueDimensionValues.length,i+countUniqueSecondims){
+            pivoted_measure_skip_rows.push(firstPivotedMeasArray[i])
+        }
+        console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
         Highcharts.setOptions({
             colors: ['#F62366', '#9DFF02', '#0CCDD6', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
         });
