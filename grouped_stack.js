@@ -310,7 +310,19 @@
         // as many series combinations as there are rows for the second dimension
         // Right now, just stopping at 5 since that seems like a logical grouping
         // limit. 
-        series: [seriesConstructor()
+        series: [{
+            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
+            id: '0',
+            data: pivoted_measure_skip_rows,
+            color: config.color_0,
+            stack: 'StackA'
+        }, {
+            id: '1',
+            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[1],
+            color: config.color_1,
+            data: pivoted_second_measure_skip_rows,
+            stack: 'StackA'
+        }
         ]
     });
 
