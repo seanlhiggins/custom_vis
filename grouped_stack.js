@@ -115,16 +115,14 @@ looker.plugins.visualizations.add({
             colors: ['#F62366', '#9DFF02']
         });
                 options = {
-                            font_style: {
+                            stackStyle: {
                               type: "string",
-                              label: "Font Style",
+                              label: "Stack Style",
                               values: [
-                                {"Looker": "Helvetica"},
-                                {"Impact": "Impact"},
-                                {"Arial": "Arial"}
-                              ],
+                                {"Normal": "normal"},
+                                {"Percent": "percent"}                              ],
                               display: "select",
-                              default: "Looker",
+                              default: "percent",
                               section: "Style",
                               order: 2
                             },
@@ -234,18 +232,16 @@ Highcharts.chart('grouped_stack', {
         text: 'Stacked bar chart'
     },
     xAxis: {
-    labels: {
-      rotation: 0,
-      x: -8,
-      align: 'right',
-      style: {
-        fontSize: '10px'
-      }
+        labels: {
+          rotation: 0,
+          x: -8,
+          align: 'right',
+          style: {
+            fontSize: '10px'
+          }
+        },
+        categories: uniqueDimensionValues
     },
-     
-      categories: uniqueDimensionValues
-
-  },
     yAxis: {
         min: 0,
         title: {
@@ -255,14 +251,17 @@ Highcharts.chart('grouped_stack', {
     legend: {
         reversed: true,
         labelFormatter: function () {
-            return this.name + pivot_list[0];
+            return this.name + ', ' + pivot_list[0]  + ', ' +  this.index;
         }
     },
-  plotOptions: {
-    bar: {
-      stacking: 'percent'
-    }
-  },
+    plotOptions: {
+        bar: {
+          stacking: config.stackStyle
+        }
+    },
+    credits: {
+        enabled: false
+    },
     series: [{
         name: uniqueSecondDimensionValues[0],
         id: 's1',
