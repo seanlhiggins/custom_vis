@@ -251,7 +251,7 @@ Highcharts.chart('grouped_stack', {
     legend: {
         reversed: true,
         labelFormatter: function () {
-            return this.name + ', ' + pivot_list[0]  + ', ' +  this.index;
+            return this.name + ', ' + pivot_list[0]  + ', ' +  this.id;
         }
     },
     plotOptions: {
@@ -264,33 +264,33 @@ Highcharts.chart('grouped_stack', {
     },
     series: [{
         name: uniqueSecondDimensionValues[0],
-        id: 's1',
+        id: '0',
         data: pivoted_measure_skip_rows,
                 stack: 'StackA'
     }, {
-        id: 's2',
+        id: '1',
         name: uniqueSecondDimensionValues[0],
         data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
-        linked_to: ':previous',
+        linked_to: '0',
         name: uniqueSecondDimensionValues[1],
         data: pivoted_measure_skip_rows_1,
                 stack: 'StackB'
     }, {
-        linked_to: 's2',
+        linked_to: '1',
         name: uniqueSecondDimensionValues[1],
         data: pivoted_second_measure_skip_rows_1,
         stack: 'StackB'
         },
         {
-        linked_to: ':previous',
+        linked_to: '0',
         name: uniqueSecondDimensionValues[2],
         data: pivoted_measure_skip_rows_2,
         stack: 'StackC'
         },
         {
-        linked_to: 's2',
+        linked_to: '1',
         name: uniqueSecondDimensionValues[2],
         data: pivoted_second_measure_skip_rows_2,
         stack: 'StackC'
