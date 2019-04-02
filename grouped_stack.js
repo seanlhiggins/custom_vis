@@ -30,30 +30,42 @@ looker.plugins.visualizations.add({
        data.forEach(function(value){
         dimensionvalues.push(LookerCharts.Utils.textForCell(value[queryResponse.fields.dimensions[0].name]));
        });
+
+       // list all the values from the second dimension chosen by the user
         var seconddimensionvalues = []
        data.forEach(function(value){
         seconddimensionvalues.push(LookerCharts.Utils.textForCell(value[queryResponse.fields.dimensions[1].name]));
        });
-       console.log(seconddimensionvalues);
+       
+       // get the first dimension's title
         var dimension_head = queryResponse.fields.dimensions[0].label_short;
         var measurenames = []
        queryResponse.fields.measure_like.forEach(function(value){
         measurenames.push(value.label_short);
        });
-        var pivot_title = queryResponse.fields.pivots[0].label_short;
-        var pivot_length = queryResponse.pivots.length
 
-        var pivot_list=[] // need to get from the data for pivots a different way
+        // Pivot title
+        var pivot_title = queryResponse.fields.pivots[0].label_short;
+        
+        // Pivot and measure lengths so we can use it for loops later and not go out of range
+        var pivot_length = queryResponse.pivots.length
         var measureLength = queryResponse.fields.measure_like.length
+        
         // pivot values
+        var pivot_list=[] // need to get from the data for pivots a different way than dimensions/measures
         for(let i=0;i<pivot_length;i++){
             pivot_list.push([queryResponse.pivots[i].key])
         };
-        var pivot_list_clean=[] // need to have a clean list in case there's an order_by_field 
-
+        // This is a bit unnecessary but I hadn't time to fix it. 
+        // Basically an order_by_field introduces some pipes to the 
+        // key of the pivot. There's a way to get the actual
+        // value from the queryResponse which I'll have to do later
+        var pivot_list_clean=[]
         for(let i=0;i<pivot_length;i++){
             pivot_list_clean.push([queryResponse.pivots[i].key.split("|",1)])
         };
+
+        // Needed to create 2 arrays from each of the pivots
         var firstPivotedMeasArray = [];
         for(let i=0;i<numDimensions;i++){
             firstPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]].value * 10) / 10)
@@ -65,28 +77,41 @@ looker.plugins.visualizations.add({
         }
 
        // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
-
         function getSum(total, num) {
           return total + Math.round(num);
         }
 
-        // console.log(queryResponse,data);
+
        
         element.innerHTML = html;
         var container = element.appendChild(document.createElement("div"));
         container.id = "grouped_stack";
+
+        // two simple functions that will return only the unique elements
+        // in an array, then another to count them. I did this so
+        // when a user selects 2 dimensions, we can use the count to 
+        // offset the loop by that amount so each iteration jumps
+        // through the array and creates a new array using that index's value
         function onlyUnique(value, index, self) { 
             return self.indexOf(value) === index;
         }
         function countUnique(iterable) {
          return new Set(iterable).size;
         }
+
+        // assigning variables for the list of unique elements and counts
         var uniqueDimensionValues = dimensionvalues.filter(onlyUnique)
         var uniqueSecondDimensionValues = seconddimensionvalues.filter(onlyUnique)
-        console.log(uniqueDimensionValues,uniqueSecondDimensionValues)
-        var list = ["Search","Display"]
         var countUniqueDims = countUnique(dimensionvalues);
         var countUniqueSecondims = countUnique(seconddimensionvalues);
+
+        // Need to create a better approach for this. Looping through
+        // each of the pivoted arrays to skip through and find the Nth 
+        // element based on a count of the unique elements in another array
+        // is awful. It works but then it's hardcoded. I
+        // should be dynamically creating new arrays for however long 
+        // the data is
+
         // first pivoted array starting from index 0
         var pivoted_measure_skip_rows = []
         for(let j=0; j<data.length;j+=countUniqueSecondims){
@@ -159,7 +184,8 @@ looker.plugins.visualizations.add({
                 }
 
             
-             // Create an option for the first n rows in the query, commented out for now until the final vis is fixed
+             // Create an option for all the unique values in the pivot list so each pivoted
+             // value can have its own color selection
              for(let i=0;i<=pivot_list.length;i++){
 
                     var field = pivot_list[i];
@@ -174,31 +200,6 @@ looker.plugins.visualizations.add({
                         display_size: "half",
                         order: 1
                     }
-             //        measChartTypeId = "charttype_" + i
-             //          options[measChartTypeId] =
-             //        {
-             //                  type: "string",
-             //                  label: field + " Style",
-             //                  values: [
-             //                    {"Column": "column"},
-             //                    {"Line": "spline"}
-             //                  ],
-             //                  display: "select",
-             //                  default: "column",
-             //                  section: "Style",
-             //                  display_size:"half",
-             //                  order: 2
-             //                }
-             //        measAxisId = "measureaxis_" + i                    
-             //        options[measAxisId] =
-             //        {
-             //                  type: "boolean",
-             //                  label: field + " Axis",
-             //                  display: "select",
-             //                  default: "column",
-             //                  section: "Style",
-             //                  order: 3
-             //                }
                     }
 
                     function customYAxis (x) {
@@ -239,7 +240,7 @@ Highcharts.chart('grouped_stack', {
                 color: config.color_0
             }
             },
-    xAxis: {
+    xAxis: [{
         labels: {
           rotation: 0,
           x: -8,
@@ -249,7 +250,17 @@ Highcharts.chart('grouped_stack', {
           }
         },
         categories: uniqueDimensionValues
-    },
+    },{
+        labels: {
+          rotation: 0,
+          x: -8,
+          align: 'right',
+          style: {
+            fontSize: '10px'
+          }
+        },
+        categories: uniqueSecondDimensionValues
+    }],
     yAxis: {
         min: 0,
         title: {
@@ -271,6 +282,10 @@ Highcharts.chart('grouped_stack', {
     credits: {
         enabled: false
     },
+    // Need to clean up this series generation so that it dynamically creates
+    // as many series combinations as there are rows for the second dimension
+    // Right now, just stopping at 5 since that seems like a logical grouping
+    // limit. 
     series: [{
         name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
         id: '0',
@@ -323,6 +338,20 @@ Highcharts.chart('grouped_stack', {
         color: config.color_1,
         data: pivoted_second_measure_skip_rows_2,
         stack: 'StackD'
+        },
+        {
+        linked_to: '0',
+        name: uniqueSecondDimensionValues[4] +', ' + pivot_list_clean[0],
+        color: config.color_0,
+        data: pivoted_measure_skip_rows_2,
+        stack: 'StackE'
+        },
+        {
+        linked_to: '1',
+        name: uniqueSecondDimensionValues[4] +', ' + pivot_list_clean[1],
+        color: config.color_1,
+        data: pivoted_second_measure_skip_rows_2,
+        stack: 'StackE'
         }
     ]
 });
