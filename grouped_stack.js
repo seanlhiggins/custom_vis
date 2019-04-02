@@ -272,6 +272,7 @@ Highcharts.chart('grouped_stack', {
     }, {
         id: '1',
         name: uniqueSecondDimensionValues[0] +', ' + pivot_list[1],
+        color: config.color_1,
         data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
@@ -296,6 +297,7 @@ Highcharts.chart('grouped_stack', {
         {
         linked_to: '1',
         name: uniqueSecondDimensionValues[2] +', ' + pivot_list[1],
+        color: config.color_1,
         data: pivoted_second_measure_skip_rows_2,
         stack: 'StackC'
         }
