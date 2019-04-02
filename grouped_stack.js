@@ -84,7 +84,7 @@ looker.plugins.visualizations.add({
         var countUniqueDims = countUnique(dimensionvalues);
         var countUniqueSecondims = countUnique(seconddimensionvalues);
         var pivoted_measure_skip_rows = []
-        for(let j=0; j<uniqueDimensionValues.length;j+=countUniqueSecondims){
+        for(let j=0; j<countUniqueDims;j+=countUniqueSecondims){
             pivoted_measure_skip_rows.push(firstPivotedMeasArray[j])
         }
         console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
@@ -238,8 +238,8 @@ Highcharts.chart('grouped_stack', {
     }
   },
     series: [{
-        name: 'x',
-        data: firstPivotedMeasArray,
+        name: uniqueSecondDimensionValues[0],
+        data: pivoted_measure_skip_rows,
                 stack: 'StackA'
     }, {
         name: 'y',
