@@ -231,7 +231,7 @@
 
     function seriesConstructor (){
         var customSeries;
-        var seriesEnd = `{
+        var seriesEnd = {
             name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
             id: '0',
             data: pivoted_measure_skip_rows,
@@ -243,25 +243,25 @@
             color: config.color_1,
             data: pivoted_second_measure_skip_rows,
             stack: 'StackA'
-        }`
+        }
         if (countUniqueSecondims == 1){
             return seriesEnd
         }
         else {
             for(let i=0;i<countUniqueSecondims;i++){
-                customSeries += `{
-                    name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[0],
+                customSeries += {
+                    name: uniqueSecondDimensionValues[i] +', ' + pivot_list_clean[0],
                     linked_to: '0',
                     data: pivoted_measure_skip_rows,
                     color: config.color_0,
-                    stack: 'Stack'${+i}
+                    stack: 'Stack'+i
                 }, {
                     linked_to: '1',
-                    name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[1],
+                    name: uniqueSecondDimensionValues[i] +', ' + pivot_list_clean[1],
                     color: config.color_1,
                     data: pivoted_second_measure_skip_rows,
-                    stack: 'Stack'${+i}
-                },`
+                    stack: 'Stack'+i
+                },
             }
             return customSeries + seriesEnd
         }
