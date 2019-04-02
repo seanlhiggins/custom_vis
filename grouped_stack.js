@@ -267,7 +267,7 @@
             return customSeries + seriesEnd
         }
     }
-    console.log(seriesConstructor);
+    console.log(seriesConstructor());
     Highcharts.chart('grouped_stack', {
         chart: {
             type: 'bar'
