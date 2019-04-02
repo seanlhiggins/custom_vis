@@ -244,7 +244,7 @@
             data: pivoted_second_measure_skip_rows,
             stack: 'StackA'
         }`
-        if countUniqueSecondims == 1{
+        if (countUniqueSecondims == 1){
             return seriesEnd
         }
         else {
