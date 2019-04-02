@@ -158,7 +158,7 @@ looker.plugins.visualizations.add({
              // Create an option for the first n rows in the query, commented out for now until the final vis is fixed
              for(let i=0;i<=1;i++){
 
-                    var field = queryResponse.fields.measure_like[i].label_short;
+                    var field = measurenames[i];
                     id = "color_" + i
                     options[id] =
                     {
