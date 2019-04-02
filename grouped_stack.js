@@ -251,7 +251,7 @@ Highcharts.chart('grouped_stack', {
     legend: {
         reversed: true,
         labelFormatter: function () {
-            return this.name + ', ' + pivot_list[0]  + ', ' +  this.id;
+            return this.name;
         }
     },
     plotOptions: {
@@ -263,35 +263,35 @@ Highcharts.chart('grouped_stack', {
         enabled: false
     },
     series: [{
-        name: uniqueSecondDimensionValues[0],
+        name: uniqueSecondDimensionValues[0] +', ' + pivot_list[0],
         id: '0',
         data: pivoted_measure_skip_rows,
                 stack: 'StackA'
     }, {
         id: '1',
-        name: uniqueSecondDimensionValues[0],
+        name: uniqueSecondDimensionValues[0] +', ' + pivot_list[1],
         data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
         linked_to: '0',
-        name: uniqueSecondDimensionValues[1],
+        name: uniqueSecondDimensionValues[1] +', ' + pivot_list[0],
         data: pivoted_measure_skip_rows_1,
                 stack: 'StackB'
     }, {
         linked_to: '1',
-        name: uniqueSecondDimensionValues[1],
+        name: uniqueSecondDimensionValues[1] +', ' + pivot_list[1],
         data: pivoted_second_measure_skip_rows_1,
         stack: 'StackB'
         },
         {
         linked_to: '0',
-        name: uniqueSecondDimensionValues[2],
+        name: uniqueSecondDimensionValues[2] +', ' + pivot_list[0],
         data: pivoted_measure_skip_rows_2,
         stack: 'StackC'
         },
         {
         linked_to: '1',
-        name: uniqueSecondDimensionValues[2],
+        name: uniqueSecondDimensionValues[2] +', ' + pivot_list[1],
         data: pivoted_second_measure_skip_rows_2,
         stack: 'StackC'
         }
