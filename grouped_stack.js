@@ -274,7 +274,7 @@ Highcharts.chart('grouped_stack', {
         data: pivoted_second_measure_skip_rows,
         stack: 'StackA'
         },{
-        linked_to: 's1',
+        linked_to: ':previous',
         name: uniqueSecondDimensionValues[1],
         data: pivoted_measure_skip_rows_1,
                 stack: 'StackB'
@@ -285,7 +285,7 @@ Highcharts.chart('grouped_stack', {
         stack: 'StackB'
         },
         {
-        linked_to: 's1',
+        linked_to: ':previous',
         name: uniqueSecondDimensionValues[2],
         data: pivoted_measure_skip_rows_2,
         stack: 'StackC'
