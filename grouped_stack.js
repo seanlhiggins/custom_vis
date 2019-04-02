@@ -156,20 +156,20 @@ looker.plugins.visualizations.add({
 
             
              // Create an option for the first n rows in the query, commented out for now until the final vis is fixed
-             // for(let i=0;i<=1;i++){
+             for(let i=0;i<=1;i++){
 
-             //        var field = queryResponse.fields.measure_like[i].label_short;
-             //        id = "color_" + i
-             //        options[id] =
-             //        {
-             //            label: field,
-             //            default: Highcharts.getOptions().colors[i],
-             //            section: "Pie Style",
-             //            type: "string",
-             //            display: "color",
-             //            display_size: "half",
-             //            order: 1
-             //        }
+                    var field = queryResponse.fields.measure_like[i].label_short;
+                    id = "color_" + i
+                    options[id] =
+                    {
+                        label: field,
+                        default: Highcharts.getOptions().colors[i],
+                        section: "Style",
+                        type: "string",
+                        display: "color",
+                        display_size: "half",
+                        order: 1
+                    }
              //        measChartTypeId = "charttype_" + i
              //          options[measChartTypeId] =
              //        {
@@ -195,7 +195,7 @@ looker.plugins.visualizations.add({
              //                  section: "Style",
              //                  order: 3
              //                }
-             //        }
+                    }
 
                     function customYAxis (x) {
                     var AxisOn = x,
@@ -252,7 +252,8 @@ Highcharts.chart('grouped_stack', {
         reversed: true,
         labelFormatter: function () {
             return this.name;
-        }
+        },
+        enabled: config.legendtoggle
     },
     plotOptions: {
         bar: {
