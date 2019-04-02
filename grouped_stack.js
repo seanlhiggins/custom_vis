@@ -242,25 +242,11 @@ Highcharts.chart('grouped_stack', {
             },
     xAxis: [{
         labels: {
-          rotation: 0,
-          x: -8,
-          align: 'right',
-          style: {
-            fontSize: '10px'
-          }
-        },
         categories: uniqueDimensionValues
-    },{
+    }},{
         labels: {
-          rotation: 0,
-          x: -8,
-          align: 'right',
-          style: {
-            fontSize: '10px'
-          }
-        },
         categories: uniqueSecondDimensionValues
-    }],
+    }}],
     yAxis: {
         min: 0,
         title: {
