@@ -248,8 +248,9 @@
             return seriesEnd
         }
         else {
+            console.log(countUniqueSecondims);
             for(let i=0;i<=countUniqueSecondims;i++){
-                var customSeries += `{
+                customSeries += `{
             name: uniqueSecondDimensionValues[i] +', ' + pivot_list_clean[0],
             id: '0',
             data: pivoted_measure_skip_rows,
