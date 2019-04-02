@@ -257,7 +257,7 @@ Highcharts.chart('grouped_stack', {
     },
   plotOptions: {
     bar: {
-      stacking: 'normal'
+      stacking: 'percent'
     }
   },
     series: [{
