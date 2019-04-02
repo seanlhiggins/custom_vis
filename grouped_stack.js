@@ -156,9 +156,9 @@ looker.plugins.visualizations.add({
 
             
              // Create an option for the first n rows in the query, commented out for now until the final vis is fixed
-             for(let i=0;i<=1;i++){
+             for(let i=0;i<=pivot_list.length;i++){
 
-                    var field = measurenames[i];
+                    var field = pivot_list[i];
                     id = "color_" + i
                     options[id] =
                     {
@@ -267,7 +267,8 @@ Highcharts.chart('grouped_stack', {
         name: uniqueSecondDimensionValues[0] +', ' + pivot_list[0],
         id: '0',
         data: pivoted_measure_skip_rows,
-                stack: 'StackA'
+        color: config.color_0,
+        stack: 'StackA'
     }, {
         id: '1',
         name: uniqueSecondDimensionValues[0] +', ' + pivot_list[1],
@@ -276,6 +277,7 @@ Highcharts.chart('grouped_stack', {
         },{
         linked_to: '0',
         name: uniqueSecondDimensionValues[1] +', ' + pivot_list[0],
+        color: config.color_0,
         data: pivoted_measure_skip_rows_1,
                 stack: 'StackB'
     }, {
@@ -287,6 +289,7 @@ Highcharts.chart('grouped_stack', {
         {
         linked_to: '0',
         name: uniqueSecondDimensionValues[2] +', ' + pivot_list[0],
+        color: config.color_0,
         data: pivoted_measure_skip_rows_2,
         stack: 'StackC'
         },
