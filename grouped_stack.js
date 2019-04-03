@@ -10,7 +10,7 @@
                 #grouped_stack {
                 margin: 0 auto;
                 min-width: 310px;
-                height: 500px;
+                height: 600px;
                 font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
             }
             </style>`;
@@ -275,13 +275,14 @@
         series:  
         [{name: pivot_list[0],
             data:firstPivotedMeasArray,
-            labels:{autoRotation: 45,   
+            labels:{autoRotation: -45, 
+            rotation: -90,  
             style: {"fontSize": "10px"}, 
             align: "right"},
             color: config.color_0},   
         {name: pivot_list[1],
             data:secondPivotedMeasArray,
-            labels:{autoRotation: 45,   
+            labels:{autoRotation: -45,   
             style: {"fontSize": "10px"}, 
             align: "right"},
             color: config.color_1}]   
