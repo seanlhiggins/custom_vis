@@ -267,7 +267,7 @@
         // as many series combinations as there are rows for the second dimension
         // Right now, just stopping at 5 since that seems like a logical grouping
         // limit. 
-        series:  [{data:firstPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}},{data:secondPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}}]
+        series:  [{name: pivot_list[0],data:firstPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}},{name: pivot_list[1],data:secondPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}}]
         
     });
 
