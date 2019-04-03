@@ -10,7 +10,7 @@
                 #grouped_stack {
                 margin: 0 auto;
                 min-width: 310px;
-                height: 400px;
+                height: 500px;
                 font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
             }
             </style>`;
@@ -272,7 +272,19 @@
         // as many series combinations as there are rows for the second dimension
         // Right now, just stopping at 5 since that seems like a logical grouping
         // limit. 
-        series:  [{name: pivot_list[0],data:firstPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}},{name: pivot_list[1],data:secondPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}}]
+        series:  
+        [{name: pivot_list[0],
+            data:firstPivotedMeasArray,
+            labels:{autoRotation: 45,   
+            style: {"fontSize": "10px"}, 
+            align: "right"},
+            color: config.color_0},   
+        {name: pivot_list[1],
+            data:secondPivotedMeasArray,
+            labels:{autoRotation: 45,   
+            style: {"fontSize": "10px"}, 
+            align: "right"},
+            color: config.color_1}]   
         
     });
 
