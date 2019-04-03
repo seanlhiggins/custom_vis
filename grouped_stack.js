@@ -54,7 +54,9 @@
             pivot_list.push(queryResponse.pivots[0].data[firstPivotName])
             const secondPivotName = queryResponse.fields.pivots[0].name
             pivot_list.push(queryResponse.pivots[1].data[secondPivotName])
-            console.log(pivot_list,firstPivotName,secondPivotName)
+            console.log(pivot_list,firstPivotName,secondPivotName);
+            console.log(queryResponse.fields.measure_like[0].name);
+            console.log(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]]);
             // Needed to create 2 arrays from each of the pivots
             var firstPivotedMeasArray = [];
             for(let i=0;i<numDimensions;i++){
