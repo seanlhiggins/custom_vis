@@ -54,6 +54,12 @@
             pivot_list.push(queryResponse.pivots[0].data[firstPivotName])
             const secondPivotName = queryResponse.fields.pivots[0].name
             pivot_list.push(queryResponse.pivots[1].data[secondPivotName])
+            var pivot_list_order_by=[] // need to get from the data for pivots a different way than dimensions/measures
+            const firstOrderPivotName = queryResponse.pivots[0].key
+            pivot_list_order_by.push(firstOrderPivotName)
+            const secondOrderPivotName = queryResponse.pivots[1].key
+            pivot_list_order_by.push(secondOrderPivotName)
+
             console.log(pivot_list,firstPivotName,secondPivotName);
             console.log(queryResponse.fields.measure_like[0].name);
             console.log(firstnrows[0][queryResponse.fields.measure_like[0].name][pivot_list[0]]);
@@ -62,12 +68,12 @@
             // Needed to create 2 arrays from each of the pivots
             var firstPivotedMeasArray = [];
             for(let i=0;i<numDimensions;i++){
-                firstPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[0]].value * 10) / 10)
+                firstPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[0]].value * 10) / 10)
             }
 
             var secondPivotedMeasArray = [];
             for(let i=0;i<numDimensions;i++){
-                secondPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list[1]].value * 10) / 10)
+                secondPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[1]].value * 10) / 10)
             }
 
            // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
