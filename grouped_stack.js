@@ -19,11 +19,6 @@
             var numDimensions = data.length
 
             var firstnrows = data.slice(0,numDimensions);
-           // A bunch of arrays to store the measure value for passing into the series later
-
-     
-
-
 
            // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
            var dimensionvalues = []
@@ -45,6 +40,8 @@
            });
 
             // Pivot title
+            // Need to put in a conditional to check to see if the pivots
+            // are even present, otherwise this will error
             var pivot_title = queryResponse.fields.pivots[0].label_short;
             
             // Pivot and measure lengths so we can use it for loops later and not go out of range
@@ -53,17 +50,10 @@
             
             // pivot values
             var pivot_list=[] // need to get from the data for pivots a different way than dimensions/measures
-            for(let i=0;i<pivot_length;i++){
-                pivot_list.push([queryResponse.pivots[i].key])
-            };
-            // This is a bit unnecessary but I hadn't time to fix it. 
-            // Basically an order_by_field introduces some pipes to the 
-            // key of the pivot. There's a way to get the actual
-            // value from the queryResponse which I'll have to do later
-            var pivot_list_clean=[]
-            for(let i=0;i<pivot_length;i++){
-                pivot_list_clean.push([queryResponse.pivots[i].key.split("|",1)])
-            };
+            const firstPivotName = queryResponse.fields.pivots[0].name
+            pivot_list.push(queryResponse.pivots[0].data[firstPivotName])
+            const secondPivotName = queryResponse.fields.pivots[0].name
+            pivot_list.push(queryResponse.pivots[1].data[secondPivotName])
 
             // Needed to create 2 arrays from each of the pivots
             var firstPivotedMeasArray = [];
@@ -80,8 +70,6 @@
             function getSum(total, num) {
               return total + Math.round(num);
             }
-
-
            
             element.innerHTML = html;
             var container = element.appendChild(document.createElement("div"));
@@ -99,46 +87,46 @@
              return new Set(iterable).size;
             }
 
+
             // assigning variables for the list of unique elements and counts
             var uniqueDimensionValues = dimensionvalues.filter(onlyUnique)
             var uniqueSecondDimensionValues = seconddimensionvalues.filter(onlyUnique)
             var countUniqueDims = countUnique(dimensionvalues);
             var countUniqueSecondims = countUnique(seconddimensionvalues);
 
-            // Need to create a better approach for this. Looping through
-            // each of the pivoted arrays to skip through and find the Nth 
-            // element based on a count of the unique elements in another array
-            // is awful. It works but then it's hardcoded. I
-            // should be dynamically creating new arrays for however long 
-            // the data is
-
-            // first pivoted array starting from index 0
-            var pivoted_measure_skip_rows = []
-            for(let j=0; j<data.length;j+=countUniqueSecondims){
-                pivoted_measure_skip_rows.push(firstPivotedMeasArray[j])
+            // Create a list of arrays that make up the pivoted data sets. 
+            // To achieve the 'grouping' where the measures are grouped 
+            // based on a higher dimension than the granularity
+            // we jump through the data array by as many rows as the 
+            // uniqueness of the 2nd dimension presents. i.e. if there's 
+            // 3 unique values, then we want the 1st, 4th, 7th value
+            // in a single array, 2nd 5th and 8th in the next etc.
+            // Currently this works fine _if_ every single dim1:dim2 grouping
+            // is a consistent ratio. However if the relationship varies
+            // from 1:3 to 1:4 to 1:2 for example, the series jumping 
+            // breaks. Need to do something like grab the index of 
+            // each first occurence of a new unique value and use
+            // _that_ as the 'jump' for each loop. THEN I need to
+            // make sure I'm putting in a '0' for every missing 
+            // dimension value 
+            var pivot_measures_first = []
+            for(let i=0; i<countUniqueSecondims;i+=1){
+                var pivot_holder =[]
+                for(let j=i; j<data.length;j+=countUniqueSecondims) {
+                pivot_holder.push(firstPivotedMeasArray[j])
+                }
+                pivot_measures_first.push(pivot_holder)
             }
-            var pivoted_second_measure_skip_rows = []
-            for(let j=0; j<data.length;j+=countUniqueSecondims){
-                pivoted_second_measure_skip_rows.push(secondPivotedMeasArray[j])
+            console.log(pivot_measures_first);
+            var pivot_measures_second = []
+            for(let i=0; i<countUniqueSecondims;i+=1){
+                var pivot_holder =[]
+                for(let j=i; j<data.length;j+=countUniqueSecondims) {
+                pivot_holder.push(secondPivotedMeasArray[j])
+                }
+                pivot_measures_second.push(pivot_holder)
             }
-            // second pivoted array starting from index 1
-            var pivoted_measure_skip_rows_1 = []
-            for(let j=1; j<data.length;j+=countUniqueSecondims){
-                pivoted_measure_skip_rows_1.push(firstPivotedMeasArray[j])
-            }
-            var pivoted_second_measure_skip_rows_1 = []
-            for(let j=1; j<data.length;j+=countUniqueSecondims){
-                pivoted_second_measure_skip_rows_1.push(secondPivotedMeasArray[j])
-            }
-              // third pivoted array starting from index 2
-            var pivoted_measure_skip_rows_2 = []
-            for(let j=2; j<data.length;j+=countUniqueSecondims){
-                pivoted_measure_skip_rows_2.push(firstPivotedMeasArray[j])
-            }
-            var pivoted_second_measure_skip_rows_2 = []
-            for(let j=2; j<data.length;j+=countUniqueSecondims){
-                pivoted_second_measure_skip_rows_2.push(secondPivotedMeasArray[j])
-            }
+            console.log(pivot_measures_second);
             // console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
             Highcharts.setOptions({
                 colors: ['#F62366', '#9DFF02']
@@ -149,7 +137,7 @@
                                   label: "Stack Style",
                                   values: [
                                     {"Normal": "normal"},
-                                    {"Percent": "percent"}                              ],
+                                    {"Percent": "percent"}],
                                   display: "select",
                                   default: "percent",
                                   section: "Style",
@@ -161,13 +149,11 @@
                                   min: 2,
                                   max: 50,
                                   step: .5,
-                                  default: 15,
+                                  default: 5,
                                   section: 'Style',
                                   type: 'number',
                                   display: 'range'
                                 },
-
-                                
                                 textLabel: {
                                   type: 'string',
                                   label: 'Subtitle',
@@ -202,72 +188,46 @@
                         }
                         }
 
-                        function customYAxis (x) {
-                        var AxisOn = x,
-                            yAxisCustomised;
-                    
-                            if(AxisOn=false) {
-                                yAxisCustomised = {
-                                        title: {
-                                            text: measurenames[0]
-                                        }
-                                    }
-                            } else {
-                                 yAxisCustomised = [{
-                                        title: {
-                                            text: measurenames[0]
-                                        }
-                                 },{
-                                     title: {
-                                            text: 'Values'
-                                        },
-                                     opposite:true
-                                 }]
-                            }
-                            return yAxisCustomised;
-                }
-                var yAxisCustom = customYAxis(config.measureaxis_0);
-    // console.log(queryResponse,data);
 
     function seriesConstructor (){
-        var customSeries;
-        var seriesEnd = `{
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[0],
-            id: '0',
-            data: pivoted_measure_skip_rows,
-            color: config.color_0,
-            stack: 'StackA'
-        }, {
-            id: '1',
-            name: uniqueSecondDimensionValues[0] +', ' + pivot_list_clean[1],
-            color: config.color_1,
-            data: pivoted_second_measure_skip_rows,
-            stack: 'StackA'
-        }`
-        if (countUniqueSecondims == 1){
-            return seriesEnd
-        }
-        else {
-            for(let i=0;i<countUniqueSecondims;i++){
-                customSeries += `{
-                    name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[0],
-                    linked_to: '0',
-                    data: pivoted_measure_skip_rows,
-                    color: config.color_0,
-                    stack: 'Stack'${+i}
-                }, {
-                    linked_to: '1',
-                    name: uniqueSecondDimensionValues[${i}] +', ' + pivot_list_clean[1],
-                    color: config.color_1,
-                    data: pivoted_second_measure_skip_rows,
-                    stack: 'Stack'${+i}
-                },`
+        var listofseries =[];
+        var i = 0;
+                listofseries.push({name: uniqueSecondDimensionValues[0] +', ' + pivot_list[0],
+                id: i,
+                data: pivot_measures_first[0],
+                color: config.color_0,
+                stack: 'Stack_1'
+                })
+                listofseries.push({name: uniqueSecondDimensionValues[0] +', ' + pivot_list[1],
+                id: i,
+                data: pivot_measures_second[0],
+                color: config.color_1,
+                stack: 'Stack_1'
+                })
+                //start from 1 because the first index needs to be providing an ID for the subsequent indices to link to
+        for(let i=1;i<countUniqueSecondims;i++){
+                listofseries.push({name: uniqueSecondDimensionValues[i] +', ' + pivot_list[0],
+                linked_to: i,
+                data: pivot_measures_first[i],
+                color: config.color_0,
+                stack: 'Stack'+i
+                })
+                listofseries.push({name: uniqueSecondDimensionValues[i] +', ' + pivot_list[1],
+                linked_to: i,
+                data: pivot_measures_second[i],
+                color: config.color_1,
+                stack: 'Stack'+i
+                })
+
             }
-            return seriesEnd
-        }
+            return (listofseries)
+            console.log(listofseries);
+
+        // }
     }
     var newSeries = seriesConstructor();
     console.log(newSeries);
+
     Highcharts.chart('grouped_stack', {
         chart: {
             type: 'bar'
@@ -279,18 +239,14 @@
                     color: config.color_0
                 }
                 },
-           xAxis: [{
-                    opposite: false,
-                    categories: uniqueDimensionValues
-                },{
-                    opposite: false,
-                    categories: uniqueSecondDimensionValues
-                }],
-        yAxis: {
-            min: 0,
-            title: {
-                text: measurenames[0]
-            }
+          xAxis: {
+            categories:[{"name":uniqueDimensionValues[0],"categories":uniqueSecondDimensionValues},
+            {"name":uniqueDimensionValues[1],"categories":uniqueSecondDimensionValues},
+            {"name":uniqueDimensionValues[2],"categories":uniqueSecondDimensionValues},
+            {"name":uniqueDimensionValues[3],"categories":uniqueSecondDimensionValues},
+            {"name":uniqueDimensionValues[4],"categories":uniqueSecondDimensionValues},
+            {"name":uniqueDimensionValues[5],"categories":uniqueSecondDimensionValues}
+            ]
         },
         legend: {
             reversed: true,
@@ -311,7 +267,7 @@
         // as many series combinations as there are rows for the second dimension
         // Right now, just stopping at 5 since that seems like a logical grouping
         // limit. 
-        series: newSeries
+        series:  [{data:firstPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}},{data:secondPivotedMeasArray,labels:{autoRotation: 45, style: {"fontSize": "10px"}, align: "right"}}]
         
     });
 
