@@ -55,21 +55,33 @@
             const secondPivotName = queryResponse.fields.pivots[0].name
             pivot_list.push(queryResponse.pivots[1].data[secondPivotName])
             var pivot_list_order_by=[] // need to get from the data for pivots a different way than dimensions/measures
-            const firstOrderPivotName = queryResponse.pivots[0].key
-            pivot_list_order_by.push(firstOrderPivotName)
-            const secondOrderPivotName = queryResponse.pivots[1].key
-            pivot_list_order_by.push(secondOrderPivotName)
-
-            // Needed to create 2 arrays from each of the pivots
-            var firstPivotedMeasArray = [];
-            for(let i=0;i<numDimensions;i++){
-                firstPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[0]].value * 10) / 10)
+            for(let i=0;i<pivot_length;i++){
+                pivot_list_order_by.push(queryResponse.pivots[i].key)
             }
+
+            // Needed to create 2 arrays from each of the pivots. 
+            // Need to have the amount of arrays created be dynamic
+            var firstPivotedMeasArray = [];
+            var fullPivotedMeasArray =[]
+            for(let j=0;j<pivot_length;j++){
+                var array_holder = []
+                for(let i=0;i<numDimensions;i++){
+                    array_holder.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[j]].value * 10) / 10);
+                    console.log(array_holder)
+
+                }
+                    console.log(firstnrows[j][queryResponse.fields.measure_like[0].name][pivot_list_order_by[0]].value);
+                fullPivotedMeasArray.push(array_holder)
+
+
+            }
+            console.log(fullPivotedMeasArray)
 
             var secondPivotedMeasArray = [];
             for(let i=0;i<numDimensions;i++){
                 secondPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[1]].value * 10) / 10)
             }
+            console.log(secondPivotedMeasArray)
 
            // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
             function getSum(total, num) {
@@ -146,7 +158,7 @@
                                   display: "select",
                                   default: "percent",
                                   section: "Style",
-                                  order: 2
+                                  order: 1
                                 },
 
                                 textSize: {
@@ -157,12 +169,36 @@
                                   default: 5,
                                   section: 'Style',
                                   type: 'number',
-                                  display: 'range'
+                                  display: 'range',
+                                  order: 1
+                                },
+                                titleSize: {
+                                  label: 'Title Size',
+                                  min: 2,
+                                  max: 50,
+                                  step: .5,
+                                  default: 5,
+                                  section: 'Style',
+                                  type: 'number',
+                                  display: 'range',
+                                  order: 1
                                 },
                                 textLabel: {
                                   type: 'string',
-                                  label: 'Subtitle',
-                                  placeholder: 'Add a label or description',
+                                  label: 'Title',
+                                  placeholder: dimension_head,
+                                  section: 'Style'
+                                },
+                                axisRangeMax: {
+                                  type: 'string',
+                                  label: 'Axis Range Max',
+                                  placeholder: 100,
+                                  section: 'Style'
+                                },
+                                 axisRangeMin: {
+                                  type: 'string',
+                                  label: 'Axis Range Min',
+                                  placeholder: 100,
                                   section: 'Style'
                                 },
                                 legendtoggle: {
@@ -170,7 +206,32 @@
                                     type: 'boolean',
                                     display: 'select',
                                     section: "Style",
-                                    default: true
+                                    default: true,
+                                  order: 2
+                                },
+                                dataLabelToggle: {
+                                    label: 'Value Labels on/off',
+                                    type: 'boolean',
+                                    display: 'select',
+                                    section: "Style",
+                                    default: true,
+                                  order: 2
+                                },
+                                groupToggle: {
+                                    label: 'Grouping on/off',
+                                    type: 'boolean',
+                                    display: 'select',
+                                    section: "Style",
+                                    default: false,
+                                  order: 2
+                                },
+                                shadowToggle: {
+                                    label: 'Shadow on/off',
+                                    type: 'boolean',
+                                    display: 'select',
+                                    section: "Style",
+                                    default: false,
+                                  order: 2
                                 }
                     }
 
@@ -238,20 +299,54 @@
             type: 'bar'
         },
         title: {
-                text: dimension_head,
+                text: config.textLabel,
                 style: {
-                    fontSize: config.textSize,
-                    color: config.color_0
+                    fontSize: config.titleSize,
+                    color: config.color_2
                 }
                 },
           xAxis: {
-            categories:[{"name":uniqueDimensionValues[0],"categories":uniqueSecondDimensionValues},
-            {"name":uniqueDimensionValues[1],"categories":uniqueSecondDimensionValues},
-            {"name":uniqueDimensionValues[2],"categories":uniqueSecondDimensionValues},
-            {"name":uniqueDimensionValues[3],"categories":uniqueSecondDimensionValues},
-            {"name":uniqueDimensionValues[4],"categories":uniqueSecondDimensionValues},
-            {"name":uniqueDimensionValues[5],"categories":uniqueSecondDimensionValues}
+            categories:[{"name":uniqueDimensionValues[0],"categories":uniqueSecondDimensionValues, max: config.axisRangeMax},
+            {"name":uniqueDimensionValues[1],"categories":uniqueSecondDimensionValues, max: config.axisRangeMax,
+            labels: {
+            formatter: function () {
+                return '<b>' +this.value + '</b>';
+                }
+            }},
+            {"name":uniqueDimensionValues[2],"categories":uniqueSecondDimensionValues, max: config.axisRangeMax,
+            labels: {
+            formatter: function () {
+                return '<b>' +this.value + '</b>';
+                }
+            }},
+            {"name":uniqueDimensionValues[3],"categories":uniqueSecondDimensionValues, max: config.axisRangeMax,
+            labels: {
+            formatter: function () {
+                return '<b>' +this.value + '</b>';
+                }
+            }},
+            {"name":uniqueDimensionValues[4],"categories":uniqueSecondDimensionValues, max: config.axisRangeMax,
+            labels: {
+            formatter: function () {
+                return '<b>' +this.value + '</b>';
+                }
+            }},
+            {"name":uniqueDimensionValues[5],"categories":uniqueSecondDimensionValues, max: config.axisRangeMax,
+            labels: {
+            formatter: function () {
+                return '<b>' +this.value + '</b>';
+                }
+            }}
             ]
+        },
+        yAxis: {
+            max: config.axisRangeMax,
+            min: config.axisRangeMin,
+            labels: {
+            formatter: function () {
+                return '<b>' +this.value + '</b>';
+                }
+            }
         },
         legend: {
             reversed: true,
@@ -262,7 +357,12 @@
         },
         plotOptions: {
             bar: {
-              stacking: config.stackStyle
+                stacking: config.stackStyle,
+                grouping: config.groupToggle,
+                shadow: config.shadowToggle,
+                dataLabels: {
+                enabled: config.dataLabelToggle
+            }
             }
         },
         credits: {
@@ -274,16 +374,16 @@
         // limit. 
         series:  
         [{name: pivot_list[0],
-            data:firstPivotedMeasArray,
+            data:fullPivotedMeasArray[0],
             labels:{autoRotation: -45, 
             rotation: -90,  
-            style: {"fontSize": "10px"}, 
+            style: {"fontSize": config.textSize}, 
             align: "right"},
             color: config.color_0},   
         {name: pivot_list[1],
-            data:secondPivotedMeasArray,
+            data:fullPivotedMeasArray[1],
             labels:{autoRotation: -45,   
-            style: {"fontSize": "10px"}, 
+            style: {"fontSize": config.textSize}, 
             align: "right"},
             color: config.color_1}]   
         
