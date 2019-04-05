@@ -172,10 +172,10 @@
                                   order: 1
                                 },
 
-                                textSize: {
-                                  label: 'Text Size',
+                                dataLabelSize: {
+                                  label: 'Data Label Size',
                                   min: 2,
-                                  max: 50,
+                                  max: 15,
                                   step: .5,
                                   default: 5,
                                   section: 'Style',
@@ -372,7 +372,8 @@
                 grouping: config.groupToggle,
                 shadow: config.shadowToggle,
                 dataLabels: {
-                enabled: config.dataLabelToggle
+                enabled: config.dataLabelToggle,
+                style:{"color": "contrast", "fontSize": config.dataLabelSize, "fontWeight": "bold", "textOutline": null }
             }
             }
         },
