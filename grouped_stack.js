@@ -20,8 +20,10 @@
               return;
             }  else if (queryResponse.pivots.length == 0){
               this.addError({title: "Not enough Pivots", message: "This chart requires exactly 2 dimensions, 1 pivot and 1 measure."});
+              return;
             }   else if (queryResponse.fields.measure_like.length == 0){
               this.addError({title: "Not enough Measures", message: "This chart requires exactly 2 dimensions, 1 pivot and 1 measure."});
+              return;
             }
             // Get the number of measures the user has selected
             var numMeasures = queryResponse.fields.measure_like.length;
@@ -394,7 +396,13 @@
             labels:{autoRotation: -45,   
             style: {"fontSize": config.textSize}, 
             align: "right"},
-            color: config.color_1}]   
+            color: config.color_1},   
+        {name: pivot_list[2],
+            data:fullPivotedMeasArray[2],
+            labels:{autoRotation: -45,   
+            style: {"fontSize": config.textSize}, 
+            align: "right"},
+            color: config.color_2}]   
         
     });
 
