@@ -61,12 +61,16 @@
             
             // pivot values
             var pivot_list=[] // need to get from the data for pivots a different way than dimensions/measures
-            const firstPivotName = queryResponse.fields.pivots[0].name
-            pivot_list.push(queryResponse.pivots[0].data[firstPivotName])
-            const secondPivotName = queryResponse.fields.pivots[0].name
-            pivot_list.push(queryResponse.pivots[1].data[secondPivotName])
-            const thirdPivotName = queryResponse.fields.pivots[0].name
-            pivot_list.push(queryResponse.pivots[2].data[thirdPivotName])
+            // const firstPivotName = queryResponse.fields.pivots[0].name
+            // pivot_list.push(queryResponse.pivots[0].data[firstPivotName])
+            // const secondPivotName = queryResponse.fields.pivots[0].name
+            // pivot_list.push(queryResponse.pivots[1].data[secondPivotName])
+            // const thirdPivotName = queryResponse.fields.pivots[0].name
+            // pivot_list.push(queryResponse.pivots[2].data[thirdPivotName])
+
+            for(let i=0;i<pivot_length;i++){
+                pivot_list.push(queryResponse.pivots[i].data[queryResponse.fields.pivots[0].name])
+            }
             var pivot_list_order_by=[] // need to get from the data for pivots a different way than dimensions/measures
             for(let i=0;i<pivot_length;i++){
                 pivot_list_order_by.push(queryResponse.pivots[i].key)
