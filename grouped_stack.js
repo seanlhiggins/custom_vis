@@ -14,6 +14,15 @@
                 font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
             }
             </style>`;
+            // Handle some errors
+            if (queryResponse.fields.dimensions.length <2) {
+              this.addError({title: "Not enough Dimensions", message: "This chart requires exactly 2 dimensions, 1 pivot and 1 measure."});
+              return;
+            }  else if (queryResponse.pivots.length == 0){
+              this.addError({title: "Not enough Pivots", message: "This chart requires exactly 2 dimensions, 1 pivot and 1 measure."});
+            }   else if (queryResponse.fields.measure_like.length == 0){
+              this.addError({title: "Not enough Measures", message: "This chart requires exactly 2 dimensions, 1 pivot and 1 measure."});
+            }
             // Get the number of measures the user has selected
             var numMeasures = queryResponse.fields.measure_like.length;
             var numDimensions = data.length
