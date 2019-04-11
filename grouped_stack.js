@@ -177,7 +177,7 @@
         // console.log(pivot_measures_second);
         // console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
         Highcharts.setOptions({
-            colors: ['#F62366', '#9DFF02']
+            colors: ['#5b3ef5', '#ff8e43']
         });
             options = {
               stackStyle: {
@@ -317,7 +317,7 @@
             
    // Create an option for all the unique values in the pivot list so each pivoted
    // value can have its own color selection
-   for(let i=0;i<=pivot_list.length;i++){
+   for(let i=0;i<pivot_list.length;i++){
 
           var field = pivot_list[i];
           id = "color_" + i
@@ -349,16 +349,20 @@ var categories=[];
   // Similar to above, I'm creating a dynamic length of series
   // based on the pivots and how long that list is 
   var serieslist = [];
-  for(let i = 0; i < pivot_list_order_by.length; i++){
-    var serie = {name: pivot_list[i],
-        data:fullPivotedMeasArray[i],
-        labels:{
-        style: {"fontSize": config.textSize}, 
-        align: "right"},
-        color: config.color_i}
-        serieslist.push(serie);
-  };
-  // console.log(serieslist);
+    for(let i = 0; i < pivot_list_order_by.length; i++){
+      var configcolor = "color_" + i
+
+      var serie = {name: pivot_list[i],
+          data:fullPivotedMeasArray[i],
+          labels:{
+          style: {"fontSize": config.textSize}, 
+          align: "right"},
+          color: config[configcolor]}
+          serieslist.push(serie);
+          console.log(configcolor);
+    };
+
+  console.log(serieslist);
 // console.log(categories);
 Highcharts.chart('grouped_stack', {
     chart: {
