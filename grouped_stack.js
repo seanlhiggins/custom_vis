@@ -10,7 +10,7 @@
             #grouped_stack {
             margin: 0 auto;
             min-width: 310px;
-            height: 500px;
+            height: ${combovalueslength}px;
             font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
         }
         </style>`;
@@ -362,12 +362,16 @@ var categories=[];
           console.log(configcolor);
     };
 
+    // creating a variable to help dynamically change the chart height
+    // too many values means the chart gets squished when the height is
+    // very low
+    var combovalueslength = (uniqueDimensionValues.length * uniqueSecondDimensionValues.length) * 30;
   console.log(serieslist);
 // console.log(categories);
 Highcharts.chart('grouped_stack', {
     chart: {
         type: 'bar',
-        height: 500
+        height: combovalueslength
     },
     // disabling title because the Y Axis will have a custom label
     title: {
