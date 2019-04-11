@@ -10,7 +10,7 @@
             #grouped_stack {
             margin: 0 auto;
             min-width: 310px;
-            height: 350px;
+            height: 500px;
             font-family: 'Open Sans', Helvetica, Arial, sans-serif; 
         }
         </style>`;
@@ -367,7 +367,7 @@ var categories=[];
 Highcharts.chart('grouped_stack', {
     chart: {
         type: 'bar',
-        height: 350
+        height: 500
     },
     // disabling title because the Y Axis will have a custom label
     title: {
