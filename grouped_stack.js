@@ -25,13 +25,21 @@
           this.addError({title: "Not enough Measures", message: "This chart requires exactly 2 dimensions, 1 pivot and 1 measure."});
           return;
         }
-        // Get the number of measures the user has selected
-        var numMeasures = queryResponse.fields.measure_like.length;
+        // Get the number of dimensions the user has selected
         var numDimensions = data.length
-
         var firstnrows = data.slice(0,numDimensions);
 
-       // A names of all the cells from the dimensions for the xaxis as well as labels of the measures for the pies
+       // A names of all the cells from the dimensions for the xaxis 
+       // TODO: If there are 2 dimensions with uncommon values like this:
+       //  a | 1
+       //  a | 2
+       //  b | 1
+       //  b | 3
+       //  b | 4
+       // we want to have them grouped. Probably need to create a dimension
+       // object or some sort of key:value per row so it can be dynamic
+       // Right now it's just whatever the unique values are, and both
+       // dimensions are agnostic of each other's cardinality.
        var dimensionvalues = []
        data.forEach(function(value){
         dimensionvalues.push(LookerCharts.Utils.textForCell(value[queryResponse.fields.dimensions[0].name]));
@@ -54,15 +62,14 @@
         // Pivot title
         // Need to put in a conditional to check to see if the pivots
         // are even present, otherwise this will error
-        var pivot_title = queryResponse.fields.pivots[0].label_short;
+        // var pivot_title = queryResponse.fields.pivots[0].label_short; // unneeded now
         
         // Pivot and measure lengths so we can use it for loops later and not go out of range
         var pivot_length = queryResponse.pivots.length
-        var measureLength = queryResponse.fields.measure_like.length
+        // var measureLength = queryResponse.fields.measure_like.length // unneeded now
         
         // pivot values
         var pivot_list=[] // need to get from the data for pivots a different way than dimensions/measures
-
         for(let i=0;i<pivot_length;i++){
             pivot_list.push(queryResponse.pivots[i].data[queryResponse.fields.pivots[0].name])
         }
@@ -71,25 +78,54 @@
             pivot_list_order_by.push(queryResponse.pivots[i].key)
         }
 
+
+
         // Needed to create 2 arrays from each of the pivots. 
         // Need to have the amount of arrays created be dynamic
-        var firstPivotedMeasArray = [];
+        // TODO: downstream of the data, the click event needs to 
+        // access a link from the data object with the following structure:
+          //   {
+          //   y: 10,
+          //   ownURL: 'http://www.google.com/search?q=pizza'
+          // }
+        // I'll try add a placeholder for now just to see if it works
+        // I had to create 2 arrays, one for each side of the pivot. 
+        // If there are 3 pivot values there's going to be an error
+        // TODO: smooth this out so each value gets a new array
+        // TODO: find a way to pass down the pivot index
+        // so the click event can be aware of which pivot array
+        // to perform the callback function on i.e. this.index
         var fullPivotedMeasArray =[]
+        var clickdataarrayobject = []
+        var clickdataarrayobject2 = []
         for(let j=0;j<pivot_length;j++){
-            var array_holder = []
+          var array_holder = [];
+          var urlHolder;
+          var halfpivot_length = pivot_length/2;
+          if(j<pivot_length/2){
             for(let i=0;i<numDimensions;i++){
-                array_holder.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[j]].value * 10) / 10);
+              array_holder.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[j]].value * 10) / 10);
+              urlHolder = {
+                y: Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[j]].value * 10) / 10,
+                url: '/explore/ecommerce/order_items?fields=users.id,users.last_name,users.first_name,orders.count&f[orders.status]=cancelled&f[users.age_tier]=Below+18&f[users.gender]=f&limit=500'
+              }
+              clickdataarrayobject.push(urlHolder);
+              }
+          }
+          else{
+            for(let i=0;i<numDimensions;i++){
+            array_holder.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[j]].value * 10) / 10);
+            urlHolder = {
+              y: Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[j]].value * 10) / 10,
+              url: '/explore/ecommerce/order_items?fields=users.id,users.last_name,users.first_name,orders.count&f[orders.status]=cancelled&f[users.age_tier]=Below+18&f[users.gender]=f&limit=500'
             }
-                // console.log(firstnrows[j][queryResponse.fields.measure_like[0].name][pivot_list_order_by[0]].value);
-            fullPivotedMeasArray.push(array_holder)
+            clickdataarrayobject2.push(urlHolder);
+          }
         }
-        console.log(fullPivotedMeasArray)
-        var secondPivotedMeasArray = [];
-        for(let i=0;i<numDimensions;i++){
-            secondPivotedMeasArray.push(Math.round(firstnrows[i][queryResponse.fields.measure_like[0].name][pivot_list_order_by[1]].value * 10) / 10)
+          fullPivotedMeasArray.push(array_holder);            
         }
-        console.log(secondPivotedMeasArray)
 
+        var consolidatedclickdataarrays = [clickdataarrayobject,clickdataarrayobject2];
        // just a function to get the sum of each arrays so user doesn't have to do Looker totals which add SQL overhead
         function getSum(total, num) {
           return total + Math.round(num);
@@ -112,22 +148,20 @@
         }
         
         // generate drill links. Work in progress. It's hard. And I suck at JS.
-        /*const graph: any = {
-        nodes: [],
-        links: []
-      }
-        for (const key in data) {
-          if (d[key].links) {
-            d[key].links.forEach((link: Link) => { drillLinks.push(link) })
+        document.body.onclick = function(e){
+          e = e || event;
+          if (e.target.href){
+             /* it's a link, actions here */
+             const link = {
+                label: '',
+                type: 'url',
+                type_label: 'Url',
+                url: event.target.href
+              }
+              window.LookerCharts.Utils.openDrillMenu({links: [link], event})
           }
+        e.preventDefault()
         }
-
-        graph.links.push({
-          'drillLinks': drillLinks,
-          'source': source,
-          'target': target,
-          'value': +d[measure.name].value
-        })*/
 
         // assigning variables for the list of unique elements and counts
         var uniqueDimensionValues = dimensionvalues.filter(onlyUnique)
@@ -139,46 +173,12 @@
         for(let i = 0; i<uniqueSecondDimensionValuesLong.length; i++){
           uniqueSecondDimensionValuesLong.push(uniqueSecondDimensionValues[i].slice(0,10));
         }
-        var countUniqueDims = countUnique(dimensionvalues);
-        var countUniqueSecondims = countUnique(seconddimensionvalues);
 
-        // Create a list of arrays that make up the pivoted data sets. 
-        // To achieve the 'grouping' where the measures are grouped 
-        // based on a higher dimension than the granularity
-        // we jump through the data array by as many rows as the 
-        // uniqueness of the 2nd dimension presents. i.e. if there's 
-        // 3 unique values, then we want the 1st, 4th, 7th value
-        // in a single array, 2nd 5th and 8th in the next etc.
-        // Currently this works fine _if_ every single dim1:dim2 grouping
-        // is a consistent ratio. However if the relationship varies
-        // from 1:3 to 1:4 to 1:2 for example, the series jumping 
-        // breaks. Need to do something like grab the index of 
-        // each first occurence of a new unique value and use
-        // _that_ as the 'jump' for each loop. THEN I need to
-        // make sure I'm putting in a '0' for every missing 
-        // dimension value 
-        var pivot_measures_first = []
-        for(let i=0; i<countUniqueSecondims;i+=1){
-            var pivot_holder =[]
-            for(let j=i; j<data.length;j+=countUniqueSecondims) {
-            pivot_holder.push(firstPivotedMeasArray[j])
-            }
-            pivot_measures_first.push(pivot_holder)
-        }
-        // console.log(pivot_measures_first);
-        var pivot_measures_second = []
-        for(let i=0; i<countUniqueSecondims;i+=1){
-            var pivot_holder =[]
-            for(let j=i; j<data.length;j+=countUniqueSecondims) {
-            pivot_holder.push(secondPivotedMeasArray[j])
-            }
-            pivot_measures_second.push(pivot_holder)
-        }
         // console.log(pivot_measures_second);
         // console.log(countUniqueDims,countUniqueSecondims,pivoted_measure_skip_rows);
-        Highcharts.setOptions({
-            colors: ['#5b3ef5', '#ff8e43']
-        });
+      Highcharts.setOptions({
+          colors: ['#5b3ef5', '#ff8e43']
+      });
             options = {
               stackStyle: {
                 type: "string",
@@ -187,7 +187,7 @@
                   {"Normal": "normal"},
                   {"Percent": "percent"}],
                 display: "select",
-                default: "percent",
+                default: "Percent",
                 section: "Style",
                 order: 1
               },
@@ -197,18 +197,24 @@
                 min: 2,
                 max: 15,
                 step: .5,
-                default: 5,
+                default: 8,
                 section: 'Labels',
                 type: 'number',
                 display: 'range',
                 order: 1
               },
               labelRotation: {
+                type: 'string',
                 label: 'Label Rotation',
-                min: -90,
-                max: 90,
-                step: .5,
-                default: 0,
+                placeholder: 0,
+                section: 'Labels'
+              },
+              groupPadding: {
+                label: 'Line Padding',
+                min: 0,
+                max: 1,
+                step: .01,
+                default: .1,
                 section: 'Labels',
                 type: 'number',
                 display: 'range',
@@ -244,7 +250,7 @@
                 section: 'Axes'
               },
               legendtoggle: {
-                  label: 'Legend on/off',
+                  label: 'Legend',
                   type: 'boolean',
                   display: 'select',
                   section: "Style",
@@ -252,17 +258,29 @@
                 order: 2
               },
               dataLabelToggle: {
-                  label: 'Value Labels on/off',
+                  label: 'Data Value Labels',
                   type: 'boolean',
                   display: 'select',
                   section: "Labels",
                   default: true,
                 order: 1
               },
+              logLinToggle: {
+                type: "string",
+                label: "Scale",
+                values: [
+                  {"Linear": "linear"},
+                  {"Logarithmic": "logarithmic"},
+                  {"Date Time": "datetime"}],
+                display: "select",
+                default: "Linear",
+                section: "Axes",
+                order: 3
+              },
               labelColour: {
                   label: 'Label Colour',
                   section: "Labels",
-                  default: "#FFFFFF",
+                  default: "#043b48",
                   type: "string",
                   display: "color",
                   display_size: "half",
@@ -280,7 +298,7 @@
                 order: 2
               },
               shadowToggle: {
-                  label: 'Shadow on/off',
+                  label: 'Shadow',
                   type: 'boolean',
                   display: 'select',
                   section: "Style",
@@ -288,7 +306,15 @@
                 order: 2
               },
               gridLinesToggle: {
-                  label: 'Gridlines on/off',
+                  label: 'Category Gridlines',
+                  type: 'boolean',
+                  display: 'select',
+                  section: "Style",
+                  default: false,
+                order: 2
+              },
+              dataGridLinesToggle: {
+                  label: 'Data Gridlines',
                   type: 'boolean',
                   display: 'select',
                   section: "Style",
@@ -318,11 +344,10 @@
    // Create an option for all the unique values in the pivot list so each pivoted
    // value can have its own color selection
    for(let i=0;i<pivot_list.length;i++){
-
           var field = pivot_list[i];
           id = "color_" + i
           options[id] =
-          {
+            {
               label: field,
               default: Highcharts.getOptions().colors[i],
               section: "Style",
@@ -330,43 +355,106 @@
               display: "color",
               display_size: "half",
               order: 1
-          }
+            }
           }
 
-// This is no longer needed for now, it was a constructor of series of dynamic
-// length, minimum 1 object up to as many different unique values for the second dimension
-// were present in the data
-// UPDATE created a quick loop to generate category objects to insert into a categories
+// 
+// UPDATED: created a quick loop to generate category objects to insert into a categories
 // array
-var categories=[];
-  for(let i = 0; i < uniqueDimensionValues.length; i++){
-    console.log(i);
-    var category = {
-          "name":uniqueDimensionValues[i],"categories":uniqueSecondDimensionValues, max: config.axisRangeMax
+// TODO: Make this so each iteration of the loop is creating an object
+// whereby the name and category are grouped by the 1st and 2nd dimensions.
+// i.e. when dim1 value changes, thatever the corresponding row values for
+// dim2 are inserted into the category, instead of what's happening now
+// which is just the unique dim2 values are put in for _every_ 
+// dim1 value. Often dim2s values aren't repeating, but unique per
+// dim1 value. SEE LINE 32-42 for more details
+// Maybe something like a dual layer loop. I'll have to create an upstream object
+// which is like {dim1value0:[dim2value0,dim2value1,dim2value2],dim1value1:[dim2value3,dim2value4],dim1value2:[dim2value5,dim2value6]...}
+// then I can iterate through that with 
+//
+//    for(let i=0; i<testobject.length; i++){
+      //  somenewobject.dimvalue.foreach(function(dim2value)){ 
+        // var category = {
+          // "name":uniqueDimensionValues[i],"categories":uniqueSecondDimensionValues[dim2value], max: config.axisRangeMax
+          // };
+          // categories.push(category)
+
+//WIP
+  var newcategory= [];
+  // TODO: replace the 'dim1value0' and corresponding arrays with the pairings of dim1:dim2 values 
+  // everything downstream should work fine once that's done
+  // 
+  var testobject = {'dim1value0':['dim2value0','dim2value1','dim2value2'],'dim1value1':['dim2value3','dim2value4'],'dim1value2':['dim2value5','dim2value6']};
+  // console.log(testobject);
+    for(var dim in testobject){ 
+        var newcategoryobj = {
+          "name":dim,"categories":testobject[dim], max: config.axisRangeMax
           };
-    categories.push(category);
+          newcategory.push(newcategoryobj);
+        };
+// console.log(newcategory);
+
+
+// Now the above thing is working with dummy data, I need to inject real data in.
+// The way Looker's data works in tables is that each Dim1 value is repeated for
+// each dim2 value, so if I can have a count for each repeated value, I can use
+// that count to easily iterate over the full list of dim2 values, adding 
+// the index of the dim2 array into the testobject that correspond to the value
+// of the counts. Maybe just getting the indices of each unique instance of Dim1 
+// will be enough, so then I can do 
+// uniqueDimensionValues.foreach(function(dim)
+// 
+// Finally updated so that regardless of the cardinality of Dim1 and Dim2,
+// the groupings should reflect what the data results table shows in Looker
+// This is helpful if there are non-repeating values for dim2
+var dim1uniqueindices = []; // need to now create an actual array of indices of unique instances
+uniqueDimensionValues.forEach(function(dimvalue){
+  var index = dimensionvalues.indexOf(dimvalue)
+  dim1uniqueindices.push(index);
+});
+console.log(dim1uniqueindices);
+var finalarrayofseconddimensionlists = [];
+for(let i=0; i<dim1uniqueindices.length; i++){
+  var j = i+1
+  var indexstart=dim1uniqueindices[i];
+  var indexstop=dim1uniqueindices[j];
+  var arrayholdertemp = []
+  arrayholdertemp.push(seconddimensionvalues.slice(indexstart,indexstop))
+  finalarrayofseconddimensionlists.push(arrayholdertemp);
+}
+console.log(finalarrayofseconddimensionlists);
+
+  // WORKING:
+  var categories=[];
+    for(let i = 0; i < uniqueDimensionValues.length; i++){
+      var category = {
+            "name":uniqueDimensionValues[i],"categories":finalarrayofseconddimensionlists[i][0], max: config.axisRangeMax
+            };
+      categories.push(category);
   };
+  console.log(categories)
   // Similar to above, I'm creating a dynamic length of series
   // based on the pivots and how long that list is 
   var serieslist = [];
     for(let i = 0; i < pivot_list_order_by.length; i++){
       var configcolor = "color_" + i
-
       var serie = {name: pivot_list[i],
-          data:fullPivotedMeasArray[i],
+          // data:fullPivotedMeasArray[i],
+          data: consolidatedclickdataarrays[i],
+          // data:[{y: 240.1, ownURL: "/explore/ecommerce/order_items?fields=users.id,users.last_name,users.first_name,orders.count&f[orders.status]=cancelled&f[users.age_tier]=Below+18&f[users.gender]=f&limit=500"}],
           labels:{
           style: {"fontSize": config.textSize}, 
           align: "right"},
           color: config[configcolor]}
           serieslist.push(serie);
-          console.log(configcolor);
+          // console.log(consolidatedclickdataarrays[i]);
     };
 
     // creating a variable to help dynamically change the chart height
     // too many values means the chart gets squished when the height is
     // very low
     var combovalueslength = (uniqueDimensionValues.length * uniqueSecondDimensionValues.length) * 30;
-  console.log(serieslist);
+  // console.log(serieslist);
 // console.log(categories);
 Highcharts.chart('grouped_stack', {
     chart: {
@@ -382,10 +470,11 @@ Highcharts.chart('grouped_stack', {
             }
             },
       xAxis: {
+            gridLineWidth: 0,
             drawHorizontalBorders: config.gridLinesToggle,
-        labels: {formatter: function(){
-          return this.value;
-        },
+            labels: {formatter: function(){
+            return this.value;
+          },
             groupedOptions: [{
                 style: {
                     color: config.labelColour, // set a color for labels in 1st-Level  
@@ -394,6 +483,7 @@ Highcharts.chart('grouped_stack', {
                 },
                 rotation: config.labelRotation
             }, {
+                    fontSize: config.labelSize,
                 style:{
                   color: config.labelColour,
                   align: 'left',
@@ -420,6 +510,8 @@ Highcharts.chart('grouped_stack', {
         
     },
     yAxis: {
+        type: config.logLinToggle,
+        gridLineWidth: config.dataGridLinesToggle,
         max: config.axisRangeMax,
         min: config.axisRangeMin,
         title: {
@@ -440,14 +532,27 @@ Highcharts.chart('grouped_stack', {
     plotOptions: {
       series: {
         cursor: 'pointer',
+        groupPadding: config.groupPadding,
         point: {
           events: {
-            click: function () {
-                // location.href = "/explore/ecommerce/order_items?fields=users.id,users.last_name,users.first_name,orders.count&f[orders.status]=pending&f[users.age_tier]=85+or+Above&f[users.gender]=f&limit=500"
-                window.open('/explore/ecommerce/order_items?fields=users.id,users.last_name,users.first_name,orders.count&f[orders.status]=pending&f[users.age_tier]=85+or+Above&f[users.gender]=f&limit=500','_parent');
+            click: function () { 
+              // Since we have 2 objects in the series, one for each pivot
+              // the this.series.index will select the appropriate object
+              // based on the pivot value selected
+              // this.index is the index within each array. So I still need
+              // to address the above TODO which is to have the array be of
+              // dynamic length based on those pivot values.
+              // If I've 3 pivot values, my simplistic approach above will break
+              // SEE LINE ~85
+                      var cell = data[this.index][queryResponse.fields.measures[0].name][pivot_list[this.series.index]];
+                        LookerCharts.Utils.openDrillMenu({
+                          links: cell.links,
+                          event: event
+                        });
+
+                }
+              }
             }
-          }
-        }
         },
       bar: {
           stacking: config.stackStyle,
@@ -480,10 +585,7 @@ Highcharts.chart('grouped_stack', {
     series:  serieslist
     
 });
-
-
         this.trigger('registerOptions', options) // register options with parent page to update visConfig
-
         doneRendering()
     }
   });
