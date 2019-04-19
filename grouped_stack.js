@@ -361,8 +361,8 @@ looker.plugins.visualizations.add({
    },
    labelOffset: {
     label: 'Label Offset',
-    min: -90,
-    max: 90,
+    min: -180,
+    max: 180,
     step: .5,
     default: 5,
     section: 'Labels',
