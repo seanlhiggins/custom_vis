@@ -7,7 +7,8 @@ const visObject = {
     // set the dimensions and margins of the graph
     console.log(data);
     console.log(queryResponse);
-    element.innerHTML=JSON.stringify(data)
+    element.innerHTML=JSON.stringify(data) + 'data end'
+    element.innerHTML+=JSON.stringify(queryResponse)
 	}
 };
 
