@@ -81,16 +81,20 @@ var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique );
 		
     var series1hcdataarray =[] 
     arraymalevalues.forEach(function(d){
-    	series1hcdataarray.push(d[fieldviewnames[1]].value)
-      series1hcdataarray.push(d[measurenames[0]].value)
+      temparray=[]
+    	temparray.push(d[fieldviewnames[1]].value)
+      temparray.push(d[measurenames[0]].value)
+      series1hcdataarray.push(temparray)
     });
     var series2hcdataarray =[]
     arrayfemalevalues.forEach(function(d){
-    	series2hcdataarray.push(d[fieldviewnames[1]].value)
-      series2hcdataarray.push(d[measurenames[0]].value)
+      let temparray =[]
+    	temparray.push(d[fieldviewnames[1]].value)
+      temparray.push(d[measurenames[0]].value)
+      series2hcdataarray.push(temparray)
     });
     
-    console.log(series1hcdataarray)
+    console.log(series1hcdataarray,series2hcdataarray)
     
 
 
