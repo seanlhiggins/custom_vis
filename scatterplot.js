@@ -28,15 +28,26 @@ const visObject = {
   **/
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
     // set the dimensions and margins of the graph
-	var fieldnamesfriendly = []
+    console.log(data, queryResponse)
+		var fieldnamesfriendly = []
     queryResponse.fields.dimension_like.forEach(function(value) {
      fieldnamesfriendly.push(value.label_short);
+     
+    });
+    		var measurenamesfriendly = []
+    queryResponse.fields.measure_like.forEach(function(value) {
+     measurenamesfriendly.push(value.label_short);
+     
     });
    	var fieldviewnames = []
     queryResponse.fields.dimension_like.forEach(function(value) {
      fieldviewnames.push(value.name);
     });
-
+		var measurenames = []
+      queryResponse.fields.measure_like.forEach(function(value) {
+     measurenames.push(value.name);
+    });
+    console.log(measurenames)
    	var container = element.appendChild(document.createElement("div"));
   	container.id = "container";
     var hcstructureddata = []
@@ -71,10 +82,12 @@ var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique );
     var series1hcdataarray =[] 
     arraymalevalues.forEach(function(d){
     	series1hcdataarray.push(d[fieldviewnames[1]].value)
+      series1hcdataarray.push(d[measurenames[0]].value)
     });
     var series2hcdataarray =[]
     arrayfemalevalues.forEach(function(d){
     	series2hcdataarray.push(d[fieldviewnames[1]].value)
+      series2hcdataarray.push(d[measurenames[0]].value)
     });
     
     console.log(series1hcdataarray)
@@ -87,7 +100,7 @@ var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique );
         zoomType: 'xy'
     },
     title: {
-        text: `${fieldnamesfriendly[1]} vs ${fieldnamesfriendly[2]}`
+        text: `${fieldnamesfriendly[1]} vs ${measurenamesfriendly[0]}`
     },
     subtitle: {
         text: `${data.length} rows`
@@ -96,7 +109,7 @@ var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique );
     xAxis: {
         title: {
             enabled: true,
-            text: 'Age'
+            text: `${fieldnamesfriendly[1]}`
         },
         startOnTick: true,
         endOnTick: true,
@@ -104,7 +117,7 @@ var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique );
     },
     yAxis: {
         title: {
-            text: 'Days as Customer'
+            text: `${measurenamesfriendly[0]}`
         }
     },
     legend: {
@@ -137,7 +150,7 @@ var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique );
             },
             tooltip: {
                 headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x} y.o., {point.y} days'
+                pointFormat: '{point.x}, {point.y} '
             }
         }
     },
