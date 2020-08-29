@@ -29,7 +29,7 @@ const visObject = {
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
 
     Highcharts.setOptions({
-        colors: ['#5b3ef5', '#ff8e43']
+        colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
     });
     // set the dimensions and margins of the graph
     console.log(data, queryResponse)
