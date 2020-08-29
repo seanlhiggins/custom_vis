@@ -40,11 +40,30 @@ const visObject = {
                 default: true,
                 order: 2
             },
+            pointfill: {
+                label: 'Point Fill',
+                type: 'boolean',
+                display: 'select',
+                section: "Style",
+                default: true,
+                order: 2
+            }
+            pointsize: { 
+                label: 'Point Size',
+                min: 2,
+                max: 6,
+                step: .2,
+                default: 3,
+                section: 'Style',
+                type: 'number',
+                display: 'range',
+                order: 1
+            },
             legendalignment: {
                 type: "string",
                 section: "Style",
                 display: 'select',
-                label: "Title Alignment",
+                label: "Legend Alignment",
                 values: [{
                         "Left": "left"
                     },
@@ -70,7 +89,7 @@ const visObject = {
                         "Square": "square"
                     },
                     {
-                        "Centre": "diamond"
+                        "Diamond": "diamond"
                     },
                     {
                         "Triangle": "triangle"
@@ -134,11 +153,14 @@ const visObject = {
                 tempdata.push(d[measures[0].name].value)
                 tempdataarray.push(tempdata)
             })
-
+            let colourfill = '#FFFFFF'
+            if(config.pointfill){
+                colourfill = Highcharts.getOptions().colors[i]
+            }
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             tempobject.color = Highcharts.getOptions().colors[i]
-            tempobject.marker = {symbol: config.symbolselect}
+            tempobject.marker = {symbol: config.symbolselect, radius: config.pointsize, fillColor: colourfill}
             dataseriesarrays.push(tempobject)
             i++
         }
