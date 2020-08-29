@@ -55,7 +55,30 @@ const visObject = {
                         "Centre": "center"
                     }
                 ]
-            }
+            },
+            //'circle', 'square','diamond', 'triangle' and 'triangle-down'
+            symbolselect: {
+                type: "string",
+                section: "Style",
+                display: 'select',
+                label: "Marker Symbol",
+                default: 'circle',
+                values: [{
+                        "Circle": "circle"
+                    },
+                    {
+                        "Square": "square"
+                    },
+                    {
+                        "Centre": "diamond"
+                    },
+                    {
+                        "Triangle": "triangle"
+                    },
+                    {
+                        "Triangle-Down": "triangle-down"
+                    }
+                ]
         }
         Highcharts.setOptions({
             colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
@@ -114,7 +137,7 @@ const visObject = {
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             tempobject.color = Highcharts.getOptions().colors[i]
-            tempobject.marker = {symbol: '🐶'}
+            tempobject.marker = {symbol: config.symbolselect}
             dataseriesarrays.push(tempobject)
             i++
         }
