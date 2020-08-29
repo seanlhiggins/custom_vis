@@ -124,7 +124,7 @@ const visObject = {
     },
     legend: {
         layout: 'vertical',
-        enabled: options['legendenabled']
+        enabled: options['legendenabled'],
         align: 'left',
         verticalAlign: 'top',
         x: 100,
