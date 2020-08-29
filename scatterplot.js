@@ -57,32 +57,16 @@ const visObject = {
     });
     // set the dimensions and margins of the graph
     // console.log(data, queryResponse)
-	var fieldnamesfriendly = []
-        queryResponse.fields.dimension_like.forEach(function(value) {
-            fieldnamesfriendly.push(value.label_short);
-    });
-    var measurenamesfriendly = []
-    queryResponse.fields.measure_like.forEach(function(value) {
-        measurenamesfriendly.push(value.label_short);
-    });
+    var dimensions = queryResponse.fields.dimension_like
+    var measures = queryResponse.fields.measure_like
 
-   	var fieldviewnames = []
-    queryResponse.fields.dimension_like.forEach(function(value) {
-        fieldviewnames.push(value.name);
-    });
-	var measurenames = []
-    queryResponse.fields.measure_like.forEach(function(value) {
-        measurenames.push(value.name);
-    });
-    console.log(measurenames)
+
    	var container = element.appendChild(document.createElement("div"));
     container.id = "container";
-    
-    var hcstructureddata = []
-		
+    		
     var seriesaxesvalues =[]
     data.forEach(function(d) {
-        seriesaxesvalues.push(d[fieldviewnames[0]].value)
+        seriesaxesvalues.push(d[dimensions[0].name].value)
     })
     
     function onlyUnique(value, index, self) { 
@@ -107,14 +91,14 @@ const visObject = {
         // }
 
         let temparray = data.filter(function(users){
-        return users[fieldviewnames[0]].value==uniqueseriesnames[i]})
+        return users[dimensions[0].name].value==uniqueseriesnames[i]})
 
 
         let tempdataarray = []
         temparray.forEach(function(d){
             let tempdata = []
-            tempdata.push(d[fieldviewnames[1]].value)
-            tempdata.push(d[measurenames[0]].value)
+            tempdata.push(d[dimensions[1].name].value)
+            tempdata.push(d[measures[0].name].value)
             tempdataarray.push(tempdata)
         })
 
@@ -132,7 +116,7 @@ const visObject = {
         zoomType: 'xy'
     },
     title: {
-        text: `${fieldnamesfriendly[1]} vs ${measurenamesfriendly[0]}`
+        text: `${dimensions[1].label_short} vs ${measures[0].label_short}`
     },
     subtitle: {
         text: `${data.length} rows`
@@ -147,7 +131,7 @@ const visObject = {
     xAxis: {
         title: {
             enabled: true,
-            text: `${fieldnamesfriendly[1]}`
+            text: `${dimensions[1].label_short}`
         },
         startOnTick: true,
         endOnTick: true,
@@ -155,7 +139,7 @@ const visObject = {
     },
     yAxis: {
         title: {
-            text: `${measurenamesfriendly[0]}`
+            text: `${measures[0].label_short}`
         }
     },
     legend: {
