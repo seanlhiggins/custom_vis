@@ -33,7 +33,7 @@ const visObject = {
             "Right": "right"
             },
             {
-            "Centre": "centre"
+            "Centre": "center"
             }
             ]
     }
@@ -123,7 +123,13 @@ const visObject = {
     subtitle: {
         text: `${data.length} rows`
     },
-
+    exporting: {
+        enabled: false
+    },
+    style: {
+            fontFamily: 'Helvetica'
+        }
+    ,
     xAxis: {
         title: {
             enabled: true,
