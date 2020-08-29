@@ -93,6 +93,9 @@ const visObject = {
             //     name: uniqueseriesnames[0],
             //     color: 'rgba(119, 152, 191, .5)',
             //     data: [[11,22],[33,44]]
+            //         marker: {
+            //          symbol: 'triangle'
+            //                }
             // }
 
             let temparray = data.filter(function(users) {
@@ -111,6 +114,7 @@ const visObject = {
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             tempobject.color = Highcharts.getOptions().colors[i]
+            tempobject.marker = {symbol: '🐶'}
             dataseriesarrays.push(tempobject)
             i++
         }
@@ -140,7 +144,8 @@ const visObject = {
                 },
                 startOnTick: true,
                 endOnTick: true,
-                showLastLabel: true
+                showLastLabel: true,
+                min: 0 
             },
             yAxis: {
                 title: {
