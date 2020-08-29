@@ -17,7 +17,7 @@ const visObject = {
     this.clearErrors();
 
     // Throw some errors and exit if the shape of the data isn't what this chart needs
-    if (queryResponse.fields.dimensions_like.length !== 2 ) {
+    if (queryResponse.fields.dimension_like.length !== 2 ) {
         this.addError({title: "Wrong Dimensions", message: "This chart requires exactly 2 dimensions and 1 measure."});
       return;
     } else if (queryResponse.fields.measure_like.length !=1){
