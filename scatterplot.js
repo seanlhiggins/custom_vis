@@ -63,21 +63,28 @@ const visObject = {
     return self.indexOf(value) === index;
 }
 
-// usage example:
-var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique ); 
+    // usage example:
+    var uniqueseriesnames = seriesaxesvalues.filter( onlyUnique ); 
 
-    
-		//console.log(seriesaxis)
-
-     let arraymalevalues = data.filter(function(users){
-
-       return users[fieldviewnames[0]].value==uniqueseriesnames[0]})
-     
-			console.log(arraymalevalues)
+    // for N number of values in the first series, create an array of data objects of N length for the HC series vis object
+    // e.g. if the first dimension is 2 values, there'll be 2 arrays of data, 3 values = 3 arrays etc.
+    // e.g. [{user.gender: {value: 'Male'}, user.age: {value: 18}, user.lifetime_revenue: {value: 100}},
+    //       {user.gender: {value: 'Male'}, user.age: {value: 18}, user.lifetime_revenue: {value: 100}}, ]
+    var dataseriesarrays =[]
+    i = 0
+    while (i<uniqueseriesnames.length){
+        let temparray = data.filter(function(users){
+        return users[fieldviewnames[0]].value==uniqueseriesnames[i]})
+        dataseriesarrays.push(temparray)
+        i++
+    } 
+    console.log(dataseriesarrays)
+    let arraymalevalues = data.filter(function(users){
+        return users[fieldviewnames[0]].value==uniqueseriesnames[0]})
       
-		let arrayfemalevalues = data.filter(function(users){
-     return users[fieldviewnames[0]].value==uniqueseriesnames[1]})
-			console.log(arrayfemalevalues)
+	let arrayfemalevalues = data.filter(function(users){
+        return users[fieldviewnames[0]].value==uniqueseriesnames[1]})
+
 		
     var series1hcdataarray =[] 
     arraymalevalues.forEach(function(d){
