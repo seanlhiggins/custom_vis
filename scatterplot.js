@@ -20,7 +20,20 @@ const visObject = {
             section: "Style",
             default: true,
             order: 2
-        }
+        },
+        legendalignment: {
+            type: "string",
+            label: "Title Alignment",
+            values: [{
+            "Left": "left"
+            },
+            {
+            "Right": "right"
+            },
+            {
+            "Centre": "centre"
+            }
+            ]
     }
     Highcharts.setOptions({
         colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
@@ -124,8 +137,8 @@ const visObject = {
     },
     legend: {
         layout: 'vertical',
-        enabled: options['legendenabled'],
-        align: 'left',
+        enabled: config.legendenabled,
+        align: config.legendalignment,
         verticalAlign: 'top',
         x: 100,
         y: 70,
