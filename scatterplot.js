@@ -160,7 +160,12 @@ const visObject = {
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             tempobject.color = Highcharts.getOptions().colors[i]
-            tempobject.marker = {symbol: config.symbolselect, radius: config.pointsize, fillColor: colourfill}
+            tempobject.marker = {symbol: 'triangle',
+                fillColor: colourfill,
+                lineWidth: 2,
+                radius: config.pointsize,
+                lineColor: null // inherit from series}
+                }
             dataseriesarrays.push(tempobject)
             i++
         }
