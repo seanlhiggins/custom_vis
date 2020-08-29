@@ -35,6 +35,7 @@ const visObject = {
             }
             ]
     }
+    }
     Highcharts.setOptions({
         colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
     });
