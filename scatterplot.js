@@ -23,6 +23,8 @@ const visObject = {
         },
         legendalignment: {
             type: "string",
+            section: "Style",
+            display: 'select',
             label: "Title Alignment",
             values: [{
             "Left": "left"
