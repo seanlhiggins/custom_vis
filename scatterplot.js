@@ -6,62 +6,54 @@
  **/
 
 const visObject = {
- /**
-  * Configuration options for your visualization. In Looker, these show up in the vis editor
-  * panel but here, you can just manually set your default values in the code.
-  **/
-  
- 
- /**
-  * The create function gets called when the visualization is mounted but before any
-  * data is passed to it.
-  **/
-	create: function(element, config){
-		element.innerHTML = "Scatterplot";
- 
 
+	create: function(element, config){
+		element.innerHTML = "";
 	},
 
- /**
-  * UpdateAsync is the function that gets called (potentially) multiple times. It receives
-  * the data and should update the visualization with the new data.
-  **/
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
-
+    options = {
+        legendenabled: {
+            label: 'Legend',
+            type: 'boolean',
+            display: 'select',
+            section: "Style",
+            default: true,
+            order: 2
+        }
+    }
     Highcharts.setOptions({
         colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
     });
     // set the dimensions and margins of the graph
-    console.log(data, queryResponse)
-		var fieldnamesfriendly = []
-    queryResponse.fields.dimension_like.forEach(function(value) {
-     fieldnamesfriendly.push(value.label_short);
-     
+    // console.log(data, queryResponse)
+	var fieldnamesfriendly = []
+        queryResponse.fields.dimension_like.forEach(function(value) {
+            fieldnamesfriendly.push(value.label_short);
     });
-    		var measurenamesfriendly = []
+    var measurenamesfriendly = []
     queryResponse.fields.measure_like.forEach(function(value) {
-     measurenamesfriendly.push(value.label_short);
-     
+        measurenamesfriendly.push(value.label_short);
     });
+
    	var fieldviewnames = []
     queryResponse.fields.dimension_like.forEach(function(value) {
-     fieldviewnames.push(value.name);
+        fieldviewnames.push(value.name);
     });
-		var measurenames = []
-      queryResponse.fields.measure_like.forEach(function(value) {
-     measurenames.push(value.name);
+	var measurenames = []
+    queryResponse.fields.measure_like.forEach(function(value) {
+        measurenames.push(value.name);
     });
     console.log(measurenames)
    	var container = element.appendChild(document.createElement("div"));
-  	container.id = "container";
+    container.id = "container";
+    
     var hcstructureddata = []
 		
-//    var seriesaxis = data[0][fieldviewnames[0]].value
     var seriesaxesvalues =[]
     data.forEach(function(d) {
-      seriesaxesvalues.push(d[fieldviewnames[0]].value)
-
-})
+        seriesaxesvalues.push(d[fieldviewnames[0]].value)
+    })
     
     function onlyUnique(value, index, self) { 
     return self.indexOf(value) === index;
@@ -79,15 +71,15 @@ const visObject = {
     while (i<uniqueseriesnames.length){
         let tempobject = {}
         //{
-    //     name: uniqueseriesnames[0],
-    //     color: 'rgba(119, 152, 191, .5)',
-    //     data: series2hcdataarray
-    // }
+        //     name: uniqueseriesnames[0],
+        //     color: 'rgba(119, 152, 191, .5)',
+        //     data: [[11,22],[33,44]]
+        // }
 
         let temparray = data.filter(function(users){
         return users[fieldviewnames[0]].value==uniqueseriesnames[i]})
-        //dataseriesarrays.push(temparray)
-        console.log(temparray)
+
+
         let tempdataarray = []
         temparray.forEach(function(d){
             let tempdata = []
@@ -95,7 +87,7 @@ const visObject = {
             tempdata.push(d[measurenames[0]].value)
             tempdataarray.push(tempdata)
         })
-        console.log(tempdataarray)
+
         tempobject.name = uniqueseriesnames[i]
         tempobject.data = tempdataarray
         tempobject.color = Highcharts.getOptions().colors[i]
@@ -103,7 +95,6 @@ const visObject = {
         i++
     } 
   
-    console.log(dataseriesarrays)
 
     Highcharts.chart('container', {
     chart: {
@@ -133,6 +124,7 @@ const visObject = {
     },
     legend: {
         layout: 'vertical',
+        enabled: options['legendenabled']
         align: 'left',
         verticalAlign: 'top',
         x: 100,
@@ -167,6 +159,7 @@ const visObject = {
     },
     series: dataseriesarrays
 });
+this.trigger('registerOptions', options)
 
 	}
 };
