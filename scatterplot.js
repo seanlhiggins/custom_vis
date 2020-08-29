@@ -27,6 +27,10 @@ const visObject = {
   * the data and should update the visualization with the new data.
   **/
 	updateAsync: function(data, element, config, queryResponse, details, doneRendering){
+
+    Highcharts.setOptions({
+        colors: ['#5b3ef5', '#ff8e43']
+    });
     // set the dimensions and margins of the graph
     console.log(data, queryResponse)
 		var fieldnamesfriendly = []
@@ -73,37 +77,33 @@ const visObject = {
     var dataseriesarrays =[]
     i = 0
     while (i<uniqueseriesnames.length){
+        let tempobject = {}
+        //{
+    //     name: uniqueseriesnames[0],
+    //     color: 'rgba(119, 152, 191, .5)',
+    //     data: series2hcdataarray
+    // }
+
         let temparray = data.filter(function(users){
         return users[fieldviewnames[0]].value==uniqueseriesnames[i]})
-        dataseriesarrays.push(temparray)
+        //dataseriesarrays.push(temparray)
+        console.log(temparray)
+        let tempdataarray = []
+        temparray.forEach(function(d){
+            let tempdata = []
+            tempdata.push(d[fieldviewnames[1]].value)
+            tempdata.push(d[measurenames[0]].value)
+            tempdataarray.push(tempdata)
+        })
+        console.log(tempdataarray)
+        tempobject.name = uniqueseriesnames[i]
+        tempobject.data = tempdataarray
+        tempobject.color = Highcharts.getOptions().colors[i]
+        dataseriesarrays.push(tempobject)
         i++
     } 
+  
     console.log(dataseriesarrays)
-    let arraymalevalues = data.filter(function(users){
-        return users[fieldviewnames[0]].value==uniqueseriesnames[0]})
-      
-	let arrayfemalevalues = data.filter(function(users){
-        return users[fieldviewnames[0]].value==uniqueseriesnames[1]})
-
-		
-    var series1hcdataarray =[] 
-    arraymalevalues.forEach(function(d){
-      temparray=[]
-    	temparray.push(d[fieldviewnames[1]].value)
-      temparray.push(d[measurenames[0]].value)
-      series1hcdataarray.push(temparray)
-    });
-    var series2hcdataarray =[]
-    arrayfemalevalues.forEach(function(d){
-      let temparray =[]
-    	temparray.push(d[fieldviewnames[1]].value)
-      temparray.push(d[measurenames[0]].value)
-      series2hcdataarray.push(temparray)
-    });
-    
-    console.log(series1hcdataarray,series2hcdataarray)
-    
-
 
     Highcharts.chart('container', {
     chart: {
@@ -165,16 +165,7 @@ const visObject = {
             }
         }
     },
-    series: [{
-        name: uniqueseriesnames[1],
-        color: 'rgba(223, 83, 83, .5)',
-        data: series1hcdataarray
-
-    }, {
-        name: uniqueseriesnames[0],
-        color: 'rgba(119, 152, 191, .5)',
-        data: series2hcdataarray
-    }]
+    series: dataseriesarrays
 });
 
 	}
