@@ -47,7 +47,7 @@ const visObject = {
                 section: "Style",
                 default: true,
                 order: 2
-            }
+            },
             pointsize: { 
                 label: 'Point Size',
                 min: 2,
