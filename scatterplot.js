@@ -4,7 +4,8 @@
  *  - API Documentation - https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
  *  - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
  **/
-const visObject = {
+
+looker.plugins.visualizations.add({
 
     create: function(element, config) {
         element.innerHTML = "";
@@ -104,7 +105,7 @@ const visObject = {
         }
         }
         this.trigger('registerOptions', options)
-        
+
         Highcharts.setOptions({
             colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
         });
@@ -253,5 +254,4 @@ const visObject = {
         doneRendering()
     }
 };
-
-looker.plugins.visualizations.add(visObject);
+);
