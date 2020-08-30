@@ -164,12 +164,12 @@ looker.plugins.visualizations.add({
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             tempobject.color = Highcharts.getOptions().colors[i]
-            tempobject.marker = {symbol: config.symbolselect,
-                fillColor: colourfill,
-                lineWidth: 2,
-                radius: config.pointsize,
-                lineColor: null // inherit from series}
-                }
+            // tempobject.marker = {symbol: config.symbolselect,
+            //     fillColor: colourfill,
+            //     lineWidth: 2,
+            //     radius: config.pointsize,
+            //     lineColor: null // inherit from series}
+            //     }
             dataseriesarrays.push(tempobject)
             i++
         }
