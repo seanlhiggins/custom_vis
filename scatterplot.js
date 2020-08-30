@@ -35,76 +35,76 @@ looker.plugins.visualizations.add({
         }
 
 
-        options = {
-            legendenabled: {
-                label: 'Legend',
-                type: 'boolean',
-                display: 'select',
-                section: "Style",
-                default: true,
-                order: 2
-            },
-            pointfill: {
-                label: 'Point Fill',
-                type: 'boolean',
-                display: 'select',
-                section: "Style",
-                default: true,
-                order: 2
-            },
-            pointsize: { 
-                label: 'Point Size',
-                min: 2,
-                max: 6,
-                step: .2,
-                default: 3,
-                section: 'Style',
-                type: 'number',
-                display: 'range',
-                order: 1
-            },
-            legendalignment: {
-                type: "string",
-                section: "Style",
-                display: 'select',
-                label: "Legend Alignment",
-                values: [{
-                        "Left": "left"
-                    },
-                    {
-                        "Right": "right"
-                    },
-                    {
-                        "Centre": "center"
-                    }
-                ]
-            },
-            //'circle', 'square','diamond', 'triangle' and 'triangle-down'
-            symbolselect: {
-                type: "string",
-                section: "Style",
-                display: 'select',
-                label: "Marker Symbol",
-                default: 'circle',
-                values: [{
-                        "Circle": "circle"
-                    },
-                    {
-                        "Square": "square"
-                    },
-                    {
-                        "Diamond": "diamond"
-                    },
-                    {
-                        "Triangle": "triangle"
-                    },
-                    {
-                        "Triangle-Down": "triangle-down"
-                    }
-                ]
-        }
-        }
-        this.trigger('registerOptions', options)
+        // options = {
+        //     legendenabled: {
+        //         label: 'Legend',
+        //         type: 'boolean',
+        //         display: 'select',
+        //         section: "Style",
+        //         default: true,
+        //         order: 2
+        //     },
+        //     pointfill: {
+        //         label: 'Point Fill',
+        //         type: 'boolean',
+        //         display: 'select',
+        //         section: "Style",
+        //         default: true,
+        //         order: 2
+        //     },
+        //     pointsize: { 
+        //         label: 'Point Size',
+        //         min: 2,
+        //         max: 6,
+        //         step: .2,
+        //         default: 3,
+        //         section: 'Style',
+        //         type: 'number',
+        //         display: 'range',
+        //         order: 1
+        //     },
+        //     legendalignment: {
+        //         type: "string",
+        //         section: "Style",
+        //         display: 'select',
+        //         label: "Legend Alignment",
+        //         values: [{
+        //                 "Left": "left"
+        //             },
+        //             {
+        //                 "Right": "right"
+        //             },
+        //             {
+        //                 "Centre": "center"
+        //             }
+        //         ]
+        //     },
+        //     //'circle', 'square','diamond', 'triangle' and 'triangle-down'
+        //     symbolselect: {
+        //         type: "string",
+        //         section: "Style",
+        //         display: 'select',
+        //         label: "Marker Symbol",
+        //         default: 'circle',
+        //         values: [{
+        //                 "Circle": "circle"
+        //             },
+        //             {
+        //                 "Square": "square"
+        //             },
+        //             {
+        //                 "Diamond": "diamond"
+        //             },
+        //             {
+        //                 "Triangle": "triangle"
+        //             },
+        //             {
+        //                 "Triangle-Down": "triangle-down"
+        //             }
+        //         ]
+        // }
+        // }
+        // this.trigger('registerOptions', options)
 
         Highcharts.setOptions({
             colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
