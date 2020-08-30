@@ -8,9 +8,11 @@ const visObject = {
 
     create: function(element, config) {
         element.innerHTML = "";
+        console.log('1')
     },
 
     updateAsync: function(data, element, config, queryResponse, details, doneRendering) {
+        console.log('2')
 
         // Clear any errors from previous updates
         this.clearErrors();
@@ -30,6 +32,7 @@ const visObject = {
             return;
         }
 
+        console.log('3')
 
         options = {
             legendenabled: {
@@ -108,6 +111,7 @@ const visObject = {
         var dimensions = queryResponse.fields.dimension_like
         var measures = queryResponse.fields.measure_like
 
+        console.log('4')
 
         var container = element.appendChild(document.createElement("div"));
         container.id = "container";
@@ -169,6 +173,7 @@ const visObject = {
             dataseriesarrays.push(tempobject)
             i++
         }
+        console.log('5')
 
 
         Highcharts.chart('container', {
@@ -241,6 +246,8 @@ const visObject = {
             series: dataseriesarrays
         });
         this.trigger('registerOptions', options)
+        console.log('6')
+
         doneRendering()
     }
 };
