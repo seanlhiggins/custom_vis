@@ -9,6 +9,8 @@ looker.plugins.visualizations.add({
 
     create: function(element, config) {
         element.innerHTML = "";
+        var container = element.appendChild(document.createElement("div"));
+        container.id = "container";
         this._fontsReady = document.fonts.ready
     },
 
@@ -112,8 +114,7 @@ looker.plugins.visualizations.add({
         var dimensions = queryResponse.fields.dimension_like
         var measures = queryResponse.fields.measure_like
 
-        var container = element.appendChild(document.createElement("div"));
-        container.id = "container";
+
 
         var seriesaxesvalues = []
         data.forEach(function(d) {
