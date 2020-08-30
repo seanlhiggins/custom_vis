@@ -12,7 +12,7 @@ looker.plugins.visualizations.add({
         console.log('1')
     },
 
-    updateAsync: function(data, element, config, queryResponse, details, done) {
+    update: function(data, element, config, queryResponse, details, done) {
         console.log('2')
 
         // Clear any errors from previous updates
