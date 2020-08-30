@@ -9,6 +9,7 @@ looker.plugins.visualizations.add({
 
     create: function(element, config) {
         element.innerHTML = "";
+        this._fontsReady = document.fonts.ready
     },
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
