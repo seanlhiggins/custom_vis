@@ -241,7 +241,7 @@ const visObject = {
             series: dataseriesarrays
         });
         this.trigger('registerOptions', options)
-
+        this.doneRendering()
     }
 };
 
