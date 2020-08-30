@@ -242,6 +242,6 @@ looker.plugins.visualizations.add({
             },
             series: dataseriesarrays
         });
-    
+        this._fontsReady.then(done);
     }
 });
