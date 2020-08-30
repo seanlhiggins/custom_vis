@@ -9,9 +9,11 @@ looker.plugins.visualizations.add({
 
     create: function(element, config) {
         element.innerHTML = "";
+        console.log('1')
     },
 
-    updateAsync: function(data, element, config, queryResponse, details, doneRendering) {
+    updateAsync: function(data, element, config, queryResponse, details, done) {
+        console.log('2')
 
         // Clear any errors from previous updates
         this.clearErrors();
@@ -30,6 +32,8 @@ looker.plugins.visualizations.add({
             });
             return;
         }
+
+        console.log('3')
 
         options = {
             legendenabled: {
@@ -110,6 +114,8 @@ looker.plugins.visualizations.add({
         var dimensions = queryResponse.fields.dimension_like
         var measures = queryResponse.fields.measure_like
 
+        console.log('4')
+
         var container = element.appendChild(document.createElement("div"));
         container.id = "container";
 
@@ -170,6 +176,7 @@ looker.plugins.visualizations.add({
             dataseriesarrays.push(tempobject)
             i++
         }
+        console.log('5')
 
 
         Highcharts.chart('container', {
@@ -241,7 +248,10 @@ looker.plugins.visualizations.add({
             },
             series: dataseriesarrays
         });
+        
+        console.log('6')
 
-        doneRendering()
+        done()
+        console.log('7')
     }
 });
