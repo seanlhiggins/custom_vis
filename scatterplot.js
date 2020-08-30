@@ -82,7 +82,7 @@ looker.plugins.visualizations.add({
                     }
                 ]
         }
-        }
+        },
     updateAsync: function(data, element, config, queryResponse, details, done) {
         this.trigger('registerOptions', options)
 
