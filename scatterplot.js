@@ -251,7 +251,7 @@ looker.plugins.visualizations.add({
         
         console.log('6')
 
-        done()
+
         console.log('7')
     }
 });
