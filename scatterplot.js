@@ -171,7 +171,7 @@ looker.plugins.visualizations.add({
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             tempobject.color = {
-                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
                 stops: [
                  [0.00, '#FEFE69'],
                   [0.25, '#DDF969'],
