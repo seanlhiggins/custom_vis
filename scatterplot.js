@@ -212,9 +212,9 @@ looker.plugins.visualizations.add({
                 stopsseries[i]
                 
               }
-            let colourfill = tempobject.color
+            let colourfill = '#FFFFFF'
             if(config.pointfill){
-                colourfill = Highcharts.getOptions().colors[i]
+                colourfill = tempobject.color
             }
             tempobject.marker = {symbol: config.symbolselect,
                 fillColor: colourfill,
