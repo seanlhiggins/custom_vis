@@ -171,7 +171,14 @@ looker.plugins.visualizations.add({
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             tempobject.color = {
-                linearGradient: [0, yAxis.min, 0, yAxis.max]
+                linearGradient: [0, 0, 0, 0],
+                stops: [
+                  [0.00, '#800080'],
+                  [0.25, '#FF0000'],
+                  [0.50, '#FFFF00'],
+                  [0.75, '#00FF00'],
+                  [1.00, '#0000FF']
+                ]
               }
             tempobject.marker = {symbol: config.symbolselect,
                 fillColor: colourfill,
