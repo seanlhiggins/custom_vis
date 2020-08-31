@@ -171,15 +171,27 @@ looker.plugins.visualizations.add({
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             
+            // Highcharts has a linearGradient that can be set with stop points. 
+            // If you want each series to have its own colour gradient, we need
+            // to first create a set of ranges for each colour.
+            var redstops = [[0.00, '#FFE402'],
+            [0.25, '#FFA203'],
+            [0.50, '#FE5F02'],
+            [0.75, '#F90E1E'],
+            [1.00, '#CB0033']]
+            var greenstops = [[0.00, '#800080'],
+            [0.25, '#FF0000'],
+            [0.50, '#FFFF00'],
+            [0.75, '#00FF00'],
+            [1.00, '#0000FF']]
+            var bluestops = []
+            var stopsseries = [redstops,greenstops,bluestops]
+
             tempobject.color = {
                 linearGradient: [0, 0, 0, 400],
-                stops: [
-                  [0.00, '#800080'],
-                  [0.25, '#FF0000'],
-                  [0.50, '#FFFF00'],
-                  [0.75, '#00FF00'],
-                  [1.00, '#0000FF']
-                ]
+                stops: 
+                  stopseries[i]
+                
               }
             tempobject.marker = {symbol: config.symbolselect,
                 fillColor: colourfill,
