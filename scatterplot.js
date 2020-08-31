@@ -16,6 +16,11 @@ looker.plugins.visualizations.add({
             default: true,
             order: 2
         },
+        color_range: {
+            type: "array",
+            label: "Color Range",
+            display: "colors"
+        },
         pointfill: {
             label: 'Point Fill',
             type: 'boolean',
