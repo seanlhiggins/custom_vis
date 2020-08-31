@@ -17,6 +17,7 @@ looker.plugins.visualizations.add({
             order: 2
         },
         color_range: {
+            section: "Style",
             type: "array",
             label: "Color Range",
             display: "colors"
