@@ -194,7 +194,7 @@ looker.plugins.visualizations.add({
                 
               }
             tempobject.marker = {symbol: config.symbolselect,
-                fillColor: colourfill,
+                fillColor: tempobject.color,
                 lineWidth: 2,
                 radius: config.pointsize,
                 lineColor: null // inherit from series}
