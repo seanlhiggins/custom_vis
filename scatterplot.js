@@ -182,10 +182,24 @@ looker.plugins.visualizations.add({
             var bluestops = [[0.00, '#111E80'],
             [0.25, '#124CA2'],
             [0.50, '#1677C5'],
-            [0.75, '#3DBDFF'],
+            [0.75, '#64EEFA'],
             [1.00, '#A4FFEC']]
-            var greenstops = []
-            var stopsseries = [redstops,bluestops]
+            var greenstops = [[0.00, '#FEFE69'],
+            [0.25, '#DDF969'],
+            [0.50, '#A9F36A'],
+            [0.75, '#78EC6C'],
+            [1.00, '#57E86B']]
+            var brownstops = [[0.00, '#F4E8D2'],
+            [0.25, '#D2BC95'],
+            [0.50, '#9D7168'],
+            [0.75, '#5E4042'],
+            [1.00, '#392728']]
+            var purplestops = [[0.00, '#F4A3EA'],
+            [0.25, '#B43CA1'],
+            [0.50, '#1677C5'],
+            [0.75, '#6A11B3'],
+            [1.00, '#2C1171']]
+            var stopsseries = [redstops,bluestops,greenstops,brownstops,purplestops]
 
             tempobject.color = {
                 linearGradient: [0, 0, 0, 400],
