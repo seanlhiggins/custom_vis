@@ -179,11 +179,11 @@ looker.plugins.visualizations.add({
             [0.50, '#FE5F02'],
             [0.75, '#F90E1E'],
             [1.00, '#CB0033']]
-            var bluestops = [[0.00, '#1973D1'],
-            [0.25, '#135CC5'],
-            [0.50, '#0C3BAA'],
-            [0.75, '#061993'],
-            [1.00, '#010280']]
+            var bluestops = [[0.00, '#111E80'],
+            [0.25, '#124CA2'],
+            [0.50, '#1677C5'],
+            [0.75, '#3DBDFF'],
+            [1.00, '#A4FFEC']]
             var greenstops = []
             var stopsseries = [redstops,bluestops]
 
