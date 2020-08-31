@@ -190,7 +190,7 @@ looker.plugins.visualizations.add({
             tempobject.color = {
                 linearGradient: [0, 0, 0, 400],
                 stops: 
-                  stopseries[i]
+                stopsseries[i]
                 
               }
             tempobject.marker = {symbol: config.symbolselect,
