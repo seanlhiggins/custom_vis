@@ -30,6 +30,14 @@ looker.plugins.visualizations.add({
             default: true,
             order: 2
         },
+        independentGradients: {
+            label: 'Independent Gradients',
+            type: 'boolean',
+            display: 'select',
+            section: "Style",
+            default: false,
+            order: 2
+        },
         pointsize: { 
             label: 'Point Size',
             min: 2,
@@ -164,10 +172,7 @@ looker.plugins.visualizations.add({
                 tempdata.push(d[measures[0].name].value)
                 tempdataarray.push(tempdata)
             })
-            let colourfill = '#FFFFFF'
-            if(config.pointfill){
-                colourfill = Highcharts.getOptions().colors[i]
-            }
+           
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             
@@ -207,8 +212,12 @@ looker.plugins.visualizations.add({
                 stopsseries[i]
                 
               }
+            let colourfill = tempobject.color
+            if(config.pointfill){
+                colourfill = Highcharts.getOptions().colors[i]
+            }
             tempobject.marker = {symbol: config.symbolselect,
-                fillColor: tempobject.color,
+                fillColor: colourfill,
                 lineWidth: 2,
                 radius: config.pointsize,
                 lineColor: null // inherit from series}
@@ -226,13 +235,18 @@ looker.plugins.visualizations.add({
                     load: function() {
                       var chart = this,
                         yAxis = chart.yAxis[0];
+                        console.log(this)
+                        var colorgradient =  {
+                            linearGradient: [0, yAxis.min, 0, yAxis.max]
+                          }
+                    if(config.independentGradients){
+                        colorgradient = {linearGradient:[0,0,0,1000]}
+                    }
             
                       chart.update({
                         plotOptions: {
                           series: {
-                            color: {
-                              linearGradient: [0, yAxis.min, 0, yAxis.max]
-                            }
+                            color: colorgradient
                           }
                         }
                       });
