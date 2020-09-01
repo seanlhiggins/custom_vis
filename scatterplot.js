@@ -30,8 +30,16 @@ looker.plugins.visualizations.add({
             default: true,
             order: 2
         },
-        independentGradients: {
-            label: 'Independent Gradients',
+        valueGradient: {
+            label: 'Value Gradients',
+            type: 'boolean',
+            display: 'select',
+            section: "Style",
+            default: false,
+            order: 2
+        },
+        sharedgradient: {
+            label: 'Single Gradient',
             type: 'boolean',
             display: 'select',
             section: "Style",
@@ -122,14 +130,14 @@ looker.plugins.visualizations.add({
    
 
         Highcharts.setOptions({
-            colors: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
+            colors: config.color_range
         });
         // set the dimensions and margins of the graph
         // console.log(data, queryResponse)
         var dimensions = queryResponse.fields.dimension_like
         var measures = queryResponse.fields.measure_like
 
-
+        console.log(config.color_range)
 
         var seriesaxesvalues = []
         data.forEach(function(d) {
@@ -172,7 +180,10 @@ looker.plugins.visualizations.add({
                 tempdata.push(d[measures[0].name].value)
                 tempdataarray.push(tempdata)
             })
-           
+            // need to get the max of the 2d array to apply conditional formatting per series
+            var maxRow = tempdataarray.map(function(row){ return Math.max.apply(Math, row); });
+            var max = Math.max.apply(null, maxRow);
+            console.log(max)
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             
@@ -180,31 +191,22 @@ looker.plugins.visualizations.add({
             // If you want each series to have its own colour gradient, we need
             // to first create a set of ranges for each colour.
             var redstops = [[0.00, '#FFE402'],
-            [0.25, '#FFA203'],
             [0.50, '#FE5F02'],
-            [0.75, '#F90E1E'],
             [1.00, '#CB0033']]
-            var bluestops = [[0.00, '#111E80'],
-            [0.25, '#124CA2'],
-            [0.50, '#1677C5'],
-            [0.75, '#64EEFA'],
-            [1.00, '#A4FFEC']]
+            var bluestops = [[0.00, '#C6FFDD'],
+            [0.50, '#FBD786'],
+            [1.00, '#F7797D']]
             var greenstops = [[0.00, '#FEFE69'],
-            [0.25, '#DDF969'],
             [0.50, '#A9F36A'],
-            [0.75, '#78EC6C'],
             [1.00, '#57E86B']]
             var brownstops = [[0.00, '#F4E8D2'],
-            [0.25, '#D2BC95'],
             [0.50, '#9D7168'],
-            [0.75, '#5E4042'],
             [1.00, '#392728']]
             var purplestops = [[0.00, '#F4A3EA'],
-            [0.25, '#B43CA1'],
             [0.50, '#1677C5'],
-            [0.75, '#6A11B3'],
             [1.00, '#2C1171']]
-            var stopsseries = [redstops,bluestops,greenstops,brownstops,purplestops]
+            var singlestop = [[0,'#b92b27'],[1,'#1565C0']]
+            var stopsseries = [redstops,greenstops,bluestops,brownstops,purplestops]
 
             tempobject.color = {
                 linearGradient: [0, 0, 0, 400],
@@ -212,6 +214,12 @@ looker.plugins.visualizations.add({
                 stopsseries[i]
                 
               }
+            if(!config.valueGradient){
+                tempobject.color = config.color_range[i]
+            }
+            if(config.sharedgradient){
+                tempobject.color.stops = singlestop
+            }
             let colourfill = '#FFFFFF'
             if(config.pointfill){
                 colourfill = tempobject.color
@@ -231,27 +239,26 @@ looker.plugins.visualizations.add({
             chart: {
                 type: 'scatter',
                 zoomType: 'xy',
-                events: {
-                    load: function() {
-                      var chart = this,
-                        yAxis = chart.yAxis[0];
-                        console.log(this)
-                        var colorgradient =  {
-                            linearGradient: [0, yAxis.min, 0, yAxis.max]
-                          }
-                    if(config.independentGradients){
-                        colorgradient = {linearGradient:[0,0,0,1000]}
-                    }
+                // events: {
+                //     load: function() {
+                //       var chart = this,
+                //       yAxis = chart.yAxis[0];
+                //       xAxis = chart.xAxis[0];
+                //       console.log(this)
+                //         var colorgradient =  {
+                //             linearGradient: [xAxis.min, 0, xAxis.max, 0]
+                //           }
+  
             
-                      chart.update({
-                        plotOptions: {
-                          series: {
-                            color: colorgradient
-                          }
-                        }
-                      });
-                    }
-                  }
+                //       chart.update({
+                //         plotOptions: {
+                //           series: {
+                //             color: colorgradient
+                //           }
+                //         }
+                //       });
+                //     }
+                //   }
             },
             title: {
                 text: `${dimensions[1].label_short} vs ${measures[0].label_short}`
@@ -286,10 +293,10 @@ looker.plugins.visualizations.add({
                 align: config.legendalignment,
                 verticalAlign: 'top',
                 x: 100,
-                y: 70,
+                y: 40,
                 floating: true,
                 backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
-                borderWidth: 1
+                borderWidth: 0
             },
             plotOptions: {
                 scatter: {
