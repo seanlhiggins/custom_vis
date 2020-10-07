@@ -126,19 +126,12 @@ looker.plugins.visualizations.add({
             return;
         }
 
-
-   
-
         Highcharts.setOptions({
             colors: config.color_range
         });
         // set the dimensions and margins of the graph
-        // console.log(data, queryResponse)
         var dimensions = queryResponse.fields.dimension_like
         var measures = queryResponse.fields.measure_like
-
-        console.log(config.color_range)
-
         var seriesaxesvalues = []
         data.forEach(function(d) {
             seriesaxesvalues.push(d[dimensions[0].name].value)
@@ -183,7 +176,6 @@ looker.plugins.visualizations.add({
             // need to get the max of the 2d array to apply conditional formatting per series
             var maxRow = tempdataarray.map(function(row){ return Math.max.apply(Math, row); });
             var max = Math.max.apply(null, maxRow);
-            console.log(max)
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             
@@ -239,26 +231,6 @@ looker.plugins.visualizations.add({
             chart: {
                 type: 'scatter',
                 zoomType: 'xy',
-                // events: {
-                //     load: function() {
-                //       var chart = this,
-                //       yAxis = chart.yAxis[0];
-                //       xAxis = chart.xAxis[0];
-                //       console.log(this)
-                //         var colorgradient =  {
-                //             linearGradient: [xAxis.min, 0, xAxis.max, 0]
-                //           }
-  
-            
-                //       chart.update({
-                //         plotOptions: {
-                //           series: {
-                //             color: colorgradient
-                //           }
-                //         }
-                //       });
-                //     }
-                //   }
             },
             title: {
                 text: `${dimensions[1].label_short} vs ${measures[0].label_short}`
