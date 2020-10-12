@@ -2,7 +2,6 @@
  *  - API Documentation - https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
  *  - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
  **/
-
 looker.plugins.visualizations.add({
     options: {
         legendenabled: {
@@ -65,7 +64,7 @@ looker.plugins.visualizations.add({
                 },
             ]
         },
-        pointsize: { 
+        pointsize: {
             label: 'Point Size',
             min: 2,
             max: 6,
@@ -122,7 +121,7 @@ looker.plugins.visualizations.add({
                     "Triangle-Down": "triangle-down"
                 }
             ]
-    }
+        }
     },
     create: function(element, config) {
         element.innerHTML = "";
@@ -131,7 +130,7 @@ looker.plugins.visualizations.add({
         this._fontsReady = document.fonts.ready
     },
 
-         
+
     updateAsync: function(data, element, config, queryResponse, details, done) {
 
         // Clear any errors from previous updates
@@ -197,7 +196,7 @@ looker.plugins.visualizations.add({
                     },
                 ]
             },
-            pointsize: { 
+            pointsize: {
                 label: 'Point Size',
                 min: 2,
                 max: 6,
@@ -254,7 +253,7 @@ looker.plugins.visualizations.add({
                         "Triangle-Down": "triangle-down"
                     }
                 ]
-        }
+            }
         }
 
 
@@ -286,15 +285,15 @@ looker.plugins.visualizations.add({
 
         // some placeholder for stylings that will be adjusted by users
         var xAxispin = null
-        if(!config.unpinaxis){
+        if (!config.unpinaxis) {
             xAxispin = 0
         }
         var titleText = `${measures[1].label_short} vs ${measures[0].label_short}`
-        if(config.hideTitle){
+        if (config.hideTitle) {
             titleText = ''
         }
         var subtitleText = `${data.length} rows`
-        if(config.hideSubtitle){
+        if (config.hideSubtitle) {
             subtitleText = ''
         }
 
@@ -321,7 +320,7 @@ looker.plugins.visualizations.add({
             //          symbol: 'triangle'
             //                }
             // }
-            
+
             let temparray = data.filter(function(users) {
                 return users[dimensions[0].name].value == uniqueseriesnames[i]
             })
@@ -335,44 +334,52 @@ looker.plugins.visualizations.add({
                 tempdata.push(d[measures[0].name].value)
                 tempdata.push(d[measures[1].name].value)
                 tempdataarray.push(tempdata)
-                tempobject.tooltip = {pointFormat: `${measures[0].label_short}: <b>${LookerCharts.Utils.textForCell(d[measures[0].name])}</b>,
-                    ${measures[1].label_short}:<b>${LookerCharts.Utils.textForCell(d[measures[1].name])}</b>`}
+                tempobject.tooltip = {
+                    pointFormat: `${measures[0].label_short}: <b>${LookerCharts.Utils.textForCell(d[measures[0].name])}</b>,
+                    ${measures[1].label_short}:<b>${LookerCharts.Utils.textForCell(d[measures[1].name])}</b>`
+                }
             })
             // need to get the max of the 2d array to apply conditional formatting per series
-            var maxRow = tempdataarray.map(function(row){ return Math.max.apply(Math, row); });
-            var max = Math.max.apply(null, maxRow)/2;
+            var maxRow = tempdataarray.map(function(row) {
+                return Math.max.apply(Math, row);
+            });
+            var max = Math.max.apply(null, maxRow) / 2;
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
-            
+
             // Highcharts has a linearGradient that can be set with stop points. 
 
-            var singlestop = [[0,config.colorrange[0]],[1,config.colorrange[1]]]
-            
+            var singlestop = [
+                [0, config.colorrange[0]],
+                [1, config.colorrange[1]]
+            ]
+
             // lineargradient = x,x2,y,y2
             var linearGradientDirection = [max, 0, 0, 0]
-            if(config.gradientDirection=='vertical'){
+            if (config.gradientDirection == 'vertical') {
                 linearGradientDirection = [0, 0, 0, max]
             }
             tempobject.color = {
                 linearGradient: linearGradientDirection,
                 stops: singlestop
-              }
+            }
 
-            if(!config.valueGradient){
+            if (!config.valueGradient) {
                 tempobject.color = Highcharts.getOptions().colors[i]
             }
 
             let colourfill = '#FFFFFF'
-            if(config.pointfill){
+            if (config.pointfill) {
                 colourfill = tempobject.color
             }
-            tempobject.marker = {symbol: config.symbolselect,
+            tempobject.marker = {
+                symbol: config.symbolselect,
                 fillColor: colourfill,
                 lineWidth: 2,
                 radius: config.pointsize,
                 lineColor: null // inherit from series}
-                }
- 
+            }
+
             dataseriesarrays.push(tempobject)
             i++
         }
@@ -444,27 +451,27 @@ looker.plugins.visualizations.add({
                         headerFormat: '<b>{series.name}</b><br>',
                         pointFormat: `${measures[0].label_short}:<span style="color:{point.color}"> <b>{point.x}</b></span>, ${measures[1].label_short}: <b>{point.y}</b>`,
                         crosshairs: true,
-                        
+
                     }
                 }
             },
 
             series: dataseriesarrays,
-            credits: { enabled: false}
+            credits: {
+                enabled: false
+            }
         });
-        
-        options['xaxislabel'] =
-        {
+
+        options['xaxislabel'] = {
             type: "string",
-            label: "X Axis Label",  
-            section: "3. Axes",       
+            label: "X Axis Label",
+            section: "3. Axes",
             placeholder: `${measures[0].label_short}`,
             default: `${measures[0].label_short}`
         }
-        options['yaxislabel'] = 
-        {
+        options['yaxislabel'] = {
             type: "string",
-            label: "Y Axis Label",         
+            label: "Y Axis Label",
             section: "3. Axes",
             placeholder: `${measures[1].label_short}`,
             default: `${measures[1].label_short}`
