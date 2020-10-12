@@ -4,27 +4,43 @@
  **/
 
 looker.plugins.visualizations.add({
-
-    options : {
+    options: {
         legendenabled: {
             label: 'Legend',
             type: 'boolean',
             display: 'select',
-            section: "Style",
-            default: true,
+            section: "2. Legend/Title",
+            default: false,
             order: 2
         },
-        color_range: {
-            section: "Style",
+        hideSubtitle: {
+            label: 'Hide Subtitle',
+            type: 'boolean',
+            display: 'select',
+            section: "2. Legend/Title",
+            default: false,
+            order: 1
+        },
+        hideTitle: {
+            label: 'Hide Title',
+            type: 'boolean',
+            display: 'select',
+            section: "2. Legend/Title",
+            default: false,
+            order: 1
+        },
+        colorrange: {
+            section: "1. Style",
             type: "array",
             label: "Color Range",
-            display: "colors"
+            display: "colors",
+            default: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
         },
         pointfill: {
             label: 'Point Fill',
             type: 'boolean',
             display: 'select',
-            section: "Style",
+            section: "1. Style",
             default: true,
             order: 2
         },
@@ -32,17 +48,22 @@ looker.plugins.visualizations.add({
             label: 'Value Gradients',
             type: 'boolean',
             display: 'select',
-            section: "Style",
-            default: false,
+            section: "1. Style",
+            default: true,
             order: 2
         },
-        sharedgradient: {
-            label: 'Single Gradient',
-            type: 'boolean',
+        gradientDirection: {
+            type: "string",
+            section: "1. Style",
             display: 'select',
-            section: "Style",
-            default: false,
-            order: 2
+            label: "Gradient Direction",
+            values: [{
+                    "Horizontal": "horizontal"
+                },
+                {
+                    "Vertical": "vertical"
+                },
+            ]
         },
         pointsize: { 
             label: 'Point Size',
@@ -50,14 +71,21 @@ looker.plugins.visualizations.add({
             max: 6,
             step: .2,
             default: 3,
-            section: 'Style',
+            section: '1. Style',
             type: 'number',
             display: 'range',
             order: 1
         },
+        unpinaxis: {
+            label: 'Unpin Axes from 0',
+            default: true,
+            type: 'boolean',
+            section: "3. Axes",
+            order: 3
+        },
         legendalignment: {
             type: "string",
-            section: "Style",
+            section: "2. Legend/Title",
             display: 'select',
             label: "Legend Alignment",
             values: [{
@@ -74,7 +102,7 @@ looker.plugins.visualizations.add({
         //'circle', 'square','diamond', 'triangle' and 'triangle-down'
         symbolselect: {
             type: "string",
-            section: "Style",
+            section: "1. Style",
             display: 'select',
             label: "Marker Symbol",
             default: 'circle',
@@ -108,24 +136,145 @@ looker.plugins.visualizations.add({
 
         // Clear any errors from previous updates
         this.clearErrors();
+        options = {
+            legendenabled: {
+                label: 'Legend',
+                type: 'boolean',
+                display: 'select',
+                section: "2. Legend/Title",
+                default: false,
+                order: 2
+            },
+            hideSubtitle: {
+                label: 'Hide Subtitle',
+                type: 'boolean',
+                display: 'select',
+                section: "2. Legend/Title",
+                default: false,
+                order: 1
+            },
+            hideTitle: {
+                label: 'Hide Title',
+                type: 'boolean',
+                display: 'select',
+                section: "2. Legend/Title",
+                default: false,
+                order: 1
+            },
+            colorrange: {
+                section: "1. Style",
+                type: "array",
+                label: "Color Range",
+                display: "colors",
+                default: ['#3EB0D5', '#B1399E', '#C2DD67', '#592EC2', '#4276BE', '#72D16D', '#FFD95F', '#B32F37', '#9174F0', '#E57947', '#75E2E2', '#FBB555']
+            },
+            pointfill: {
+                label: 'Point Fill',
+                type: 'boolean',
+                display: 'select',
+                section: "1. Style",
+                default: true,
+                order: 2
+            },
+            valueGradient: {
+                label: 'Value Gradients',
+                type: 'boolean',
+                display: 'select',
+                section: "1. Style",
+                default: true,
+                order: 2
+            },
+            gradientDirection: {
+                type: "string",
+                section: "1. Style",
+                display: 'select',
+                label: "Gradient Direction",
+                values: [{
+                        "Horizontal": "horizontal"
+                    },
+                    {
+                        "Vertical": "vertical"
+                    },
+                ]
+            },
+            pointsize: { 
+                label: 'Point Size',
+                min: 2,
+                max: 6,
+                step: .2,
+                default: 3,
+                section: '1. Style',
+                type: 'number',
+                display: 'range',
+                order: 1
+            },
+            unpinaxis: {
+                label: 'Unpin Axes from 0',
+                default: true,
+                type: 'boolean',
+                section: "3. Axes",
+                order: 3
+            },
+            legendalignment: {
+                type: "string",
+                section: "2. Legend/Title",
+                display: 'select',
+                label: "Legend Alignment",
+                values: [{
+                        "Left": "left"
+                    },
+                    {
+                        "Right": "right"
+                    },
+                    {
+                        "Centre": "center"
+                    }
+                ]
+            },
+            //'circle', 'square','diamond', 'triangle' and 'triangle-down'
+            symbolselect: {
+                type: "string",
+                section: "1. Style",
+                display: 'select',
+                label: "Marker Symbol",
+                default: 'circle',
+                values: [{
+                        "Circle": "circle"
+                    },
+                    {
+                        "Square": "square"
+                    },
+                    {
+                        "Diamond": "diamond"
+                    },
+                    {
+                        "Triangle": "triangle"
+                    },
+                    {
+                        "Triangle-Down": "triangle-down"
+                    }
+                ]
+        }
+        }
+
 
         // Throw some errors and exit if the shape of the data isn't what this chart needs
-        if (queryResponse.fields.dimension_like.length !== 2) {
+        if (queryResponse.fields.dimension_like.length !== 1) {
             this.addError({
                 title: "Wrong Dimensions",
-                message: "This chart requires exactly 2 dimensions and 1 measure."
+                message: "This chart requires exactly 1 dimensions and 2 measures."
             });
             return;
-        } else if (queryResponse.fields.measure_like.length != 1) {
+        } else if (queryResponse.fields.measure_like.length != 2) {
             this.addError({
                 title: "Wrong Measures",
-                message: "This chart requires exactly 1 measure and 2 dimensions."
+                message: "This chart requires exactly 2 measures and 1 dimension."
             });
             return;
         }
 
         Highcharts.setOptions({
-            colors: config.color_range
+            colors: config.colorrange
         });
         // set the dimensions and margins of the graph
         var dimensions = queryResponse.fields.dimension_like
@@ -134,6 +283,20 @@ looker.plugins.visualizations.add({
         data.forEach(function(d) {
             seriesaxesvalues.push(d[dimensions[0].name].value)
         })
+
+        // some placeholder for stylings that will be adjusted by users
+        var xAxispin = null
+        if(!config.unpinaxis){
+            xAxispin = 0
+        }
+        var titleText = `${measures[1].label_short} vs ${measures[0].label_short}`
+        if(config.hideTitle){
+            titleText = ''
+        }
+        var subtitleText = `${data.length} rows`
+        if(config.hideSubtitle){
+            subtitleText = ''
+        }
 
         function onlyUnique(value, index, self) {
             return self.indexOf(value) === index;
@@ -158,58 +321,47 @@ looker.plugins.visualizations.add({
             //          symbol: 'triangle'
             //                }
             // }
-
+            
             let temparray = data.filter(function(users) {
                 return users[dimensions[0].name].value == uniqueseriesnames[i]
             })
 
 
             let tempdataarray = []
+            // create an array of the x and y point values and also simultaneously get the html of each cell
+            // so that the tooltips render properly based on the measure selected in Looker
             temparray.forEach(function(d) {
                 let tempdata = []
-                tempdata.push(d[dimensions[1].name].value)
                 tempdata.push(d[measures[0].name].value)
+                tempdata.push(d[measures[1].name].value)
                 tempdataarray.push(tempdata)
+                tempobject.tooltip = {pointFormat: `${measures[0].label_short}: <b>${LookerCharts.Utils.textForCell(d[measures[0].name])}</b>,
+                    ${measures[1].label_short}:<b>${LookerCharts.Utils.textForCell(d[measures[1].name])}</b>`}
             })
             // need to get the max of the 2d array to apply conditional formatting per series
             var maxRow = tempdataarray.map(function(row){ return Math.max.apply(Math, row); });
-            var max = Math.max.apply(null, maxRow);
+            var max = Math.max.apply(null, maxRow)/2;
             tempobject.name = uniqueseriesnames[i]
             tempobject.data = tempdataarray
             
             // Highcharts has a linearGradient that can be set with stop points. 
-            // If you want each series to have its own colour gradient, we need
-            // to first create a set of ranges for each colour.
-            var redstops = [[0.00, '#FFE402'],
-            [0.50, '#FE5F02'],
-            [1.00, '#CB0033']]
-            var bluestops = [[0.00, '#C6FFDD'],
-            [0.50, '#FBD786'],
-            [1.00, '#F7797D']]
-            var greenstops = [[0.00, '#FEFE69'],
-            [0.50, '#A9F36A'],
-            [1.00, '#57E86B']]
-            var brownstops = [[0.00, '#F4E8D2'],
-            [0.50, '#9D7168'],
-            [1.00, '#392728']]
-            var purplestops = [[0.00, '#F4A3EA'],
-            [0.50, '#1677C5'],
-            [1.00, '#2C1171']]
-            var singlestop = [[0,'#b92b27'],[1,'#1565C0']]
-            var stopsseries = [redstops,greenstops,bluestops,brownstops,purplestops]
 
+            var singlestop = [[0,config.colorrange[0]],[1,config.colorrange[1]]]
+            
+            // lineargradient = x,x2,y,y2
+            var linearGradientDirection = [max, 0, 0, 0]
+            if(config.gradientDirection=='vertical'){
+                linearGradientDirection = [0, 0, 0, max]
+            }
             tempobject.color = {
-                linearGradient: [0, 0, 0, 400],
-                stops: 
-                stopsseries[i]
-                
+                linearGradient: linearGradientDirection,
+                stops: singlestop
               }
+
             if(!config.valueGradient){
-                tempobject.color = config.color_range[i]
+                tempobject.color = Highcharts.getOptions().colors[i]
             }
-            if(config.sharedgradient){
-                tempobject.color.stops = singlestop
-            }
+
             let colourfill = '#FFFFFF'
             if(config.pointfill){
                 colourfill = tempobject.color
@@ -220,6 +372,7 @@ looker.plugins.visualizations.add({
                 radius: config.pointsize,
                 lineColor: null // inherit from series}
                 }
+ 
             dataseriesarrays.push(tempobject)
             i++
         }
@@ -231,10 +384,10 @@ looker.plugins.visualizations.add({
                 zoomType: 'xy',
             },
             title: {
-                text: `${dimensions[1].label_short} vs ${measures[0].label_short}`
+                text: titleText
             },
             subtitle: {
-                text: `${data.length} rows`
+                text: subtitleText
             },
             exporting: {
                 enabled: false
@@ -245,17 +398,18 @@ looker.plugins.visualizations.add({
             xAxis: {
                 title: {
                     enabled: true,
-                    text: `${dimensions[1].label_short}`
+                    text: config.xaxislabel
                 },
                 startOnTick: true,
                 endOnTick: true,
                 showLastLabel: true,
-                min: 0 
+                min: xAxispin
             },
             yAxis: {
                 title: {
-                    text: `${measures[0].label_short}`
-                }
+                    text: config.yaxislabel
+                },
+                min: xAxispin
             },
             legend: {
                 layout: 'vertical',
@@ -288,12 +442,35 @@ looker.plugins.visualizations.add({
                     },
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{point.x}, {point.y} '
+                        pointFormat: `${measures[0].label_short}:<span style="color:{point.color}"> <b>{point.x}</b></span>, ${measures[1].label_short}: <b>{point.y}</b>`,
+                        crosshairs: true,
+                        
                     }
                 }
             },
-            series: dataseriesarrays
+
+            series: dataseriesarrays,
+            credits: { enabled: false}
         });
-        this._fontsReady.then(done);
+        
+        options['xaxislabel'] =
+        {
+            type: "string",
+            label: "X Axis Label",  
+            section: "3. Axes",       
+            placeholder: `${measures[0].label_short}`,
+            default: `${measures[0].label_short}`
+        }
+        options['yaxislabel'] = 
+        {
+            type: "string",
+            label: "Y Axis Label",         
+            section: "3. Axes",
+            placeholder: `${measures[1].label_short}`,
+            default: `${measures[1].label_short}`
+        }
+
+        this.trigger('registerOptions', options)
+        done()
     }
 });
