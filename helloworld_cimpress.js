@@ -57,10 +57,10 @@ const visObject = {
         var ratioofrgb = 255*ratio
         console.log(friendlyclassvalue)
         series.push({
-            name: d['game.friendly_class'].value,
+            name: d['users.country'].value,
             data: [{
-              value: d['game.count'].value, 
-              name: d["game.opponent_class"]["value"],
+              value: d['order_items.count'].value, 
+              name: d["users.country"]["value"],
               color: `rgb(155, 102, ${ratioofrgb})`
          }]
        });
@@ -76,7 +76,7 @@ const visObject = {
      series: series,
        tooltip: {
          useHTML: true,
-         pointFormat: '<b>{point.name}:</b> {point.y}</sub>'
+         pointFormat: `${config.second_option}`
      },
      plotOptions: {
          packedbubble: {
